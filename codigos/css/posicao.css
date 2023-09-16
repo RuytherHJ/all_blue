@@ -1,13 +1,30 @@
 .logo{
     width: 7%;
- 
     padding: 10px;
 }
 
 .bordando{
-
     border-style: solid;
     border-color: black;
     
+}
+.barraPesquisa{
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50%;
+    height: 30px;
+    border-radius: 100px;
+}
+
+.botaoPesquisa{
+    background: none;
+    border: none;
+    position: absolute;
+    top: 10%;
+    left: 77.4%;
+    transform: translate(-50%, -50%);
+    width: 3%;
 }
 

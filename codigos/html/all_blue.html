@@ -7,13 +7,17 @@
     
    <link rel="stylesheet" href="/codigos/css/cores.css">
    <link rel="stylesheet" href="/codigos/css/posicao.css">
+   <link rel="stylesheet" href="/codigos/css/extras.css">
 </head>
 <body>
 
     
     <header>
-        
         <img src="/codigos/files/AB.png" alt="All Blue" class="logo">
+        <input class="barraPesquisa" type="text" name="q" placeholder="Digite sua pesquisa..." required>
+        <button class="invisivel">
+            <img class="botaoPesquisa" src="/codigos/files/pesquisa.png" alt="pesquisar">
+        </button>
     </header>
 
     <nav class="bordando">
@@ -34,7 +38,9 @@
             <br>
             <input type="checkbox">
             <label for="">NVIDIA</label>
-        
+            action="resultado_pesquisa.php" method="GET">
+            
+            
         
 
         </form>
