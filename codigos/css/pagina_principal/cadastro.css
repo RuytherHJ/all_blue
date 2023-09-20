@@ -71,3 +71,7 @@ img{
     align-items: center;
 
 }
+
+h1{
+    display: inline-block;
+}
