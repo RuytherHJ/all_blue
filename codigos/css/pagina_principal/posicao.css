@@ -10,3 +10,21 @@
 }
 
 
+td{
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    margin: 0%;
+}
+
+img{
+    width: 10%;
+}
+
+td{
+    border-collapse: separate;
+    border-style: solid;
+    border-color: black;
+}
+
