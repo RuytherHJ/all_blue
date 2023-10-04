@@ -5,57 +5,67 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>All Blue</title>
     
-   <link rel="stylesheet" href="/codigos/css/pagina_principal/cores.css">
-   <link rel="stylesheet" href="/codigos/css/pagina_principal/posicao.css">
-   <link rel="stylesheet" href="/codigos/css/pagina_principal/barra_pesquisa.css">
+    <link rel="stylesheet" href="/css/pagina_principal/barra_pesquisa.css">
+    <link rel="stylesheet" href="/css/pagina_principal/cores.css">
+    <link rel="stylesheet" href="/css/pagina_principal/dropdown.css">
+    <link rel="stylesheet" href="/css/pagina_principal/style.css">
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 </head>
 <body>
+    
 
     
-    <header>
-        <img src="/codigos/files/AB.png" alt="All Blue" class="logo">
+    <header>   
+        <div class="img-container">
+            <img src="/files/AB.png" alt="All Blue" class="logo">
+        </div>            
+        
+
+        <nav>
+
         <div class="wrap">
             <div class="search">
-               <input type="text" class="searchTerm" placeholder="What are you looking for?">
+               <input type="text" class="searchTerm" placeholder="O que você procura hoje?">
                <button type="submit" class="searchButton">
                     <i class="fa fa-search"></i>
                 </button>
             </div>
          </div>
 
+         <div class="dropdown">
+            <button class="dropbutton">Menu</button>
+            <div class="drop_options">
+                <a href="/html/login.html">Login</a>
+                <a href="/html/cadastro_usuario.html">Cadastro</a>
+                <a href="#">Fale conosco</a>
+            </div>
+         </div>
+        </nav>
+       
+
     </header>
 
-    <nav class="bordando">
-        
+ <div class="marcas">
         <form action="">
-            <h2>Marcas</h2>
-            <input type="checkbox">
-            <label for="">AMD</label>
-            <br>
-            <input type="checkbox">
-            <label for="">INTEL</label>
-            <br>
-            <input type="checkbox">
-            <label for="">GFORCE</label>
-            <br>
-            <input type="checkbox">
-            <label for="">LOGITECH</label>
-            <br>
-            <input type="checkbox">
-            <label for="">NVIDIA</label>
-            action="resultado_pesquisa.php" method="GET">
-            
-            
-        
+            <input type="checkbox" id="amd">
+            <label for="amd">AMD</label>
 
+            <input type="checkbox" id="intel">
+            <label for="intel">INTEL</label>
+
+            <input type="checkbox" id="gforce">
+            <label for="gforce">GFORCE</label>
+
+            <input type="checkbox" id="logitech">
+            <label for="logitech">LOGITECH</label>
+            
+            <input type="checkbox" id="nvidia">
+            <label for="nvidia">NVIDIA</label>
         </form>
-    
+ </div>
 
-    </nav>
-
-
+<div class="wrapper">
     <aside>
         <table>
             <tr>
@@ -196,6 +206,7 @@
 
 
     </footer>
+</div>
 
 
 </body>
