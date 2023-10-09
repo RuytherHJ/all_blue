@@ -58,20 +58,22 @@ p{
     display: inline-block;
 }
 img{
-    width: 150px;
-    text-align: center;
+    width: 200px;
+    height: 200px;
     
 }
 .galeria{
-    text-align: center;
+   padding-left: 46%;
 }
 .container{
     display: flex;
     justify-content: center;
     align-items: center;
+   
 
 }
 
 h1{
     display: inline-block;
+ 
 }
