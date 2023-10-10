@@ -1,20 +1,18 @@
-.dropbutton{
+.dropbutton_Menu,.dropbutton_Filtros{
     background-color: rgb(97, 119, 122);
     color: white;
     padding: 16px;
     border: none;
     cursor: pointer;
-    
+
 }
+
 
 .dropdown{
-    position:relative;
-    left: auto;
-
-    display: inline-block;
-    
-
+  display: inline;
 }
+
+
 
 .drop_options{
     display: none;
@@ -23,6 +21,7 @@
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
+
 }
 
 .drop_options a {
