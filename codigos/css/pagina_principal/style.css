@@ -10,11 +10,14 @@ html, body{
 }
 
 .wrapper{
-    height: 100%;
-    display: flex;
+    display: flex;  
     justify-content: center;
     align-items: center;
+    width: 50%;
+    margin: auto;
+    height:460px;
 }
+
 
 form{
     color: black;
@@ -48,6 +51,6 @@ td{
 td{
     border-collapse: separate;
     border-style: solid;
-    border-color: black;
+    border-color: rgb(228, 224, 224);
 }
 
