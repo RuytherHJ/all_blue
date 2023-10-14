@@ -4,7 +4,7 @@ ON usuarios
 FOR EACH ROW
 BEGIN
 	IF (new.email IN (SELECT email FROM usuarios)) THEN
-		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Email já existe!';
+		SIGNAL SQLSTATE '12345' SET MESSAGE_TEXT = 'Email já existe!';
    END IF;
 END&&
 DELIMITER ;
