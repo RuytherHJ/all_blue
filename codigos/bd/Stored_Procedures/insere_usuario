@@ -1,0 +1,4 @@
+CREATE DEFINER=`root`@`localhost` PROCEDURE `insere_usuario`(in email varchar(256),in senha varchar(50))
+BEGIN
+	insert into usuarios(email,senha) values (email, senha);
+END
