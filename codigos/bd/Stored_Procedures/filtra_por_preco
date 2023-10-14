@@ -1,0 +1,4 @@
+CREATE DEFINER=`root`@`localhost` PROCEDURE `filtra_por_preco`(in preMin decimal , in PreMax decimal)
+BEGIN
+	select * from produtos where preco between preMin and preMax; 
+END

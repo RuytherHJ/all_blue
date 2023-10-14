@@ -1,0 +1,4 @@
+CREATE PROCEDURE `aparece_por_marca` (in idMarca int)
+BEGIN
+	select * from produtos where id_Fabricante=idMarca;
+END
