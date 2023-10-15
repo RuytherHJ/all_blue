@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $senha = $_POST['user_senha'];
 
     // Inserção dos dados no banco de dados
-    $sql = "INSERT INTO sua_tabela (nome, email, senha) VALUES ('$nome', '$email', '$senha')";
+    $sql = "insere_usuario('$email','$senha','$nome')";
 
     if ($conn->query($sql) === TRUE) {
         echo "Cadastro realizado com sucesso!";
