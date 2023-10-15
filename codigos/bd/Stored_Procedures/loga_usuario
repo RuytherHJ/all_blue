@@ -1,0 +1,4 @@
+CREATE DEFINER=`root`@`localhost` PROCEDURE `loga_usuario`(in senha_entrada varchar(50),in email_entrada varchar(256) )
+BEGIN
+	SELECT * FROM usuarios WHERE email_entrada AND senha_entrada=senha;
+END
