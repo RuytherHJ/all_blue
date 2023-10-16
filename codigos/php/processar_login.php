@@ -19,11 +19,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $senha = $_POST['user_senha'];
 
     // Consulta SQL para verificar o usuário e senha
-    $sql = "call loga_usuario('[$senha]', '[$email]')";
+    $sql = "call loga_usuario('$senha', '$email')";
     $result = $conn->query($sql);
+   
 
     if ($result->num_rows == 1) {
-        echo "Login bem-sucedido!"; // Usuário autenticado
+        echo "Login bem-sucedido!"; // Usuário autenticado       
+        header('Location: /all_blue/codigos/html/produto.html');
+        exit();
+
     } else {
         echo "Login falhou. Verifique suas credenciais.";
     }
@@ -33,4 +37,3 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 } else {
     echo "Método de requisição inválido.";
 }
-?>
