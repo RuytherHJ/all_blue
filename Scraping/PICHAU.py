@@ -1,12 +1,43 @@
 
-import requests
-from bs4 import BeautifulSoup
+import requests                         #     pip install requests
+from bs4 import BeautifulSoup           #     pip install bs4
+
+import mysql.connector                 #   pip install mysql-connector-python               
+from mysql.connector import errorcode
+
+import re
 
 
 
+banco=mysql.connector.connect(host='localhost', database='all_blue', user='root', password='thiago')
+
+cursor=banco.cursor()
+
+if banco.is_connected():
+    print('FOI')
+    
+
+cursor.execute("SELECT id FROM lojas WHERE nome like 'pichau' ")
+aux=cursor.fetchone()
+
+id_loja=int(aux[0])
+
+ajuda=18
+
+
+
+
+
+
+
+def salvando_no_bd(nome,preco):
+    cursor.execute(f"call insere_produtos( '{nome}' , {preco} , {id_loja} , {ajuda} );")
+    
+    banco.commit()
+    
 
 def TUDO_HARDWARE():
-
+    
     url ='https://www.pichau.com.br/hardware'
 
     headers =  {'User-Agent': "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.5993.89 Safari/537.3"}
@@ -21,15 +52,24 @@ def TUDO_HARDWARE():
 
             hardware_preco=hardwares[k].find('div', class_='jss81')
 
-            with open('dados_hardwares.csv','a',encoding='UTF-8')  as envia:
 
-                if hardware_nome!=None and hardware_preco!=None:
-                    m=hardware_nome.get_text().strip()
+            if hardware_nome!=None and hardware_preco!=None:
+                m=hardware_nome.get_text().strip()
+                p=hardware_preco.get_text().strip()[2:]
+                
+                
+                m=str(m)
+                
+                p = p.replace(',', '.')
+                p = p.replace('\xa01', '.')
+                if p
+                p = float(p)
 
-                    p=hardware_preco.get_text().strip()[2:]
-
-                    linha=p+'&'+m
-                    envia.write(linha)
+                
+                
+                
+                salvando_no_bd(m,p)
+                    
 
 
 
@@ -57,9 +97,8 @@ def TUDO_HARDWARE():
                         m=hardware_nome.get_text().strip()
 
                         p=hardware_preco.get_text().strip()[2:]
-
-                        linha=p+'&'+m
-                        envia.write(linha)
+                        p=float(p)
+                        salvando_no_bd(m,p)
             else:
                 pags=pagina_final
 
@@ -84,10 +123,7 @@ def TUDO_PERIFERICOS():
                 m=periferico_nome.get_text().strip()
 
                 p=periferico_preco.get_text().strip()[2:]
-
-                print(p.strip()+str("\n"))
-
-                print(m.strip()+str("\n"))
+                salvando_no_bd(m,p)
 
 
 
@@ -115,8 +151,7 @@ def TUDO_PERIFERICOS():
 
                     p=periferico_preco.get_text().strip()[2:]
 
-                    print(p.strip()+str("\n"))
-                    print(m.strip()+str("\n"))
+                    salvando_no_bd(m,p)
         else:
             pags=pagina_final
 
@@ -141,10 +176,7 @@ def TUDO_NOTEBOOKS_PORTATEIS():
 
                 p=notebook_preco.get_text().strip()[2:]
 
-                print(p.strip()+str("\n"))
-
-                print(m.strip()+str("\n"))
-
+                salvando_no_bd(m,p)
 
 
     pagina_final=int(soup.find('button',attrs={"aria-label" : "Go to page 11"}).get_text())
@@ -171,8 +203,7 @@ def TUDO_NOTEBOOKS_PORTATEIS():
 
                     p=notebook_preco.get_text().strip()[2:]
 
-                    print(p.strip()+str("\n"))
-                    print(m.strip()+str("\n"))
+                    salvando_no_bd(m,p)
         else:
             pags=pagina_final
 
@@ -198,9 +229,7 @@ def TUDO_ELETRONICOS():
 
                 p=eletronico_preco.get_text().strip()[2:]
 
-                print(p.strip()+str("\n"))
-
-                print(m.strip()+str("\n"))
+                salvando_no_bd(m,p)
 
 
 
@@ -228,8 +257,7 @@ def TUDO_ELETRONICOS():
 
                     p=eletronico_preco.get_text().strip()[2:]
 
-                    print(p.strip()+str("\n"))
-                    print(m.strip()+str("\n"))
+                    salvando_no_bd(m,p)
         else:
             pags=pagina_final
 
@@ -255,9 +283,7 @@ def TUDO_CADEIRAS_MESAS():
 
                 p=cadeira_preco.get_text().strip()[2:]
 
-                print(p.strip()+str("\n"))
-
-                print(m.strip()+str("\n"))
+                salvando_no_bd(m,p)
 
 
 
@@ -285,8 +311,7 @@ def TUDO_CADEIRAS_MESAS():
 
                     p=cadeira_preco.get_text().strip()[2:]
 
-                    print(p.strip()+str("\n"))
-                    print(m.strip()+str("\n"))
+                    salvando_no_bd(m,p)
                 
         else:
             break
@@ -317,9 +342,7 @@ def TUDO_MONITORES():
 
                 p=monitor_preco.get_text().strip()[2:]
 
-                print(p.strip()+str("\n"))
-
-                print(m.strip()+str("\n"))
+                salvando_no_bd(m,p)
 
 
 
@@ -347,8 +370,7 @@ def TUDO_MONITORES():
 
                     p=monitor_preco.get_text().strip()[2:]
 
-                    print(p.strip()+str("\n"))
-                    print(m.strip()+str("\n"))
+                    salvando_no_bd(m,p)
         else:
             pags=pagina_final
 
