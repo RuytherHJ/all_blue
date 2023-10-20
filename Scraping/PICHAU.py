@@ -25,11 +25,6 @@ id_loja=int(aux[0])
 ajuda=18
 
 
-
-
-
-
-
 def salvando_no_bd(nome,preco):
     cursor.execute(f"call insere_produtos( '{nome}' , {preco} , {id_loja} , {ajuda} );")
     
@@ -57,20 +52,22 @@ def TUDO_HARDWARE():
                 m=hardware_nome.get_text().strip()
                 p=hardware_preco.get_text().strip()[2:]
                 
-                
                 m=str(m)
                 
-                p = p.replace(',', '.')
-                p = p.replace('\xa01', '.')
-                if p
-                p = float(p)
+                if '\xa0' in p :
+                    p=p.replace('\xa0','')
+                    p = p.replace(',', '.')  # substitui a vírgula por um ponto
+                    last_dot = p.rfind('.')  # encontra a última ocorrência do ponto
+                    p = p[:last_dot].replace('.', '') + p[last_dot:]  # substitui os pontos antes da última ocorrência
+                    
+                else:
 
-                
-                
+                    p=p.replace(',','.')
+
+                p = float(p)
                 
                 salvando_no_bd(m,p)
                     
-
 
 
     pagina_final=int(soup.find('button',attrs={"aria-label" : "Go to page 278"}).get_text())
@@ -97,10 +94,28 @@ def TUDO_HARDWARE():
                         m=hardware_nome.get_text().strip()
 
                         p=hardware_preco.get_text().strip()[2:]
-                        p=float(p)
+                        
+                        m=str(m)
+                
+                        if '\xa0' in p :
+                            p=p.replace('\xa0','')
+                            p = p.replace(',', '.')  # substitui a vírgula por um ponto
+                            last_dot = p.rfind('.')  # encontra a última ocorrência do ponto
+                            p = p[:last_dot].replace('.', '') + p[last_dot:]  # substitui os pontos antes da última ocorrência
+                            
+                        else:
+                            p=p.replace(',','.')
+
+                        p = float(p)
+                        
                         salvando_no_bd(m,p)
+
+
             else:
-                pags=pagina_final
+                break
+
+
+TUDO_HARDWARE()
 
 
 def TUDO_PERIFERICOS():
@@ -123,6 +138,21 @@ def TUDO_PERIFERICOS():
                 m=periferico_nome.get_text().strip()
 
                 p=periferico_preco.get_text().strip()[2:]
+                
+                m=str(m)
+                
+                if '\xa0' in p :
+                    p=p.replace('\xa0','')
+                    p = p.replace(',', '.')  # substitui a vírgula por um ponto
+                    last_dot = p.rfind('.')  # encontra a última ocorrência do ponto
+                    p = p[:last_dot].replace('.', '') + p[last_dot:]  # substitui os pontos antes da última ocorrência
+                    
+                else:
+
+                    p=p.replace(',','.')
+
+                p = float(p)
+                
                 salvando_no_bd(m,p)
 
 
@@ -151,9 +181,26 @@ def TUDO_PERIFERICOS():
 
                     p=periferico_preco.get_text().strip()[2:]
 
+                    m=str(m)
+                
+                    if '\xa0' in p :
+                        p=p.replace('\xa0','')
+                        p = p.replace(',', '.')  # substitui a vírgula por um ponto
+                        last_dot = p.rfind('.')  # encontra a última ocorrência do ponto
+                        p = p[:last_dot].replace('.', '') + p[last_dot:]  # substitui os pontos antes da última ocorrência
+                    
+                    else:
+
+                        p=p.replace(',','.')
+
+                    p = float(p)
+                
                     salvando_no_bd(m,p)
         else:
-            pags=pagina_final
+            break
+
+
+TUDO_PERIFERICOS()
 
 def TUDO_NOTEBOOKS_PORTATEIS():
 
@@ -176,6 +223,20 @@ def TUDO_NOTEBOOKS_PORTATEIS():
 
                 p=notebook_preco.get_text().strip()[2:]
 
+                m=str(m)
+                
+                if '\xa0' in p :
+                    p=p.replace('\xa0','')
+                    p = p.replace(',', '.')  # substitui a vírgula por um ponto
+                    last_dot = p.rfind('.')  # encontra a última ocorrência do ponto
+                    p = p[:last_dot].replace('.', '') + p[last_dot:]  # substitui os pontos antes da última ocorrência
+                    
+                else:
+
+                    p=p.replace(',','.')
+
+                p = float(p)
+                
                 salvando_no_bd(m,p)
 
 
@@ -203,9 +264,26 @@ def TUDO_NOTEBOOKS_PORTATEIS():
 
                     p=notebook_preco.get_text().strip()[2:]
 
+                    m=str(m)
+                
+                    if '\xa0' in p :
+                        p=p.replace('\xa0','')
+                        p = p.replace(',', '.')  # substitui a vírgula por um ponto
+                        last_dot = p.rfind('.')  # encontra a última ocorrência do ponto
+                        p = p[:last_dot].replace('.', '') + p[last_dot:]  # substitui os pontos antes da última ocorrência
+                        
+                    else:
+
+                        p=p.replace(',','.')
+
+                    p = float(p)
+                    
                     salvando_no_bd(m,p)
         else:
-            pags=pagina_final
+            break
+
+
+TUDO_NOTEBOOKS_PORTATEIS()
 
 
 def TUDO_ELETRONICOS():
@@ -229,6 +307,20 @@ def TUDO_ELETRONICOS():
 
                 p=eletronico_preco.get_text().strip()[2:]
 
+                m=str(m)
+                
+                if '\xa0' in p :
+                    p=p.replace('\xa0','')
+                    p = p.replace(',', '.')  # substitui a vírgula por um ponto
+                    last_dot = p.rfind('.')  # encontra a última ocorrência do ponto
+                    p = p[:last_dot].replace('.', '') + p[last_dot:]  # substitui os pontos antes da última ocorrência
+                    
+                else:
+
+                    p=p.replace(',','.')
+
+                p = float(p)
+                
                 salvando_no_bd(m,p)
 
 
@@ -257,9 +349,27 @@ def TUDO_ELETRONICOS():
 
                     p=eletronico_preco.get_text().strip()[2:]
 
+                    m=str(m)
+                    
+                    if '\xa0' in p :
+                        p=p.replace('\xa0','')
+                        p = p.replace(',', '.')  # substitui a vírgula por um ponto
+                        last_dot = p.rfind('.')  # encontra a última ocorrência do ponto
+                        p = p[:last_dot].replace('.', '') + p[last_dot:]  # substitui os pontos antes da última ocorrência
+                        
+                    else:
+
+                        p=p.replace(',','.')
+
+                    p = float(p)
+                    
                     salvando_no_bd(m,p)
+
         else:
-            pags=pagina_final
+            break
+
+
+TUDO_ELETRONICOS()
 
 
 def TUDO_CADEIRAS_MESAS():
@@ -283,6 +393,20 @@ def TUDO_CADEIRAS_MESAS():
 
                 p=cadeira_preco.get_text().strip()[2:]
 
+                m=str(m)
+                
+                if '\xa0' in p :
+                    p=p.replace('\xa0','')
+                    p = p.replace(',', '.')  # substitui a vírgula por um ponto
+                    last_dot = p.rfind('.')  # encontra a última ocorrência do ponto
+                    p = p[:last_dot].replace('.', '') + p[last_dot:]  # substitui os pontos antes da última ocorrência
+                    
+                else:
+
+                    p=p.replace(',','.')
+
+                p = float(p)
+                
                 salvando_no_bd(m,p)
 
 
@@ -311,6 +435,20 @@ def TUDO_CADEIRAS_MESAS():
 
                     p=cadeira_preco.get_text().strip()[2:]
 
+                    m=str(m)
+                
+                    if '\xa0' in p :
+                        p=p.replace('\xa0','')
+                        p = p.replace(',', '.')  # substitui a vírgula por um ponto
+                        last_dot = p.rfind('.')  # encontra a última ocorrência do ponto
+                        p = p[:last_dot].replace('.', '') + p[last_dot:]  # substitui os pontos antes da última ocorrência
+                        
+                    else:
+
+                        p=p.replace(',','.')
+
+                    p = float(p)
+                    
                     salvando_no_bd(m,p)
                 
         else:
@@ -318,7 +456,7 @@ def TUDO_CADEIRAS_MESAS():
             
         
 
-
+TUDO_CADEIRAS_MESAS()
 
 
 def TUDO_MONITORES():
@@ -342,6 +480,20 @@ def TUDO_MONITORES():
 
                 p=monitor_preco.get_text().strip()[2:]
 
+                m=str(m)
+                
+                if '\xa0' in p :
+                    p=p.replace('\xa0','')
+                    p = p.replace(',', '.')  # substitui a vírgula por um ponto
+                    last_dot = p.rfind('.')  # encontra a última ocorrência do ponto
+                    p = p[:last_dot].replace('.', '') + p[last_dot:]  # substitui os pontos antes da última ocorrência
+                    
+                else:
+
+                    p=p.replace(',','.')
+
+                p = float(p)
+                
                 salvando_no_bd(m,p)
 
 
@@ -370,13 +522,22 @@ def TUDO_MONITORES():
 
                     p=monitor_preco.get_text().strip()[2:]
 
+                    m=str(m)
+                
+                    if '\xa0' in p :
+                        p=p.replace('\xa0','')
+                        p = p.replace(',', '.')  # substitui a vírgula por um ponto
+                        last_dot = p.rfind('.')  # encontra a última ocorrência do ponto
+                        p = p[:last_dot].replace('.', '') + p[last_dot:]  # substitui os pontos antes da última ocorrência
+                        
+                    else:
+
+                        p=p.replace(',','.')
+
+                    p = float(p)
+                    
                     salvando_no_bd(m,p)
         else:
-            pags=pagina_final
+            break
 
-
-
-TUDO_HARDWARE()
-
-
-
+TUDO_MONITORES()
