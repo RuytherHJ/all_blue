@@ -17,7 +17,7 @@ if banco.is_connected():
 
 cursor.execute("SELECT id FROM lojas WHERE nome like 'pichau' ")
 aux=cursor.fetchone()
-print(aux)
+
 
 id_loja=int(aux[0])
 
@@ -39,13 +39,8 @@ def busca_id_fabricante(nomMarca):
     
     cursor.execute(f"SELECT id FROM fabricante WHERE nome_fabricante like '{nomMarca}' ")
     var=cursor.fetchone()
-    
     envia=int(var[0])
-
     return envia
-
-
-
 
 def TUDO_HARDWARE():
     
@@ -76,36 +71,33 @@ def TUDO_HARDWARE():
 
             
 
-            if propria_marca!=None:
+            if propria_marca!=None and hardware_nome!=None and hardware_preco!=None:
                 n=propria_marca.get_text().strip()
                 
                 
                 sem_registro(n)
                 n=busca_id_fabricante(n)
                 
-                print(n)
+                m=hardware_nome.get_text().strip()
+                p=hardware_preco.get_text().strip()[2:]
+
+                m=str(m)
                 
-                if hardware_nome!=None and hardware_preco!=None:
-                    m=hardware_nome.get_text().strip()
-                    p=hardware_preco.get_text().strip()[2:]
-
-                    m=str(m)
+                if '\xa0' in p :
+                    p=p.replace('\xa0','')
+                    p = p.replace(',', '.')  # substitui a vírgula por um ponto
+                    last_dot = p.rfind('.')  # encontra a última ocorrência do ponto
+                    p = p[:last_dot].replace('.', '') + p[last_dot:]  # substitui os pontos antes da última ocorrência
                     
-                    if '\xa0' in p :
-                        p=p.replace('\xa0','')
-                        p = p.replace(',', '.')  # substitui a vírgula por um ponto
-                        last_dot = p.rfind('.')  # encontra a última ocorrência do ponto
-                        p = p[:last_dot].replace('.', '') + p[last_dot:]  # substitui os pontos antes da última ocorrência
-                        
-                    else:
+                else:
 
-                        p=p.replace(',','.')
+                    p=p.replace(',','.')
 
-                    p = float(p)
+                p = float(p)
 
-                    
-                    
-                    salvando_no_bd(m,p,n)
+                
+                
+                salvando_no_bd(m,p,n)
 
 
 
@@ -128,59 +120,49 @@ def TUDO_HARDWARE():
 
                 hardware_preco=hardwares[k].find('div', class_='jss81')
 
-                if hardware_nome!=None and hardware_preco!=None:
+                marca=hardware_marca[k]
+        
+                url_marca=f"https://www.pichau.com.br{marca.get('href')}"
+                pega_marca=requests.get(url_marca,headers=headers)
+                soup_marca=BeautifulSoup(pega_marca.content, 'html.parser')
+                propria_marca=soup_marca.find('td',attrs={"class" : "value-field Marca"})
+
+                
+
+                if propria_marca!=None and hardware_nome!=None and hardware_preco!=None:
+                    n=propria_marca.get_text().strip()
                     m=hardware_nome.get_text().strip()
 
                     p=hardware_preco.get_text().strip()[2:]
+                    
+                    sem_registro(n)
+                    n=busca_id_fabricante(n)
+                    
+                    m=str(m)
+                    
+                    if '\xa0' in p :
+                        p=p.replace('\xa0','')
+                        p = p.replace(',', '.')  # substitui a vírgula por um ponto
+                        last_dot = p.rfind('.')  # encontra a última ocorrência do ponto
+                        p = p[:last_dot].replace('.', '') + p[last_dot:]  # substitui os pontos antes da última ocorrência
+                        
+                    else:
 
+                        p=p.replace(',','.')
 
-                    marca=hardware_marca[k]
-            
-                    url_marca=f"https://www.pichau.com.br{marca.get('href')}"
-                    pega_marca=requests.get(url_marca,headers=headers)
-                    soup_marca=BeautifulSoup(pega_marca.content, 'html.parser')
-                    propria_marca=soup_marca.find('td',attrs={"class" : "value-field Marca"})
+                    p = float(p)
 
                     
-
-                    if propria_marca!=None:
-                        n=propria_marca.get_text().strip()
-                        
-                        
-                        sem_registro(n)
-                        n=busca_id_fabricante(n)
-                        
-                        print(n)
-                        
-                        if hardware_nome!=None and hardware_preco!=None:
-                            m=hardware_nome.get_text().strip()
-                            p=hardware_preco.get_text().strip()[2:]
-
-                            m=str(m)
-                            
-                            if '\xa0' in p :
-                                p=p.replace('\xa0','')
-                                p = p.replace(',', '.')  # substitui a vírgula por um ponto
-                                last_dot = p.rfind('.')  # encontra a última ocorrência do ponto
-                                p = p[:last_dot].replace('.', '') + p[last_dot:]  # substitui os pontos antes da última ocorrência
-                                
-                            else:
-
-                                p=p.replace(',','.')
-
-                            p = float(p)
-
-                            
-                            
-                            salvando_no_bd(m,p,n)
+                    
+                    salvando_no_bd(m,p,n)
 
 
         else:
             break
 
 
-TUDO_HARDWARE()
 
+TUDO_HARDWARE()
 
 def TUDO_PERIFERICOS():
 
@@ -208,36 +190,36 @@ def TUDO_PERIFERICOS():
 
             
 
-            if propria_marca!=None:
+            if propria_marca!=None and periferico_nome!=None and periferico_preco!=None:
                 n=propria_marca.get_text().strip()
                 
                 
                 sem_registro(n)
                 n=busca_id_fabricante(n)
                 
-                print(n)
                 
-                if periferico_nome!=None and periferico_preco!=None:
-                    m=periferico_nome.get_text().strip()
-                    p=periferico_preco.get_text().strip()[2:]
+                
+                
+                m=periferico_nome.get_text().strip()
+                p=periferico_preco.get_text().strip()[2:]
 
-                    m=str(m)
+                m=str(m)
+                
+                if '\xa0' in p :
+                    p=p.replace('\xa0','')
+                    p = p.replace(',', '.')  # substitui a vírgula por um ponto
+                    last_dot = p.rfind('.')  # encontra a última ocorrência do ponto
+                    p = p[:last_dot].replace('.', '') + p[last_dot:]  # substitui os pontos antes da última ocorrência
                     
-                    if '\xa0' in p :
-                        p=p.replace('\xa0','')
-                        p = p.replace(',', '.')  # substitui a vírgula por um ponto
-                        last_dot = p.rfind('.')  # encontra a última ocorrência do ponto
-                        p = p[:last_dot].replace('.', '') + p[last_dot:]  # substitui os pontos antes da última ocorrência
-                        
-                    else:
+                else:
 
-                        p=p.replace(',','.')
+                    p=p.replace(',','.')
 
-                    p = float(p)
+                p = float(p)
 
-                    
-                    
-                    salvando_no_bd(m,p,n)
+                
+                
+                salvando_no_bd(m,p,n)
 
 
 
@@ -260,36 +242,38 @@ def TUDO_PERIFERICOS():
 
                 periferico_preco=perifericos[k].find('div', class_='jss81')
 
-                if propria_marca!=None:
+                marca=periferico_marca[k]
+            
+                url_marca=f"https://www.pichau.com.br{marca.get('href')}"
+                pega_marca=requests.get(url_marca,headers=headers)
+                soup_marca=BeautifulSoup(pega_marca.content, 'html.parser')
+                propria_marca=soup_marca.find('td',attrs={"class" : "value-field Marca"})
+
+                if propria_marca!=None and periferico_nome!=None and periferico_preco!=None:
                     n=propria_marca.get_text().strip()
                     
                     
                     sem_registro(n)
                     n=busca_id_fabricante(n)
                     
-                    print(n)
+                    m=periferico_nome.get_text().strip()
+                    p=periferico_preco.get_text().strip()[2:]
+
+                    m=str(m)
                     
-                    if periferico_nome!=None and periferico_preco!=None:
-                        m=periferico_nome.get_text().strip()
-                        p=periferico_preco.get_text().strip()[2:]
-
-                        m=str(m)
+                    if '\xa0' in p :
+                        p=p.replace('\xa0','')
+                        p = p.replace(',', '.')  # substitui a vírgula por um ponto
+                        last_dot = p.rfind('.')  # encontra a última ocorrência do ponto
+                        p = p[:last_dot].replace('.', '') + p[last_dot:]  # substitui os pontos antes da última ocorrência
                         
-                        if '\xa0' in p :
-                            p=p.replace('\xa0','')
-                            p = p.replace(',', '.')  # substitui a vírgula por um ponto
-                            last_dot = p.rfind('.')  # encontra a última ocorrência do ponto
-                            p = p[:last_dot].replace('.', '') + p[last_dot:]  # substitui os pontos antes da última ocorrência
-                            
-                        else:
+                    else:
 
-                            p=p.replace(',','.')
+                        p=p.replace(',','.')
 
-                        p = float(p)
+                    p = float(p)
 
-                        
-                        
-                        salvando_no_bd(m,p,n)
+                    salvando_no_bd(m,p,n)
         else:
             break
 
@@ -323,36 +307,31 @@ def TUDO_NOTEBOOKS_PORTATEIS():
 
             
 
-            if propria_marca!=None:
+            if propria_marca!=None and notebook_nome!=None and notebook_preco!=None:
                 n=propria_marca.get_text().strip()
                 
                 
                 sem_registro(n)
                 n=busca_id_fabricante(n)
                 
-                print(n)
+                m=notebook_nome.get_text().strip()
+                p=notebook_preco.get_text().strip()[2:]
+
+                m=str(m)
                 
-                if notebook_nome!=None and notebook_preco!=None:
-                    m=notebook_nome.get_text().strip()
-                    p=notebook_preco.get_text().strip()[2:]
-
-                    m=str(m)
+                if '\xa0' in p :
+                    p=p.replace('\xa0','')
+                    p = p.replace(',', '.')  # substitui a vírgula por um ponto
+                    last_dot = p.rfind('.')  # encontra a última ocorrência do ponto
+                    p = p[:last_dot].replace('.', '') + p[last_dot:]  # substitui os pontos antes da última ocorrência
                     
-                    if '\xa0' in p :
-                        p=p.replace('\xa0','')
-                        p = p.replace(',', '.')  # substitui a vírgula por um ponto
-                        last_dot = p.rfind('.')  # encontra a última ocorrência do ponto
-                        p = p[:last_dot].replace('.', '') + p[last_dot:]  # substitui os pontos antes da última ocorrência
-                        
-                    else:
+                else:
 
-                        p=p.replace(',','.')
+                    p=p.replace(',','.')
 
-                    p = float(p)
+                p = float(p)
 
-                    
-                    
-                    salvando_no_bd(m,p,n)
+                salvando_no_bd(m,p,n)
             
 
             
@@ -377,36 +356,40 @@ def TUDO_NOTEBOOKS_PORTATEIS():
 
                 notebook_preco=notebooks[k].find('div', class_='jss81')
 
-                if propria_marca!=None:
+                marca=notebooks_marca[k]
+
+                url_marca=f"https://www.pichau.com.br{marca.get('href')}"
+                pega_marca=requests.get(url_marca,headers=headers)
+                soup_marca=BeautifulSoup(pega_marca.content, 'html.parser')
+                propria_marca=soup_marca.find('td',attrs={"class" : "value-field Marca"})
+
+                if propria_marca!=None and notebook_nome!=None and notebook_preco!=None:
                     n=propria_marca.get_text().strip()
                     
                     
                     sem_registro(n)
                     n=busca_id_fabricante(n)
                     
-                    print(n)
+                    m=notebook_nome.get_text().strip()
+                    p=notebook_preco.get_text().strip()[2:]
+
+                    m=str(m)
                     
-                    if notebook_nome!=None and notebook_preco!=None:
-                        m=notebook_nome.get_text().strip()
-                        p=notebook_preco.get_text().strip()[2:]
-
-                        m=str(m)
+                    if '\xa0' in p :
+                        p=p.replace('\xa0','')
+                        p = p.replace(',', '.')  # substitui a vírgula por um ponto
+                        last_dot = p.rfind('.')  # encontra a última ocorrência do ponto
+                        p = p[:last_dot].replace('.', '') + p[last_dot:]  # substitui os pontos antes da última ocorrência
                         
-                        if '\xa0' in p :
-                            p=p.replace('\xa0','')
-                            p = p.replace(',', '.')  # substitui a vírgula por um ponto
-                            last_dot = p.rfind('.')  # encontra a última ocorrência do ponto
-                            p = p[:last_dot].replace('.', '') + p[last_dot:]  # substitui os pontos antes da última ocorrência
-                            
-                        else:
+                    else:
 
-                            p=p.replace(',','.')
+                        p=p.replace(',','.')
 
-                        p = float(p)
+                    p = float(p)
 
-                        
-                        
-                        salvando_no_bd(m,p,n)
+                    
+                    
+                    salvando_no_bd(m,p,n)
         else:
             break
 
@@ -442,36 +425,33 @@ def TUDO_ELETRONICOS():
 
             
 
-            if propria_marca!=None:
+            if propria_marca!=None and eletronico_nome!=None and eletronico_preco!=None:
                 n=propria_marca.get_text().strip()
                 
                 
                 sem_registro(n)
                 n=busca_id_fabricante(n)
                 
-                print(n)
+                m=eletronico_nome.get_text().strip()
+                p=eletronico_preco.get_text().strip()[2:]
+
+                m=str(m)
                 
-                if eletronico_nome!=None and eletronico_preco!=None:
-                    m=eletronico_nome.get_text().strip()
-                    p=eletronico_preco.get_text().strip()[2:]
-
-                    m=str(m)
+                if '\xa0' in p :
+                    p=p.replace('\xa0','')
+                    p = p.replace(',', '.')  # substitui a vírgula por um ponto
+                    last_dot = p.rfind('.')  # encontra a última ocorrência do ponto
+                    p = p[:last_dot].replace('.', '') + p[last_dot:]  # substitui os pontos antes da última ocorrência
                     
-                    if '\xa0' in p :
-                        p=p.replace('\xa0','')
-                        p = p.replace(',', '.')  # substitui a vírgula por um ponto
-                        last_dot = p.rfind('.')  # encontra a última ocorrência do ponto
-                        p = p[:last_dot].replace('.', '') + p[last_dot:]  # substitui os pontos antes da última ocorrência
-                        
-                    else:
+                else:
 
-                        p=p.replace(',','.')
+                    p=p.replace(',','.')
 
-                    p = float(p)
+                p = float(p)
 
-                    
-                    
-                    salvando_no_bd(m,p,n)
+                
+                
+                salvando_no_bd(m,p,n)
             
 
 
@@ -496,43 +476,49 @@ def TUDO_ELETRONICOS():
 
                 eletronico_preco=eletronicos[k].find('div', class_='jss81')
 
-                if propria_marca!=None:
+                marca=eletronicos_marca[k]
+            
+                url_marca=f"https://www.pichau.com.br{marca.get('href')}"
+                pega_marca=requests.get(url_marca,headers=headers)
+                soup_marca=BeautifulSoup(pega_marca.content, 'html.parser')
+                propria_marca=soup_marca.find('td',attrs={"class" : "value-field Marca"})
+
+                if propria_marca!=None and eletronico_nome!=None and eletronico_preco!=None:
                     n=propria_marca.get_text().strip()
                     
                     
                     sem_registro(n)
                     n=busca_id_fabricante(n)
                     
-                    print(n)
                     
-                    if eletronico_nome!=None and eletronico_preco!=None:
-                        m=eletronico_nome.get_text().strip()
-                        p=eletronico_preco.get_text().strip()[2:]
+                    m=eletronico_nome.get_text().strip()
+                    p=eletronico_preco.get_text().strip()[2:]
 
-                        m=str(m)
+                    m=str(m)
+                    
+                    if '\xa0' in p :
+                        p=p.replace('\xa0','')
+                        p = p.replace(',', '.')  # substitui a vírgula por um ponto
+                        last_dot = p.rfind('.')  # encontra a última ocorrência do ponto
+                        p = p[:last_dot].replace('.', '') + p[last_dot:]  # substitui os pontos antes da última ocorrência
                         
-                        if '\xa0' in p :
-                            p=p.replace('\xa0','')
-                            p = p.replace(',', '.')  # substitui a vírgula por um ponto
-                            last_dot = p.rfind('.')  # encontra a última ocorrência do ponto
-                            p = p[:last_dot].replace('.', '') + p[last_dot:]  # substitui os pontos antes da última ocorrência
-                            
-                        else:
+                    else:
 
-                            p=p.replace(',','.')
+                        p=p.replace(',','.')
 
-                        p = float(p)
+                    p = float(p)
 
-                        
-                        
-                        salvando_no_bd(m,p,n)
+                    
+                    
+                    salvando_no_bd(m,p,n)
+                    
 
         else:
             break
 
 
-TUDO_ELETRONICOS()
 
+TUDO_ELETRONICOS()
 
 def TUDO_CADEIRAS_MESAS():
 
@@ -561,36 +547,31 @@ def TUDO_CADEIRAS_MESAS():
 
             
 
-            if propria_marca!=None:
+            if propria_marca!=None and cadeira_nome!=None and cadeira_preco!=None:
                 n=propria_marca.get_text().strip()
                 
                 
                 sem_registro(n)
                 n=busca_id_fabricante(n)
                 
-                print(n)
+                m=cadeira_nome.get_text().strip()
+                p=cadeira_preco.get_text().strip()[2:]
+
+                m=str(m)
                 
-                if cadeira_nome!=None and cadeira_preco!=None:
-                    m=cadeira_nome.get_text().strip()
-                    p=cadeira_preco.get_text().strip()[2:]
-
-                    m=str(m)
+                if '\xa0' in p :
+                    p=p.replace('\xa0','')
+                    p = p.replace(',', '.')  # substitui a vírgula por um ponto
+                    last_dot = p.rfind('.')  # encontra a última ocorrência do ponto
+                    p = p[:last_dot].replace('.', '') + p[last_dot:]  # substitui os pontos antes da última ocorrência
                     
-                    if '\xa0' in p :
-                        p=p.replace('\xa0','')
-                        p = p.replace(',', '.')  # substitui a vírgula por um ponto
-                        last_dot = p.rfind('.')  # encontra a última ocorrência do ponto
-                        p = p[:last_dot].replace('.', '') + p[last_dot:]  # substitui os pontos antes da última ocorrência
-                        
-                    else:
+                else:
 
-                        p=p.replace(',','.')
+                    p=p.replace(',','.')
 
-                    p = float(p)
+                p = float(p)
 
-                    
-                    
-                    salvando_no_bd(m,p,n)
+                salvando_no_bd(m,p,n)
 
 
 
@@ -613,36 +594,41 @@ def TUDO_CADEIRAS_MESAS():
 
                 cadeira_preco=cadeiras[k].find('div', class_='jss81')
 
-                if propria_marca!=None:
+                marca=cadeiras_marca[k]
+            
+                url_marca=f"https://www.pichau.com.br{marca.get('href')}"
+                pega_marca=requests.get(url_marca,headers=headers)
+                soup_marca=BeautifulSoup(pega_marca.content, 'html.parser')
+                propria_marca=soup_marca.find('td',attrs={"class" : "value-field Marca"})
+
+                if propria_marca!=None and cadeira_nome!=None and cadeira_preco!=None:
                     n=propria_marca.get_text().strip()
                     
                     
                     sem_registro(n)
                     n=busca_id_fabricante(n)
                     
-                    print(n)
                     
-                    if cadeira_nome!=None and cadeira_preco!=None:
-                        m=cadeira_nome.get_text().strip()
-                        p=cadeira_preco.get_text().strip()[2:]
+                    m=cadeira_nome.get_text().strip()
+                    p=cadeira_preco.get_text().strip()[2:]
 
-                        m=str(m)
+                    m=str(m)
+                    
+                    if '\xa0' in p :
+                        p=p.replace('\xa0','')
+                        p = p.replace(',', '.')  # substitui a vírgula por um ponto
+                        last_dot = p.rfind('.')  # encontra a última ocorrência do ponto
+                        p = p[:last_dot].replace('.', '') + p[last_dot:]  # substitui os pontos antes da última ocorrência
                         
-                        if '\xa0' in p :
-                            p=p.replace('\xa0','')
-                            p = p.replace(',', '.')  # substitui a vírgula por um ponto
-                            last_dot = p.rfind('.')  # encontra a última ocorrência do ponto
-                            p = p[:last_dot].replace('.', '') + p[last_dot:]  # substitui os pontos antes da última ocorrência
-                            
-                        else:
+                    else:
 
-                            p=p.replace(',','.')
+                        p=p.replace(',','.')
 
-                        p = float(p)
+                    p = float(p)
 
                         
                         
-                        salvando_no_bd(m,p,n)
+                    salvando_no_bd(m,p,n)
                 
         else:
             break
@@ -679,36 +665,31 @@ def TUDO_MONITORES():
 
             
 
-            if propria_marca!=None:
+            if propria_marca!=None and monitor_nome!=None and monitor_preco!=None:
                 n=propria_marca.get_text().strip()
-                
-                
                 sem_registro(n)
                 n=busca_id_fabricante(n)
                 
-                print(n)
+                m=monitor_nome.get_text().strip()
+                p=monitor_preco.get_text().strip()[2:]
+
+                m=str(m)
                 
-                if monitor_nome!=None and monitor_preco!=None:
-                    m=monitor_nome.get_text().strip()
-                    p=monitor_preco.get_text().strip()[2:]
-
-                    m=str(m)
+                if '\xa0' in p :
+                    p=p.replace('\xa0','')
+                    p = p.replace(',', '.')  # substitui a vírgula por um ponto
+                    last_dot = p.rfind('.')  # encontra a última ocorrência do ponto
+                    p = p[:last_dot].replace('.', '') + p[last_dot:]  # substitui os pontos antes da última ocorrência
                     
-                    if '\xa0' in p :
-                        p=p.replace('\xa0','')
-                        p = p.replace(',', '.')  # substitui a vírgula por um ponto
-                        last_dot = p.rfind('.')  # encontra a última ocorrência do ponto
-                        p = p[:last_dot].replace('.', '') + p[last_dot:]  # substitui os pontos antes da última ocorrência
-                        
-                    else:
+                else:
 
-                        p=p.replace(',','.')
+                    p=p.replace(',','.')
 
-                    p = float(p)
+                p = float(p)
 
-                    
-                    
-                    salvando_no_bd(m,p,n)
+                
+                
+                salvando_no_bd(m,p,n)
 
 
 
@@ -730,37 +711,41 @@ def TUDO_MONITORES():
                 monitor_nome= monitores[k].find('h2',class_='MuiTypography-root jss78 jss79 MuiTypography-h6')  
 
                 monitor_preco=monitores[k].find('div', class_='jss81')
+               
+                marca=monitores_marca[k]
+            
+                url_marca=f"https://www.pichau.com.br{marca.get('href')}"
+                pega_marca=requests.get(url_marca,headers=headers)
+                soup_marca=BeautifulSoup(pega_marca.content, 'html.parser')
+                propria_marca=soup_marca.find('td',attrs={"class" : "value-field Marca"})
 
-                if propria_marca!=None:
+
+                if propria_marca!=None and monitor_nome!=None and monitor_preco!=None:
                     n=propria_marca.get_text().strip()
-                    
-                    
+                   
                     sem_registro(n)
                     n=busca_id_fabricante(n)
                     
-                    print(n)
+                    m=monitor_nome.get_text().strip()
+                    p=monitor_preco.get_text().strip()[2:]
+
+                    m=str(m)
                     
-                    if monitor_nome!=None and monitor_preco!=None:
-                        m=monitor_nome.get_text().strip()
-                        p=monitor_preco.get_text().strip()[2:]
-
-                        m=str(m)
+                    if '\xa0' in p :
+                        p=p.replace('\xa0','')
+                        p = p.replace(',', '.')  # substitui a vírgula por um ponto
+                        last_dot = p.rfind('.')  # encontra a última ocorrência do ponto
+                        p = p[:last_dot].replace('.', '') + p[last_dot:]  # substitui os pontos antes da última ocorrência
                         
-                        if '\xa0' in p :
-                            p=p.replace('\xa0','')
-                            p = p.replace(',', '.')  # substitui a vírgula por um ponto
-                            last_dot = p.rfind('.')  # encontra a última ocorrência do ponto
-                            p = p[:last_dot].replace('.', '') + p[last_dot:]  # substitui os pontos antes da última ocorrência
-                            
-                        else:
+                    else:
 
-                            p=p.replace(',','.')
+                        p=p.replace(',','.')
 
-                        p = float(p)
+                    p = float(p)
 
-                        
-                        
-                        salvando_no_bd(m,p,n)
+                    
+                    
+                    salvando_no_bd(m,p,n)
         else:
             break
 
