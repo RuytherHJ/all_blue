@@ -37,7 +37,7 @@ def sem_registro(nomMarca):
 
 def busca_id_fabricante(nomMarca):
     
-    cursor.execute(f"SELECT id FROM fabricante WHERE nome_fabricante like '{nomMarca}' ")
+    cursor.execute(f"SELECT id FROM fabricante WHERE nome_fabricante like '%{nomMarca}%'")
     var=cursor.fetchone()
     envia=int(var[0])
     return envia
@@ -73,8 +73,7 @@ def TUDO_HARDWARE():
 
             if propria_marca!=None and hardware_nome!=None and hardware_preco!=None:
                 n=propria_marca.get_text().strip()
-                
-                
+            
                 sem_registro(n)
                 n=busca_id_fabricante(n)
                 
@@ -111,7 +110,7 @@ def TUDO_HARDWARE():
         site=requests.get(url, headers=headers)
         soup=BeautifulSoup(site.content, 'html.parser')
         hardwares=soup.find_all("div",{"class":"MuiCardContent-root jss64"})
-        
+        hardware_marca=soup.find_all('a',attrs={"data-cy" : "list-product"})
 
         if len(hardwares)!=0:
             for k in range(len(hardwares)):
@@ -131,13 +130,13 @@ def TUDO_HARDWARE():
 
                 if propria_marca!=None and hardware_nome!=None and hardware_preco!=None:
                     n=propria_marca.get_text().strip()
-                    m=hardware_nome.get_text().strip()
-
-                    p=hardware_preco.get_text().strip()[2:]
-                    
+                    print(n)
                     sem_registro(n)
                     n=busca_id_fabricante(n)
                     
+                    m=hardware_nome.get_text().strip()
+                    p=hardware_preco.get_text().strip()[2:]
+
                     m=str(m)
                     
                     if '\xa0' in p :
@@ -233,7 +232,7 @@ def TUDO_PERIFERICOS():
         site=requests.get(url, headers=headers)
         soup=BeautifulSoup(site.content, 'html.parser')
         perifericos=soup.find_all("div",{"class":"MuiCardContent-root jss64"})
-        
+        periferico_marca=soup.find_all('a',attrs={"data-cy" : "list-product"})
 
         if len(perifericos)!=0:
             for k in range(len(perifericos)):
@@ -347,7 +346,7 @@ def TUDO_NOTEBOOKS_PORTATEIS():
         site=requests.get(url, headers=headers)
         soup=BeautifulSoup(site.content, 'html.parser')
         notebooks=soup.find_all("div",{"class":"MuiCardContent-root jss64"})
-        
+        notebooks_marca=soup.find_all('a',attrs={"data-cy" : "list-product"})
 
         if len(notebooks)!=0:
             for k in range(len(notebooks)):
@@ -467,7 +466,7 @@ def TUDO_ELETRONICOS():
         site=requests.get(url, headers=headers)
         soup=BeautifulSoup(site.content, 'html.parser')
         eletronicos=soup.find_all("div",{"class":"MuiCardContent-root jss64"})
-        
+        eletronicos_marca=soup.find_all('a',attrs={"data-cy" : "list-product"})
 
         if len(eletronicos)!=0:
             for k in range(len(eletronicos)):
@@ -585,7 +584,7 @@ def TUDO_CADEIRAS_MESAS():
         site=requests.get(url, headers=headers)
         soup=BeautifulSoup(site.content, 'html.parser')
         cadeiras=soup.find_all("div",{"class":"MuiCardContent-root jss64"})
-        
+        cadeiras_marca=soup.find_all('a',attrs={"data-cy" : "list-product"})
 
         if len(cadeiras)!=0:
             for k in range(len(cadeiras)):
@@ -703,7 +702,7 @@ def TUDO_MONITORES():
         site=requests.get(url, headers=headers)
         soup=BeautifulSoup(site.content, 'html.parser')
         monitores=soup.find_all("div",{"class":"MuiCardContent-root jss64"})
-        
+        monitores_marca=soup.find_all('a',attrs={"data-cy" : "list-product"})
 
         if len(monitores)!=0:
             for k in range(len(monitores)):
