@@ -1,0 +1,7 @@
+CREATE DEFINER=`root`@`localhost` PROCEDURE `insere_fabricante`(in nomeFabri varchar(64))
+BEGIN
+
+	if (select count(id) from fabricante where nome_fabricante like concat('%',nomeFabri,'%'))<1 then
+		insert into fabricante(nome_fabricante) value (nomeFabri);
+	END IF;
+END
