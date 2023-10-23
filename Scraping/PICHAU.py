@@ -9,7 +9,7 @@ from mysql.connector import errorcode
 
 banco=mysql.connector.connect(host='localhost', database='all_blue', user='root', password='thiago')
 
-cursor=banco.cursor()
+cursor=banco.cursor(buffered=True)
 
 if banco.is_connected():
     print('FOI')
