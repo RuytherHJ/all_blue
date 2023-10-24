@@ -7,7 +7,7 @@ from mysql.connector import errorcode
 
 
 
-banco=mysql.connector.connect(host='localhost', database='all_blue', user='root', password='thiago')
+banco=mysql.connector.connect(host='localhost', database='all_blue', user='root')
 
 cursor=banco.cursor(buffered=True)
 
@@ -43,7 +43,7 @@ def busca_id_fabricante(nomMarca):
     return envia
 
 def TUDO_HARDWARE():
-    
+    print("COMEÇO HARDWARE")
     url ='https://www.pichau.com.br/hardware'
 
     headers =  {'User-Agent': "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.5993.89 Safari/537.3"}
@@ -130,7 +130,6 @@ def TUDO_HARDWARE():
 
                 if propria_marca!=None and hardware_nome!=None and hardware_preco!=None:
                     n=propria_marca.get_text().strip()
-                    print(n)
                     sem_registro(n)
                     n=busca_id_fabricante(n)
                     
@@ -157,6 +156,7 @@ def TUDO_HARDWARE():
 
 
         else:
+            print("FIM HARDWARE")
             break
 
 
@@ -164,7 +164,7 @@ def TUDO_HARDWARE():
 TUDO_HARDWARE()
 
 def TUDO_PERIFERICOS():
-
+    print("COMEÇO PERIFERICOS")
     url ='https://www.pichau.com.br/perifericos'
 
     headers =  {'User-Agent': "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.5993.89 Safari/537.3"}
@@ -274,13 +274,14 @@ def TUDO_PERIFERICOS():
 
                     salvando_no_bd(m,p,n)
         else:
+            print("FIM PERIFERICOS")
             break
 
 
 TUDO_PERIFERICOS()
 
 def TUDO_NOTEBOOKS_PORTATEIS():
-
+    print("COMEÇO NOTEBOOKS")
     url ='https://www.pichau.com.br/notebooks'
 
     headers =  {'User-Agent': "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.5993.89 Safari/537.3"}
@@ -390,6 +391,7 @@ def TUDO_NOTEBOOKS_PORTATEIS():
                     
                     salvando_no_bd(m,p,n)
         else:
+            print("FIM NOTEBOOKS")
             break
 
 
@@ -397,7 +399,7 @@ TUDO_NOTEBOOKS_PORTATEIS()
 
 
 def TUDO_ELETRONICOS():
-
+    print("COMEÇO ELETRONICOS")
     url ='https://www.pichau.com.br/eletronicos'
 
     headers =  {'User-Agent': "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.5993.89 Safari/537.3"}
@@ -513,6 +515,7 @@ def TUDO_ELETRONICOS():
                     
 
         else:
+            print("FIM ELETRONICOS")
             break
 
 
@@ -520,7 +523,7 @@ def TUDO_ELETRONICOS():
 TUDO_ELETRONICOS()
 
 def TUDO_CADEIRAS_MESAS():
-
+    print("COMEÇO CADEIRAS")
     url ='https://www.pichau.com.br/cadeiras'
 
     headers =  {'User-Agent': "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.5993.89 Safari/537.3"}
@@ -630,6 +633,7 @@ def TUDO_CADEIRAS_MESAS():
                     salvando_no_bd(m,p,n)
                 
         else:
+            print("FIM CADEIRAS")
             break
             
         
@@ -638,7 +642,7 @@ TUDO_CADEIRAS_MESAS()
 
 
 def TUDO_MONITORES():
-
+    print("COMEÇO MONITORES")
     url ='https://www.pichau.com.br/monitores'
 
     headers =  {'User-Agent': "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.5993.89 Safari/537.3"}
@@ -746,6 +750,7 @@ def TUDO_MONITORES():
                     
                     salvando_no_bd(m,p,n)
         else:
+            print("FIM MONITORES")
             break
 
 TUDO_MONITORES()
