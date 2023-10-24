@@ -1,0 +1,4 @@
+CREATE DEFINER=`root`@`localhost` PROCEDURE `insere_loja`(in nome_loja varchar(45),in url_loja varchar(2083))
+BEGIN
+	insert into lojas(nome,url_Logo) values (nome_loja,url_loja);
+END
