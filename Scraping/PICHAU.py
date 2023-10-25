@@ -7,7 +7,7 @@ from mysql.connector import errorcode
 
 
 
-banco=mysql.connector.connect(host='localhost', database='all_blue', user='root')
+banco=mysql.connector.connect(host='localhost', database='all_blue', user='root',password='thiago')
 
 cursor=banco.cursor(buffered=True)
 
@@ -104,15 +104,16 @@ def TUDO_HARDWARE():
     
 
 
-    for pags in range(2,pagina_final):
+    trava=False
 
+    for pags in range(2,pagina_final):
         url=f'https://www.pichau.com.br/hardware?page={pags}'
         site=requests.get(url, headers=headers)
         soup=BeautifulSoup(site.content, 'html.parser')
         hardwares=soup.find_all("div",{"class":"MuiCardContent-root jss64"})
         hardware_marca=soup.find_all('a',attrs={"data-cy" : "list-product"})
 
-        if len(hardwares)!=0:
+        if trava!=True:
             for k in range(len(hardwares)):
             
                 hardware_nome= hardwares[k].find('h2',class_='MuiTypography-root jss78 jss79 MuiTypography-h6')  
@@ -135,7 +136,6 @@ def TUDO_HARDWARE():
                     
                     m=hardware_nome.get_text().strip()
                     p=hardware_preco.get_text().strip()[2:]
-
                     m=str(m)
                     
                     if '\xa0' in p :
@@ -150,16 +150,19 @@ def TUDO_HARDWARE():
 
                     p = float(p)
 
-                    
-                    
                     salvando_no_bd(m,p,n)
 
+                if hardware_preco==None:
+                    trava=True
+                    break
+                    
 
         else:
             print("FIM HARDWARE")
             break
 
 
+                
 
 TUDO_HARDWARE()
 
@@ -224,7 +227,7 @@ def TUDO_PERIFERICOS():
 
     pagina_final=int(soup.find('button',attrs={"aria-label" : "Go to page 208"}).get_text())
 
-
+    trava=False
 
     for pags in range(2,pagina_final):
 
@@ -234,7 +237,7 @@ def TUDO_PERIFERICOS():
         perifericos=soup.find_all("div",{"class":"MuiCardContent-root jss64"})
         periferico_marca=soup.find_all('a',attrs={"data-cy" : "list-product"})
 
-        if len(perifericos)!=0:
+        if trava!=True:
             for k in range(len(perifericos)):
             
                 periferico_nome= perifericos[k].find('h2',class_='MuiTypography-root jss78 jss79 MuiTypography-h6')  
@@ -273,9 +276,16 @@ def TUDO_PERIFERICOS():
                     p = float(p)
 
                     salvando_no_bd(m,p,n)
+
+                if periferico_preco==None:
+                    trava=True
+                    break
+                    
+
         else:
-            print("FIM PERIFERICOS")
+            print("FIM PERIFERICO")
             break
+           
 
 
 TUDO_PERIFERICOS()
@@ -340,7 +350,7 @@ def TUDO_NOTEBOOKS_PORTATEIS():
     pagina_final=int(soup.find('button',attrs={"aria-label" : "Go to page 11"}).get_text())
 
 
-
+    trava=False
     for pags in range(2,pagina_final):
 
         url=f'https://www.pichau.com.br/notebooks?page={pags}'
@@ -349,7 +359,7 @@ def TUDO_NOTEBOOKS_PORTATEIS():
         notebooks=soup.find_all("div",{"class":"MuiCardContent-root jss64"})
         notebooks_marca=soup.find_all('a',attrs={"data-cy" : "list-product"})
 
-        if len(notebooks)!=0:
+        if trava!=True:
             for k in range(len(notebooks)):
             
                 notebook_nome= notebooks[k].find('h2',class_='MuiTypography-root jss78 jss79 MuiTypography-h6')  
@@ -390,6 +400,12 @@ def TUDO_NOTEBOOKS_PORTATEIS():
                     
                     
                     salvando_no_bd(m,p,n)
+
+                if notebook_preco==None:
+                    trava=True
+                    break
+                    
+    
         else:
             print("FIM NOTEBOOKS")
             break
@@ -461,7 +477,7 @@ def TUDO_ELETRONICOS():
     pagina_final=int(soup.find('button',attrs={"aria-label" : "Go to page 4"}).get_text())
 
 
-
+    trava=False
     for pags in range(2,pagina_final):
 
         url=f'https://www.pichau.com.br/eletronicos?page={pags}'
@@ -470,7 +486,7 @@ def TUDO_ELETRONICOS():
         eletronicos=soup.find_all("div",{"class":"MuiCardContent-root jss64"})
         eletronicos_marca=soup.find_all('a',attrs={"data-cy" : "list-product"})
 
-        if len(eletronicos)!=0:
+        if trava!=True:
             for k in range(len(eletronicos)):
             
                 eletronico_nome= eletronicos[k].find('h2',class_='MuiTypography-root jss78 jss79 MuiTypography-h6')  
@@ -512,6 +528,11 @@ def TUDO_ELETRONICOS():
                     
                     
                     salvando_no_bd(m,p,n)
+
+
+                if eletronico_preco==None:
+                    trava=True
+                    break
                     
 
         else:
@@ -580,7 +601,7 @@ def TUDO_CADEIRAS_MESAS():
     pagina_final=int(soup.find('button',attrs={"aria-label" : "Go to page 29"}).get_text())
 
 
-
+    trava=False
     for pags in range(2,pagina_final):
 
         url=f'https://www.pichau.com.br/cadeiras?page={pags}'
@@ -589,7 +610,7 @@ def TUDO_CADEIRAS_MESAS():
         cadeiras=soup.find_all("div",{"class":"MuiCardContent-root jss64"})
         cadeiras_marca=soup.find_all('a',attrs={"data-cy" : "list-product"})
 
-        if len(cadeiras)!=0:
+        if trava!=True:
             for k in range(len(cadeiras)):
             
                 cadeira_nome= cadeiras[k].find('h2',class_='MuiTypography-root jss78 jss79 MuiTypography-h6')  
@@ -631,7 +652,12 @@ def TUDO_CADEIRAS_MESAS():
                         
                         
                     salvando_no_bd(m,p,n)
-                
+
+
+                if cadeira_preco==None:
+                    trava=True
+                    break
+                    
         else:
             print("FIM CADEIRAS")
             break
@@ -699,7 +725,7 @@ def TUDO_MONITORES():
     pagina_final=int(soup.find('button',attrs={"aria-label" : "Go to page 16"}).get_text())
 
 
-
+    trava=False
     for pags in range(2,pagina_final):
 
         url=f'https://www.pichau.com.br/monitores?page={pags}'
@@ -708,7 +734,7 @@ def TUDO_MONITORES():
         monitores=soup.find_all("div",{"class":"MuiCardContent-root jss64"})
         monitores_marca=soup.find_all('a',attrs={"data-cy" : "list-product"})
 
-        if len(monitores)!=0:
+        if trava!=True:
             for k in range(len(monitores)):
             
                 monitor_nome= monitores[k].find('h2',class_='MuiTypography-root jss78 jss79 MuiTypography-h6')  
@@ -749,6 +775,12 @@ def TUDO_MONITORES():
                     
                     
                     salvando_no_bd(m,p,n)
+
+                if monitor_preco==None:
+                    trava=True
+                    break
+                    
+
         else:
             print("FIM MONITORES")
             break
