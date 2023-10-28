@@ -5,7 +5,8 @@ from bs4 import BeautifulSoup           #     pip install bs4
 import mysql.connector                 #   pip install mysql-connector-python               
 from mysql.connector import errorcode
 
-
+import threading
+import time
 
 banco=mysql.connector.connect(host='localhost', database='all_blue', user='root',password='thiago')
 
@@ -72,16 +73,13 @@ def TUDO_HARDWARE():
             
 
             if propria_marca!=None and hardware_nome!=None and hardware_preco!=None:
+                
                 n=propria_marca.get_text().strip()
-            
                 sem_registro(n)
                 n=busca_id_fabricante(n)
-                
                 m=hardware_nome.get_text().strip()
                 p=hardware_preco.get_text().strip()[2:]
 
-                m=str(m)
-                
                 if '\xa0' in p :
                     p=p.replace('\xa0','')
                     p = p.replace(',', '.')  # substitui a vírgula por um ponto
@@ -89,20 +87,12 @@ def TUDO_HARDWARE():
                     p = p[:last_dot].replace('.', '') + p[last_dot:]  # substitui os pontos antes da última ocorrência
                     
                 else:
-
                     p=p.replace(',','.')
 
                 p = float(p)
-
-                
-                
                 salvando_no_bd(m,p,n)
 
-
-
     pagina_final=int(soup.find('button',attrs={"aria-label" : "Go to page 278"}).get_text())
-    
-
 
     trava=False
 
@@ -130,13 +120,12 @@ def TUDO_HARDWARE():
                 
 
                 if propria_marca!=None and hardware_nome!=None and hardware_preco!=None:
+
                     n=propria_marca.get_text().strip()
                     sem_registro(n)
                     n=busca_id_fabricante(n)
-                    
                     m=hardware_nome.get_text().strip()
                     p=hardware_preco.get_text().strip()[2:]
-                    m=str(m)
                     
                     if '\xa0' in p :
                         p=p.replace('\xa0','')
@@ -145,11 +134,9 @@ def TUDO_HARDWARE():
                         p = p[:last_dot].replace('.', '') + p[last_dot:]  # substitui os pontos antes da última ocorrência
                         
                     else:
-
                         p=p.replace(',','.')
 
                     p = float(p)
-
                     salvando_no_bd(m,p,n)
 
                 if hardware_preco==None:
@@ -161,17 +148,12 @@ def TUDO_HARDWARE():
             print("FIM HARDWARE")
             break
 
-
-                
-
 TUDO_HARDWARE()
 
 def TUDO_PERIFERICOS():
     print("COMEÇO PERIFERICOS")
     url ='https://www.pichau.com.br/perifericos'
-
     headers =  {'User-Agent': "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.5993.89 Safari/537.3"}
-
     site=requests.get(url, headers=headers)
     soup=BeautifulSoup(site.content, 'html.parser')
     perifericos=soup.find_all("div",{"class":"MuiCardContent-root jss64"})
@@ -188,25 +170,16 @@ def TUDO_PERIFERICOS():
             url_marca=f"https://www.pichau.com.br{marca.get('href')}"
             pega_marca=requests.get(url_marca,headers=headers)
             soup_marca=BeautifulSoup(pega_marca.content, 'html.parser')
-            propria_marca=soup_marca.find('td',attrs={"class" : "value-field Marca"})
-
-            
+            propria_marca=soup_marca.find('td',attrs={"class" : "value-field Marca"})  
 
             if propria_marca!=None and periferico_nome!=None and periferico_preco!=None:
+
                 n=propria_marca.get_text().strip()
-                
-                
                 sem_registro(n)
                 n=busca_id_fabricante(n)
-                
-                
-                
-                
                 m=periferico_nome.get_text().strip()
                 p=periferico_preco.get_text().strip()[2:]
 
-                m=str(m)
-                
                 if '\xa0' in p :
                     p=p.replace('\xa0','')
                     p = p.replace(',', '.')  # substitui a vírgula por um ponto
@@ -214,19 +187,13 @@ def TUDO_PERIFERICOS():
                     p = p[:last_dot].replace('.', '') + p[last_dot:]  # substitui os pontos antes da última ocorrência
                     
                 else:
-
                     p=p.replace(',','.')
 
                 p = float(p)
-
-                
-                
                 salvando_no_bd(m,p,n)
 
 
-
-    pagina_final=int(soup.find('button',attrs={"aria-label" : "Go to page 208"}).get_text())
-
+    pagina_final=int(soup.find('button',attrs={"aria-label" : "Go to page 209"}).get_text())
     trava=False
 
     for pags in range(2,pagina_final):
@@ -252,16 +219,12 @@ def TUDO_PERIFERICOS():
                 propria_marca=soup_marca.find('td',attrs={"class" : "value-field Marca"})
 
                 if propria_marca!=None and periferico_nome!=None and periferico_preco!=None:
+
                     n=propria_marca.get_text().strip()
-                    
-                    
                     sem_registro(n)
                     n=busca_id_fabricante(n)
-                    
                     m=periferico_nome.get_text().strip()
                     p=periferico_preco.get_text().strip()[2:]
-
-                    m=str(m)
                     
                     if '\xa0' in p :
                         p=p.replace('\xa0','')
@@ -270,32 +233,25 @@ def TUDO_PERIFERICOS():
                         p = p[:last_dot].replace('.', '') + p[last_dot:]  # substitui os pontos antes da última ocorrência
                         
                     else:
-
                         p=p.replace(',','.')
 
                     p = float(p)
-
                     salvando_no_bd(m,p,n)
 
                 if periferico_preco==None:
                     trava=True
                     break
                     
-
         else:
             print("FIM PERIFERICO")
             break
            
-
-
 TUDO_PERIFERICOS()
 
 def TUDO_NOTEBOOKS_PORTATEIS():
     print("COMEÇO NOTEBOOKS")
     url ='https://www.pichau.com.br/notebooks'
-
     headers =  {'User-Agent': "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.5993.89 Safari/537.3"}
-
     site=requests.get(url, headers=headers)
     soup=BeautifulSoup(site.content, 'html.parser')
     notebooks=soup.find_all("div",{"class":"MuiCardContent-root jss64"})
@@ -315,19 +271,13 @@ def TUDO_NOTEBOOKS_PORTATEIS():
             soup_marca=BeautifulSoup(pega_marca.content, 'html.parser')
             propria_marca=soup_marca.find('td',attrs={"class" : "value-field Marca"})
 
-            
-
             if propria_marca!=None and notebook_nome!=None and notebook_preco!=None:
+
                 n=propria_marca.get_text().strip()
-                
-                
                 sem_registro(n)
                 n=busca_id_fabricante(n)
-                
                 m=notebook_nome.get_text().strip()
                 p=notebook_preco.get_text().strip()[2:]
-
-                m=str(m)
                 
                 if '\xa0' in p :
                     p=p.replace('\xa0','')
@@ -336,21 +286,14 @@ def TUDO_NOTEBOOKS_PORTATEIS():
                     p = p[:last_dot].replace('.', '') + p[last_dot:]  # substitui os pontos antes da última ocorrência
                     
                 else:
-
                     p=p.replace(',','.')
 
                 p = float(p)
-
                 salvando_no_bd(m,p,n)
             
-
-            
-
-
     pagina_final=int(soup.find('button',attrs={"aria-label" : "Go to page 11"}).get_text())
-
-
     trava=False
+
     for pags in range(2,pagina_final):
 
         url=f'https://www.pichau.com.br/notebooks?page={pags}'
@@ -374,16 +317,12 @@ def TUDO_NOTEBOOKS_PORTATEIS():
                 propria_marca=soup_marca.find('td',attrs={"class" : "value-field Marca"})
 
                 if propria_marca!=None and notebook_nome!=None and notebook_preco!=None:
+
                     n=propria_marca.get_text().strip()
-                    
-                    
                     sem_registro(n)
                     n=busca_id_fabricante(n)
-                    
                     m=notebook_nome.get_text().strip()
                     p=notebook_preco.get_text().strip()[2:]
-
-                    m=str(m)
                     
                     if '\xa0' in p :
                         p=p.replace('\xa0','')
@@ -392,34 +331,25 @@ def TUDO_NOTEBOOKS_PORTATEIS():
                         p = p[:last_dot].replace('.', '') + p[last_dot:]  # substitui os pontos antes da última ocorrência
                         
                     else:
-
                         p=p.replace(',','.')
 
                     p = float(p)
-
-                    
-                    
                     salvando_no_bd(m,p,n)
 
                 if notebook_preco==None:
                     trava=True
                     break
                     
-    
         else:
             print("FIM NOTEBOOKS")
             break
 
-
 TUDO_NOTEBOOKS_PORTATEIS()
-
 
 def TUDO_ELETRONICOS():
     print("COMEÇO ELETRONICOS")
     url ='https://www.pichau.com.br/eletronicos'
-
     headers =  {'User-Agent': "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.5993.89 Safari/537.3"}
-
     site=requests.get(url, headers=headers)
     soup=BeautifulSoup(site.content, 'html.parser')
     eletronicos=soup.find_all("div",{"class":"MuiCardContent-root jss64"})
@@ -440,19 +370,13 @@ def TUDO_ELETRONICOS():
             soup_marca=BeautifulSoup(pega_marca.content, 'html.parser')
             propria_marca=soup_marca.find('td',attrs={"class" : "value-field Marca"})
 
-            
-
             if propria_marca!=None and eletronico_nome!=None and eletronico_preco!=None:
+
                 n=propria_marca.get_text().strip()
-                
-                
                 sem_registro(n)
                 n=busca_id_fabricante(n)
-                
                 m=eletronico_nome.get_text().strip()
                 p=eletronico_preco.get_text().strip()[2:]
-
-                m=str(m)
                 
                 if '\xa0' in p :
                     p=p.replace('\xa0','')
@@ -461,23 +385,15 @@ def TUDO_ELETRONICOS():
                     p = p[:last_dot].replace('.', '') + p[last_dot:]  # substitui os pontos antes da última ocorrência
                     
                 else:
-
                     p=p.replace(',','.')
 
                 p = float(p)
-
-                
-                
                 salvando_no_bd(m,p,n)
             
 
-
-
-
     pagina_final=int(soup.find('button',attrs={"aria-label" : "Go to page 4"}).get_text())
-
-
     trava=False
+
     for pags in range(2,pagina_final):
 
         url=f'https://www.pichau.com.br/eletronicos?page={pags}'
@@ -501,17 +417,12 @@ def TUDO_ELETRONICOS():
                 propria_marca=soup_marca.find('td',attrs={"class" : "value-field Marca"})
 
                 if propria_marca!=None and eletronico_nome!=None and eletronico_preco!=None:
+
                     n=propria_marca.get_text().strip()
-                    
-                    
                     sem_registro(n)
                     n=busca_id_fabricante(n)
-                    
-                    
                     m=eletronico_nome.get_text().strip()
                     p=eletronico_preco.get_text().strip()[2:]
-
-                    m=str(m)
                     
                     if '\xa0' in p :
                         p=p.replace('\xa0','')
@@ -520,35 +431,26 @@ def TUDO_ELETRONICOS():
                         p = p[:last_dot].replace('.', '') + p[last_dot:]  # substitui os pontos antes da última ocorrência
                         
                     else:
-
                         p=p.replace(',','.')
 
                     p = float(p)
-
-                    
-                    
                     salvando_no_bd(m,p,n)
 
 
                 if eletronico_preco==None:
                     trava=True
                     break
-                    
-
+              
         else:
             print("FIM ELETRONICOS")
             break
-
-
 
 TUDO_ELETRONICOS()
 
 def TUDO_CADEIRAS_MESAS():
     print("COMEÇO CADEIRAS")
     url ='https://www.pichau.com.br/cadeiras'
-
     headers =  {'User-Agent': "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.5993.89 Safari/537.3"}
-
     site=requests.get(url, headers=headers)
     soup=BeautifulSoup(site.content, 'html.parser')
     cadeiras=soup.find_all("div",{"class":"MuiCardContent-root jss64"})
@@ -568,19 +470,13 @@ def TUDO_CADEIRAS_MESAS():
             soup_marca=BeautifulSoup(pega_marca.content, 'html.parser')
             propria_marca=soup_marca.find('td',attrs={"class" : "value-field Marca"})
 
-            
-
             if propria_marca!=None and cadeira_nome!=None and cadeira_preco!=None:
+
                 n=propria_marca.get_text().strip()
-                
-                
                 sem_registro(n)
                 n=busca_id_fabricante(n)
-                
                 m=cadeira_nome.get_text().strip()
                 p=cadeira_preco.get_text().strip()[2:]
-
-                m=str(m)
                 
                 if '\xa0' in p :
                     p=p.replace('\xa0','')
@@ -589,19 +485,14 @@ def TUDO_CADEIRAS_MESAS():
                     p = p[:last_dot].replace('.', '') + p[last_dot:]  # substitui os pontos antes da última ocorrência
                     
                 else:
-
                     p=p.replace(',','.')
 
                 p = float(p)
-
                 salvando_no_bd(m,p,n)
 
-
-
     pagina_final=int(soup.find('button',attrs={"aria-label" : "Go to page 29"}).get_text())
-
-
     trava=False
+
     for pags in range(2,pagina_final):
 
         url=f'https://www.pichau.com.br/cadeiras?page={pags}'
@@ -625,18 +516,13 @@ def TUDO_CADEIRAS_MESAS():
                 propria_marca=soup_marca.find('td',attrs={"class" : "value-field Marca"})
 
                 if propria_marca!=None and cadeira_nome!=None and cadeira_preco!=None:
+
                     n=propria_marca.get_text().strip()
-                    
-                    
                     sem_registro(n)
                     n=busca_id_fabricante(n)
-                    
-                    
                     m=cadeira_nome.get_text().strip()
                     p=cadeira_preco.get_text().strip()[2:]
 
-                    m=str(m)
-                    
                     if '\xa0' in p :
                         p=p.replace('\xa0','')
                         p = p.replace(',', '.')  # substitui a vírgula por um ponto
@@ -644,13 +530,9 @@ def TUDO_CADEIRAS_MESAS():
                         p = p[:last_dot].replace('.', '') + p[last_dot:]  # substitui os pontos antes da última ocorrência
                         
                     else:
-
                         p=p.replace(',','.')
 
                     p = float(p)
-
-                        
-                        
                     salvando_no_bd(m,p,n)
 
 
@@ -662,17 +544,12 @@ def TUDO_CADEIRAS_MESAS():
             print("FIM CADEIRAS")
             break
             
-        
-
 TUDO_CADEIRAS_MESAS()
-
 
 def TUDO_MONITORES():
     print("COMEÇO MONITORES")
     url ='https://www.pichau.com.br/monitores'
-
     headers =  {'User-Agent': "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.5993.89 Safari/537.3"}
-
     site=requests.get(url, headers=headers)
     soup=BeautifulSoup(site.content, 'html.parser')
     monitores=soup.find_all("div",{"class":"MuiCardContent-root jss64"})
@@ -692,17 +569,13 @@ def TUDO_MONITORES():
             soup_marca=BeautifulSoup(pega_marca.content, 'html.parser')
             propria_marca=soup_marca.find('td',attrs={"class" : "value-field Marca"})
 
-            
-
             if propria_marca!=None and monitor_nome!=None and monitor_preco!=None:
+
                 n=propria_marca.get_text().strip()
                 sem_registro(n)
                 n=busca_id_fabricante(n)
-                
                 m=monitor_nome.get_text().strip()
                 p=monitor_preco.get_text().strip()[2:]
-
-                m=str(m)
                 
                 if '\xa0' in p :
                     p=p.replace('\xa0','')
@@ -715,17 +588,11 @@ def TUDO_MONITORES():
                     p=p.replace(',','.')
 
                 p = float(p)
-
-                
-                
                 salvando_no_bd(m,p,n)
 
-
-
     pagina_final=int(soup.find('button',attrs={"aria-label" : "Go to page 16"}).get_text())
-
-
     trava=False
+
     for pags in range(2,pagina_final):
 
         url=f'https://www.pichau.com.br/monitores?page={pags}'
@@ -750,16 +617,13 @@ def TUDO_MONITORES():
 
 
                 if propria_marca!=None and monitor_nome!=None and monitor_preco!=None:
+
                     n=propria_marca.get_text().strip()
-                   
                     sem_registro(n)
                     n=busca_id_fabricante(n)
-                    
                     m=monitor_nome.get_text().strip()
                     p=monitor_preco.get_text().strip()[2:]
 
-                    m=str(m)
-                    
                     if '\xa0' in p :
                         p=p.replace('\xa0','')
                         p = p.replace(',', '.')  # substitui a vírgula por um ponto
@@ -771,9 +635,6 @@ def TUDO_MONITORES():
                         p=p.replace(',','.')
 
                     p = float(p)
-
-                    
-                    
                     salvando_no_bd(m,p,n)
 
                 if monitor_preco==None:
@@ -785,4 +646,4 @@ def TUDO_MONITORES():
             print("FIM MONITORES")
             break
 
-TUDO_MONITORES()
+TUDO_MONITORES
