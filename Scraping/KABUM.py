@@ -5,10 +5,7 @@ from bs4 import BeautifulSoup           #     pip install bs4
 import mysql.connector                 #   pip install mysql-connector-python               
 from mysql.connector import errorcode
 
-import threading
-import time
-
-from selenium import webdriver          #pip install selenium
+from requests_html import HTMLSession
 
 banco=mysql.connector.connect(host='localhost', database='all_blue', user='root',password='thiago')
 
@@ -69,26 +66,17 @@ def TUDO_HARDWARE():
             marca=hardware_marca[k]
             url_marca=f"https://www.kabum.com.br{marca.get('href')}"
             pega_marca=requests.get(url_marca,headers=headers)
-            soup_marca=BeautifulSoup(pega_marca.content, 'html.parser')
+           
 
+            
+            session = HTMLSession()
+            r = session.get(url_marca)
+            r.html.render()
 
-
-            propria_marca=soup_marca.find('div', attr={'class':'sc-80fa11ba-1 zCngk'})
-            var=propria_marca.find_all('p')
-            
-            
-            for r in range(len(var)):
-                print(var[r])
-                if 'Marca' in var[r]:
-                    n=var[r].get_text().strip()
-                    n=n.replace({'-','Marca',':'},'')
-            
+            soup_marca = BeautifulSoup(r.html.html, 'html.parser')
+            div = soup_marca.find("div", {"class": "sc-80fa11ba-1 zCngk"})
+            print(div)
           
-
-                     
-          
-
-            
 
             if n!=None and hardware_nome!=None and hardware_preco!=None:
                 
