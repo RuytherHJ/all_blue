@@ -5,9 +5,9 @@ from bs4 import BeautifulSoup           #     pip install bs4
 import mysql.connector                 #   pip install mysql-connector-python               
 from mysql.connector import errorcode
 
-from requests_html import HTMLSession
+import time
 
-banco=mysql.connector.connect(host='localhost', database='all_blue', user='root',password='thiago')
+banco=mysql.connector.connect(host='localhost', database='all_blue', user='root')
 
 cursor=banco.cursor(buffered=True)
 
@@ -56,7 +56,6 @@ def TUDO_HARDWARE():
     hardware_marca=soup.find_all('a',class_="sc-93fa31de-10 eilolk productLink")
 
 
-
     for k in range(len(hardwares)):
             
             hardware_nome= hardwares[k].find('span',class_='sc-d79c9c3f-0 nlmfp sc-93fa31de-16 bBOYrL nameCard')  
@@ -65,17 +64,11 @@ def TUDO_HARDWARE():
 
             marca=hardware_marca[k]
             url_marca=f"https://www.kabum.com.br{marca.get('href')}"
+            print(url_marca)
             pega_marca=requests.get(url_marca,headers=headers)
-           
-
-            
-            session = HTMLSession()
-            r = session.get(url_marca)
-            r.html.render()
-
-            soup_marca = BeautifulSoup(r.html.html, 'html.parser')
-            div = soup_marca.find("div", {"class": "sc-80fa11ba-1 zCngk"})
-            print(div)
+            soup_marca=BeautifulSoup(pega_marca.content, 'html.parser')
+            div=soup_marca.find_all("section")
+            print(div[3])
           
 
             if n!=None and hardware_nome!=None and hardware_preco!=None:
