@@ -8,7 +8,7 @@ from mysql.connector import errorcode
 import threading
 import time
 
-banco=mysql.connector.connect(host='localhost', database='all_blue', user='root',password='thiago')
+banco=mysql.connector.connect(host='localhost', database='all_blue', user='root')
 
 cursor=banco.cursor(buffered=True)
 

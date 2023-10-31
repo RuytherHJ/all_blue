@@ -45,16 +45,16 @@ def busca_id_fabricante(nomMarca):
 
 def TUDO_HARDWARE():
     print("COMEÇO HARDWARE")
-    url ='https://www.kabum.com.br/hardware'
+    url ="https://www.kabum.com.br/hardware"
 
     headers =  {'User-Agent': "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.5993.89 Safari/537.3"}
 
     site=requests.get(url, headers=headers)
     soup=BeautifulSoup(site.content, 'html.parser')
-    hardwares=soup.find_all("div",class_="sc-93fa31de-7 gopyRO productCard")
+    hardwares=soup.find_all("div",{"class":"sc-1c5abbb-7 jyMfNs productCard"})
 
-    hardware_marca=soup.find_all('a',class_="sc-93fa31de-10 eilolk productLink")
-
+    hardware_marca=soup.find_all('a',class_="sc-1c5abbb-7 jyMfNs productCard")
+    print(len(hardware_marca))
 
     for k in range(len(hardwares)):
             
@@ -67,8 +67,10 @@ def TUDO_HARDWARE():
             print(url_marca)
             pega_marca=requests.get(url_marca,headers=headers)
             soup_marca=BeautifulSoup(pega_marca.content, 'html.parser')
-            div=soup_marca.find_all("section")
-            print(div[3])
+            
+
+            teste=soup_marca.find("div" , {"id":"radix-:r7:"})
+            print(teste)
           
 
             if n!=None and hardware_nome!=None and hardware_preco!=None:
