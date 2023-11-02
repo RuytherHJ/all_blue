@@ -1,4 +1,4 @@
-CREATE DEFINER=`root`@`localhost` PROCEDURE `insere_produtos`(in nomeEnt varchar(2048), in precoEnt float, in vendeEnt int,in marPro int)
+CREATE DEFINER=`root`@`localhost` PROCEDURE `insere_produtos`(in nomeEnt varchar(1024), in precoEnt float, in vendeEnt int,in imglink varchar(2083))
 BEGIN
-	insert into produtos(nome, preco, id_Vendedora,id_Fabricante) values(nomeEnt,precoEnt,vendeEnt,marPro);
+	insert into produtos(nome, preco, id_Vendedora,url_img) values(nomeEnt,precoEnt,vendeEnt,imglink);
 END

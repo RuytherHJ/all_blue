@@ -5,10 +5,7 @@ from bs4 import BeautifulSoup           #     pip install bs4
 import mysql.connector                 #   pip install mysql-connector-python               
 from mysql.connector import errorcode
 
-import threading
-import time
-
-banco=mysql.connector.connect(host='localhost', database='all_blue', user='root')
+banco=mysql.connector.connect(host='localhost', database='all_blue', user='root', password='thiago')
 
 cursor=banco.cursor(buffered=True)
 
@@ -87,7 +84,7 @@ def TUDO_HARDWARE():
                     p = p[:last_dot].replace('.', '') + p[last_dot:]  # substitui os pontos antes da última ocorrência
                     
                 else:
-                    p=p.replace(',','.')
+                    p = p.replace('.', '').replace(',', '.')
 
                 p = float(p)
                 salvando_no_bd(m,p,n)
@@ -134,7 +131,7 @@ def TUDO_HARDWARE():
                         p = p[:last_dot].replace('.', '') + p[last_dot:]  # substitui os pontos antes da última ocorrência
                         
                     else:
-                        p=p.replace(',','.')
+                        p = p.replace('.', '').replace(',', '.')
 
                     p = float(p)
                     salvando_no_bd(m,p,n)
