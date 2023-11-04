@@ -1,11 +1,10 @@
-
 import requests                         #     pip install requests
 from bs4 import BeautifulSoup           #     pip install bs4
 
 import mysql.connector                 #   pip install mysql-connector-python               
 from mysql.connector import errorcode
 
-banco=mysql.connector.connect(host='localhost', database='all_blue', user='root')
+banco=mysql.connector.connect(host='localhost', database='all_blue', user='root', password='thiago')
 
 cursor=banco.cursor(buffered=True)
 
@@ -25,20 +24,6 @@ def salvando_no_bd(nome,preco,id_fa):
     
     banco.commit()
     
-    
-
-def sem_registro(nomMarca):
-    cursor.execute(f"call insere_fabricante( '{nomMarca}');")
-    
-    banco.commit()
-
-
-def busca_id_fabricante(nomMarca):
-    
-    cursor.execute(f"SELECT id FROM fabricante WHERE nome_fabricante like '%{nomMarca}%'")
-    var=cursor.fetchone()
-    envia=int(var[0])
-    return envia
 
 def TUDO_HARDWARE():
     print("COMEÇO HARDWARE")
@@ -72,7 +57,6 @@ def TUDO_HARDWARE():
             if propria_marca!=None and hardware_nome!=None and hardware_preco!=None:
                 
                 n=propria_marca.get_text().strip()
-                sem_registro(n)
                 n=busca_id_fabricante(n)
                 m=hardware_nome.get_text().strip()
                 p=hardware_preco.get_text().strip()[2:]
@@ -89,7 +73,7 @@ def TUDO_HARDWARE():
                 p = float(p)
                 salvando_no_bd(m,p,n)
 
-    pagina_final=int(soup.find('button',attrs={"aria-label" : "Go to page 278"}).get_text())
+    pagina_final=278
 
     trava=False
 

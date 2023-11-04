@@ -5,13 +5,9 @@ from selenium import webdriver                              #pip install seleniu
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
 
-import re
 
 import mysql.connector                 #   pip install mysql-connector-python               
 from mysql.connector import errorcode
-
-
-import time
 
 banco=mysql.connector.connect(host='localhost', database='all_blue', user='root',password='thiago')
 
@@ -20,9 +16,6 @@ cursor=banco.cursor(buffered=True)
 service=Service()
 options=webdriver.ChromeOptions()
 driver=webdriver.Chrome(service=service,options=options)
-
-
-
 
 
 if banco.is_connected():
@@ -84,7 +77,7 @@ def TUDO_HARDWARE():
                 salvando_no_bd(m,p,n,prodLink)
             
     
-    pagina_final=int(driver.find_element(By.XPATH,"//*[@aria-label='Page 429']").text)
+    pagina_final=int(driver.find_element(By.XPATH,"//*[@aria-label='Page 434']").text)
     trava=False
     
     for pags in range(2,pagina_final):
@@ -147,7 +140,7 @@ def TUDO_PERIFERICOS():
 
     
     
-    perifericos=driver.find_elements(By.CLASS_NAME,'productCard')
+    perifericos=driver.find_elements(By.CLASS_NAME,'cardProdutoListagem')
     perifericos_nome=driver.find_elements(By.CLASS_NAME,'nameCard')
     perifericos_preco=driver.find_elements(By.CLASS_NAME,'priceCard')
     perifeircos_imagens=driver.find_elements(By.CLASS_NAME,'imageCard')
@@ -155,7 +148,7 @@ def TUDO_PERIFERICOS():
 
 
     for k in range(len(perifericos)):
-
+            print(perifericos_nome[k])
             nome=perifericos_nome[k].text.strip()
             preco=perifericos_preco[k].text.strip()[2:]
             imagem=perifeircos_imagens[k].get_property('src')
@@ -186,7 +179,7 @@ def TUDO_PERIFERICOS():
     for pags in range(2,pagina_final):
         url=f"https://www.kabum.com.br/perifericos?page_number={pags}&page_size=20&facet_filters=&sort=most_searched"
         driver.get(url)
-        perifericos=driver.find_elements(By.CLASS_NAME,'productCard')
+        perifericos=driver.find_elements(By.CLASS_NAME,'cardProdutoListagem')
         perifericos_nome=driver.find_elements(By.CLASS_NAME,'nameCard')
         perifericos_preco=driver.find_elements(By.CLASS_NAME,'priceCard')
         perifeircos_imagens=driver.find_elements(By.CLASS_NAME,'imageCard')
