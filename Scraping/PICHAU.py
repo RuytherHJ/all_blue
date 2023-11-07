@@ -70,8 +70,8 @@ def TUDO_HARDWARE():
 
                 p = float(p)
                 salvando_no_bd(m,p,n,l)
-
-    pagina_final=int(soup.find('button',{"aria-label" : "Go to page 278"}).get_text())
+    
+    pagina_final=278
 
     trava=False
 
@@ -175,7 +175,7 @@ def TUDO_PERIFERICOS():
                 p = float(p)
                 salvando_no_bd(m,p,n,l)
 
-    pagina_final=int(soup.find('button',attrs={"aria-label" : "Go to page 278"}).get_text())
+    pagina_final=210
 
     trava=False
 
@@ -278,7 +278,7 @@ def TUDO_NOTEBOOKS_PORTATEIS():
                 p = float(p)
                 salvando_no_bd(m,p,n,l)
 
-    pagina_final=int(soup.find('button',attrs={"aria-label" : "Go to page 11"}).get_text())
+    pagina_final=11
 
     trava=False
 
@@ -379,7 +379,7 @@ def TUDO_ELETRONICOS():
                 p = float(p)
                 salvando_no_bd(m,p,n,l)
 
-    pagina_final=int(soup.find('button',attrs={"aria-label" : "Go to page 11"}).get_text())
+    pagina_final=4
 
     trava=False
 
@@ -480,7 +480,7 @@ def TUDO_CADEIRAS_MESAS():
                 p = float(p)
                 salvando_no_bd(m,p,n,l)
 
-    pagina_final=int(soup.find('button',attrs={"aria-label" : "Go to page 11"}).get_text())
+    pagina_final=29
 
     trava=False
 
@@ -580,7 +580,7 @@ def TUDO_MONITORES():
                 p = float(p)
                 salvando_no_bd(m,p,n,l)
 
-    pagina_final=int(soup.find('button',attrs={"aria-label" : "Go to page 11"}).get_text())
+    pagina_final=16
 
     trava=False
 
