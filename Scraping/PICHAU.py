@@ -4,7 +4,7 @@ from bs4 import BeautifulSoup           #     pip install bs4
 import mysql.connector                 #   pip install mysql-connector-python               
 from mysql.connector import errorcode
 
-banco=mysql.connector.connect(host='localhost', database='all_blue', user='root')
+banco=mysql.connector.connect(host='localhost', database='all_blue', user='root', password='thiago')
 
 cursor=banco.cursor(buffered=True)
 
@@ -28,7 +28,7 @@ def TUDO_HARDWARE():
     print("COMEÇO HARDWARE")
     url ='https://www.pichau.com.br/hardware'
 
-    headers =  {'User-Agent': "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.5993.89 Safari/537.3"}
+    headers =  {'User-Agent': "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36"}
 
     site=requests.get(url, headers=headers)
     soup=BeautifulSoup(site.content, 'html.parser')
@@ -71,7 +71,7 @@ def TUDO_HARDWARE():
                 p = float(p)
                 salvando_no_bd(m,p,n,l)
 
-    pagina_final=int(soup.find('button',attrs={"aria-label" : "Go to page 278"}).get_text())
+    pagina_final=int(soup.find('button',{"aria-label" : "Go to page 278"}).get_text())
 
     trava=False
 
@@ -180,7 +180,7 @@ def TUDO_PERIFERICOS():
     trava=False
 
     for pags in range(2,pagina_final):
-        url=f'https://www.pichau.com.br/hardware?page={pags}'
+        url=f'https://www.pichau.com.br/perifericos?page={pags}'
         site=requests.get(url, headers=headers)
         soup=BeautifulSoup(site.content, 'html.parser')
         perifericos=soup.find_all("div",{"class":"MuiCardContent-root jss64"})
@@ -219,10 +219,14 @@ def TUDO_PERIFERICOS():
 
                     p = float(p)
                     salvando_no_bd(m,p,n,l)
+
+                if periferico_preco==None:
+                    trava=True
+                    break
                         
 
         else:
-            print("FIM HARDWARE")
+            print("FIM PERIFERICOS")
             break
            
 
@@ -243,9 +247,9 @@ def TUDO_NOTEBOOKS_PORTATEIS():
 
     for k in range(len(notebooks)):
             
-            notebook_nome= perifericos[k].find('h2',class_='MuiTypography-root jss78 jss79 MuiTypography-h6')  
+            notebook_nome= notebooks[k].find('h2',class_='MuiTypography-root jss78 jss79 MuiTypography-h6')  
 
-            notebook_preco=perifericos[k].find('div', class_='jss81')
+            notebook_preco=notebooks[k].find('div', class_='jss81')
 
             notebook=notebook_imagem[k]
             
@@ -255,7 +259,7 @@ def TUDO_NOTEBOOKS_PORTATEIS():
             propria_imagem=soup_imagem.find('img',{"style" : "transition:opacity 0ms linear 0ms, visibility 0ms linear 0ms"})
 
 
-            if periferico_nome!=None and periferico_preco!=None:
+            if notebook_nome!=None and notebook_preco!=None:
                 
                 n=propria_imagem.get('src')
                 l=url_imagem
@@ -279,18 +283,18 @@ def TUDO_NOTEBOOKS_PORTATEIS():
     trava=False
 
     for pags in range(2,pagina_final):
-        url=f'https://www.pichau.com.br/hardware?page={pags}'
+        url=f'https://www.pichau.com.br/notebooks?page={pags}'
         site=requests.get(url, headers=headers)
         soup=BeautifulSoup(site.content, 'html.parser')
-        perifericos=soup.find_all("div",{"class":"MuiCardContent-root jss64"})
+        notebooks=soup.find_all("div",{"class":"MuiCardContent-root jss64"})
         notebook_imagem=soup.find_all('a',attrs={"data-cy" : "list-product"})
 
         if trava!=True:
-            for k in range(len(perifericos)):
+            for k in range(len(notebooks)):
             
-                notebook_nome= perifericos[k].find('h2',class_='MuiTypography-root jss78 jss79 MuiTypography-h6')  
+                notebook_nome= notebooks[k].find('h2',class_='MuiTypography-root jss78 jss79 MuiTypography-h6')  
 
-                notebook_preco=perifericos[k].find('div', class_='jss81')
+                notebook_preco=notebooks[k].find('div', class_='jss81')
 
                 notebook=notebook_imagem[k]
                 
@@ -318,10 +322,13 @@ def TUDO_NOTEBOOKS_PORTATEIS():
 
                     p = float(p)
                     salvando_no_bd(m,p,n,l)
-                        
+                
+                if notebook_preco==None:
+                    trava=True
+                    break
 
         else:
-            print("FIM HARDWARE")
+            print("FIM NOTEBOOK")
             break
 
 TUDO_NOTEBOOKS_PORTATEIS()
@@ -330,11 +337,13 @@ def TUDO_ELETRONICOS():
     print("COMEÇO ELETRONICOS")
     url ='https://www.pichau.com.br/eletronicos'
     headers =  {'User-Agent': "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.5993.89 Safari/537.3"}
+
     site=requests.get(url, headers=headers)
     soup=BeautifulSoup(site.content, 'html.parser')
     eletronicos=soup.find_all("div",{"class":"MuiCardContent-root jss64"})
 
-    eletronicos_marca=soup.find_all('a',attrs={"data-cy" : "list-product"})
+    eleronico_imagem=soup.find_all('a',{"data-cy" : "list-product"})
+
 
 
     for k in range(len(eletronicos)):
@@ -343,21 +352,21 @@ def TUDO_ELETRONICOS():
 
             eletronico_preco=eletronicos[k].find('div', class_='jss81')
 
-            marca=eletronicos_marca[k]
+            eletronico=eleronico_imagem[k]
             
-            url_marca=f"https://www.pichau.com.br{marca.get('href')}"
-            pega_marca=requests.get(url_marca,headers=headers)
-            soup_marca=BeautifulSoup(pega_marca.content, 'html.parser')
-            propria_marca=soup_marca.find('td',attrs={"class" : "value-field Marca"})
+            url_imagem=f"https://www.pichau.com.br{eletronico.get('href')}"
+            pega_imagem=requests.get(url_imagem,headers=headers)
+            soup_imagem=BeautifulSoup(pega_imagem.content, 'html.parser')
+            propria_imagem=soup_imagem.find('img',{"style" : "transition:opacity 0ms linear 0ms, visibility 0ms linear 0ms"})
 
-            if propria_marca!=None and eletronico_nome!=None and eletronico_preco!=None:
 
-                n=propria_marca.get_text().strip()
-                sem_registro(n)
-                n=busca_id_fabricante(n)
+            if eletronico_nome!=None and eletronico_preco!=None:
+                
+                n=propria_imagem.get('src')
+                l=url_imagem
                 m=eletronico_nome.get_text().strip()
                 p=eletronico_preco.get_text().strip()[2:]
-                
+
                 if '\xa0' in p :
                     p=p.replace('\xa0','')
                     p = p.replace(',', '.')  # substitui a vírgula por um ponto
@@ -368,19 +377,18 @@ def TUDO_ELETRONICOS():
                     p=p.replace(',','.')
 
                 p = float(p)
-                salvando_no_bd(m,p,n)
-            
+                salvando_no_bd(m,p,n,l)
 
-    pagina_final=int(soup.find('button',attrs={"aria-label" : "Go to page 4"}).get_text())
+    pagina_final=int(soup.find('button',attrs={"aria-label" : "Go to page 11"}).get_text())
+
     trava=False
 
     for pags in range(2,pagina_final):
-
         url=f'https://www.pichau.com.br/eletronicos?page={pags}'
         site=requests.get(url, headers=headers)
         soup=BeautifulSoup(site.content, 'html.parser')
         eletronicos=soup.find_all("div",{"class":"MuiCardContent-root jss64"})
-        eletronicos_marca=soup.find_all('a',attrs={"data-cy" : "list-product"})
+        eleronico_imagem=soup.find_all('a',attrs={"data-cy" : "list-product"})
 
         if trava!=True:
             for k in range(len(eletronicos)):
@@ -389,21 +397,21 @@ def TUDO_ELETRONICOS():
 
                 eletronico_preco=eletronicos[k].find('div', class_='jss81')
 
-                marca=eletronicos_marca[k]
-            
-                url_marca=f"https://www.pichau.com.br{marca.get('href')}"
-                pega_marca=requests.get(url_marca,headers=headers)
-                soup_marca=BeautifulSoup(pega_marca.content, 'html.parser')
-                propria_marca=soup_marca.find('td',attrs={"class" : "value-field Marca"})
+                eletronico=eleronico_imagem[k]
+                
+                url_imagem=f"https://www.pichau.com.br{eletronico.get('href')}"
+                pega_imagem=requests.get(url_imagem,headers=headers)
+                soup_imagem=BeautifulSoup(pega_imagem.content, 'html.parser')
+                propria_imagem=soup_imagem.find('img',{"style" : "transition:opacity 0ms linear 0ms, visibility 0ms linear 0ms"})
 
-                if propria_marca!=None and eletronico_nome!=None and eletronico_preco!=None:
 
-                    n=propria_marca.get_text().strip()
-                    sem_registro(n)
-                    n=busca_id_fabricante(n)
+                if eletronico_nome!=None and eletronico_preco!=None:
+                    
+                    n=propria_imagem.get('src')
+                    l=url_imagem
                     m=eletronico_nome.get_text().strip()
                     p=eletronico_preco.get_text().strip()[2:]
-                    
+
                     if '\xa0' in p :
                         p=p.replace('\xa0','')
                         p = p.replace(',', '.')  # substitui a vírgula por um ponto
@@ -414,9 +422,8 @@ def TUDO_ELETRONICOS():
                         p=p.replace(',','.')
 
                     p = float(p)
-                    salvando_no_bd(m,p,n)
-
-
+                    salvando_no_bd(m,p,n,l)
+                
                 if eletronico_preco==None:
                     trava=True
                     break
@@ -431,11 +438,14 @@ def TUDO_CADEIRAS_MESAS():
     print("COMEÇO CADEIRAS")
     url ='https://www.pichau.com.br/cadeiras'
     headers =  {'User-Agent': "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.5993.89 Safari/537.3"}
+
     site=requests.get(url, headers=headers)
     soup=BeautifulSoup(site.content, 'html.parser')
     cadeiras=soup.find_all("div",{"class":"MuiCardContent-root jss64"})
 
-    cadeiras_marca=soup.find_all('a',attrs={"data-cy" : "list-product"})
+    cadeira_imagem=soup.find_all('a',{"data-cy" : "list-product"})
+
+
 
     for k in range(len(cadeiras)):
             
@@ -443,21 +453,21 @@ def TUDO_CADEIRAS_MESAS():
 
             cadeira_preco=cadeiras[k].find('div', class_='jss81')
 
-            marca=cadeiras_marca[k]
+            cadeira=cadeira_imagem[k]
             
-            url_marca=f"https://www.pichau.com.br{marca.get('href')}"
-            pega_marca=requests.get(url_marca,headers=headers)
-            soup_marca=BeautifulSoup(pega_marca.content, 'html.parser')
-            propria_marca=soup_marca.find('td',attrs={"class" : "value-field Marca"})
+            url_imagem=f"https://www.pichau.com.br{cadeira.get('href')}"
+            pega_imagem=requests.get(url_imagem,headers=headers)
+            soup_imagem=BeautifulSoup(pega_imagem.content, 'html.parser')
+            propria_imagem=soup_imagem.find('img',{"style" : "transition:opacity 0ms linear 0ms, visibility 0ms linear 0ms"})
 
-            if propria_marca!=None and cadeira_nome!=None and cadeira_preco!=None:
 
-                n=propria_marca.get_text().strip()
-                sem_registro(n)
-                n=busca_id_fabricante(n)
+            if cadeira_nome!=None and cadeira_preco!=None:
+                
+                n=propria_imagem.get('src')
+                l=url_imagem
                 m=cadeira_nome.get_text().strip()
                 p=cadeira_preco.get_text().strip()[2:]
-                
+
                 if '\xa0' in p :
                     p=p.replace('\xa0','')
                     p = p.replace(',', '.')  # substitui a vírgula por um ponto
@@ -468,18 +478,18 @@ def TUDO_CADEIRAS_MESAS():
                     p=p.replace(',','.')
 
                 p = float(p)
-                salvando_no_bd(m,p,n)
+                salvando_no_bd(m,p,n,l)
 
-    pagina_final=int(soup.find('button',attrs={"aria-label" : "Go to page 29"}).get_text())
+    pagina_final=int(soup.find('button',attrs={"aria-label" : "Go to page 11"}).get_text())
+
     trava=False
 
     for pags in range(2,pagina_final):
-
         url=f'https://www.pichau.com.br/cadeiras?page={pags}'
         site=requests.get(url, headers=headers)
         soup=BeautifulSoup(site.content, 'html.parser')
         cadeiras=soup.find_all("div",{"class":"MuiCardContent-root jss64"})
-        cadeiras_marca=soup.find_all('a',attrs={"data-cy" : "list-product"})
+        cadeira_imagem=soup.find_all('a',attrs={"data-cy" : "list-product"})
 
         if trava!=True:
             for k in range(len(cadeiras)):
@@ -488,18 +498,17 @@ def TUDO_CADEIRAS_MESAS():
 
                 cadeira_preco=cadeiras[k].find('div', class_='jss81')
 
-                marca=cadeiras_marca[k]
-            
-                url_marca=f"https://www.pichau.com.br{marca.get('href')}"
-                pega_marca=requests.get(url_marca,headers=headers)
-                soup_marca=BeautifulSoup(pega_marca.content, 'html.parser')
-                propria_marca=soup_marca.find('td',attrs={"class" : "value-field Marca"})
+                cadeira=cadeira_imagem[k]
+                
+                url_imagem=f"https://www.pichau.com.br{cadeira.get('href')}"
+                pega_imagem=requests.get(url_imagem,headers=headers)
+                soup_imagem=BeautifulSoup(pega_imagem.content, 'html.parser')
+                propria_imagem=soup_imagem.find('img',{"style" : "transition:opacity 0ms linear 0ms, visibility 0ms linear 0ms"})
 
-                if propria_marca!=None and cadeira_nome!=None and cadeira_preco!=None:
-
-                    n=propria_marca.get_text().strip()
-                    sem_registro(n)
-                    n=busca_id_fabricante(n)
+                if cadeira_nome!=None and cadeira_preco!=None:
+                    
+                    n=propria_imagem.get('src')
+                    l=url_imagem
                     m=cadeira_nome.get_text().strip()
                     p=cadeira_preco.get_text().strip()[2:]
 
@@ -513,9 +522,8 @@ def TUDO_CADEIRAS_MESAS():
                         p=p.replace(',','.')
 
                     p = float(p)
-                    salvando_no_bd(m,p,n)
-
-
+                    salvando_no_bd(m,p,n,l)
+                
                 if cadeira_preco==None:
                     trava=True
                     break
@@ -530,11 +538,14 @@ def TUDO_MONITORES():
     print("COMEÇO MONITORES")
     url ='https://www.pichau.com.br/monitores'
     headers =  {'User-Agent': "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.5993.89 Safari/537.3"}
+
     site=requests.get(url, headers=headers)
     soup=BeautifulSoup(site.content, 'html.parser')
     monitores=soup.find_all("div",{"class":"MuiCardContent-root jss64"})
 
-    monitores_marca=soup.find_all('a',attrs={"data-cy" : "list-product"})
+    monitor_imagem=soup.find_all('a',{"data-cy" : "list-product"})
+
+
 
     for k in range(len(monitores)):
             
@@ -542,21 +553,21 @@ def TUDO_MONITORES():
 
             monitor_preco=monitores[k].find('div', class_='jss81')
 
-            marca=monitores_marca[k]
+            monitor=monitor_imagem[k]
             
-            url_marca=f"https://www.pichau.com.br{marca.get('href')}"
-            pega_marca=requests.get(url_marca,headers=headers)
-            soup_marca=BeautifulSoup(pega_marca.content, 'html.parser')
-            propria_marca=soup_marca.find('td',attrs={"class" : "value-field Marca"})
+            url_imagem=f"https://www.pichau.com.br{monitor.get('href')}"
+            pega_imagem=requests.get(url_imagem,headers=headers)
+            soup_imagem=BeautifulSoup(pega_imagem.content, 'html.parser')
+            propria_imagem=soup_imagem.find('img',{"style" : "transition:opacity 0ms linear 0ms, visibility 0ms linear 0ms"})
 
-            if propria_marca!=None and monitor_nome!=None and monitor_preco!=None:
 
-                n=propria_marca.get_text().strip()
-                sem_registro(n)
-                n=busca_id_fabricante(n)
+            if monitor_nome!=None and monitor_preco!=None:
+                
+                n=propria_imagem.get('src')
+                l=url_imagem
                 m=monitor_nome.get_text().strip()
                 p=monitor_preco.get_text().strip()[2:]
-                
+
                 if '\xa0' in p :
                     p=p.replace('\xa0','')
                     p = p.replace(',', '.')  # substitui a vírgula por um ponto
@@ -564,22 +575,21 @@ def TUDO_MONITORES():
                     p = p[:last_dot].replace('.', '') + p[last_dot:]  # substitui os pontos antes da última ocorrência
                     
                 else:
-
                     p=p.replace(',','.')
 
                 p = float(p)
-                salvando_no_bd(m,p,n)
+                salvando_no_bd(m,p,n,l)
 
-    pagina_final=int(soup.find('button',attrs={"aria-label" : "Go to page 16"}).get_text())
+    pagina_final=int(soup.find('button',attrs={"aria-label" : "Go to page 11"}).get_text())
+
     trava=False
 
     for pags in range(2,pagina_final):
-
         url=f'https://www.pichau.com.br/monitores?page={pags}'
         site=requests.get(url, headers=headers)
         soup=BeautifulSoup(site.content, 'html.parser')
         monitores=soup.find_all("div",{"class":"MuiCardContent-root jss64"})
-        monitores_marca=soup.find_all('a',attrs={"data-cy" : "list-product"})
+        monitor_imagem=soup.find_all('a',attrs={"data-cy" : "list-product"})
 
         if trava!=True:
             for k in range(len(monitores)):
@@ -587,20 +597,18 @@ def TUDO_MONITORES():
                 monitor_nome= monitores[k].find('h2',class_='MuiTypography-root jss78 jss79 MuiTypography-h6')  
 
                 monitor_preco=monitores[k].find('div', class_='jss81')
-               
-                marca=monitores_marca[k]
-            
-                url_marca=f"https://www.pichau.com.br{marca.get('href')}"
-                pega_marca=requests.get(url_marca,headers=headers)
-                soup_marca=BeautifulSoup(pega_marca.content, 'html.parser')
-                propria_marca=soup_marca.find('td',attrs={"class" : "value-field Marca"})
 
+                monitor=monitor_imagem[k]
+                
+                url_imagem=f"https://www.pichau.com.br{monitor.get('href')}"
+                pega_imagem=requests.get(url_imagem,headers=headers)
+                soup_imagem=BeautifulSoup(pega_imagem.content, 'html.parser')
+                propria_imagem=soup_imagem.find('img',{"style" : "transition:opacity 0ms linear 0ms, visibility 0ms linear 0ms"})
 
-                if propria_marca!=None and monitor_nome!=None and monitor_preco!=None:
-
-                    n=propria_marca.get_text().strip()
-                    sem_registro(n)
-                    n=busca_id_fabricante(n)
+                if monitor_nome!=None and monitor_preco!=None:
+                    
+                    n=propria_imagem.get('src')
+                    l=url_imagem
                     m=monitor_nome.get_text().strip()
                     p=monitor_preco.get_text().strip()[2:]
 
@@ -611,12 +619,11 @@ def TUDO_MONITORES():
                         p = p[:last_dot].replace('.', '') + p[last_dot:]  # substitui os pontos antes da última ocorrência
                         
                     else:
-
                         p=p.replace(',','.')
 
                     p = float(p)
-                    salvando_no_bd(m,p,n)
-
+                    salvando_no_bd(m,p,n,l)
+                
                 if monitor_preco==None:
                     trava=True
                     break
