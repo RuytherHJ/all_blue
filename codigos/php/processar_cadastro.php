@@ -24,8 +24,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if ($conn->query($sql) === TRUE) {
         echo "Cadastro realizado com sucesso!";
+        time(5);
+        header('Location: /all_blue/codigos/html/all_blue.html');
+        exit();
+
     } else {
-        echo "Erro ao cadastrar o usuário: " . $conn->error;
+        echo "<h1>Esse email já está sendo usado!!!</h1>";
+        sleep(2);
+        header('Location: /all_blue/codigos/html/cadastro_usuario.html');
+        exit();
     }
 
     // Feche a conexão com o banco de dados

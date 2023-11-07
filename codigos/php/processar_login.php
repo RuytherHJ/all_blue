@@ -25,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if ($result->num_rows == 1) {
         echo "Login bem-sucedido!"; // Usuário autenticado       
-        header('Location: /all_blue/codigos/html/produto.html');
+        header('Location: /all_blue/codigos/html/all_blue.html');
         exit();
 
     } else {
