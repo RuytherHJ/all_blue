@@ -13,9 +13,7 @@ if ($conn->connect_error) {
 }
 
 // Consulta para obter informações do banco de dados
-$sql = "SELECT pd.nome AS nome_produto, pd.preco AS preco_produto, lj.nome AS nome_loja, pd.url_img AS img
-        FROM produtos pd
-        JOIN lojas lj ON pd.id = lj.id;";
+$sql = "SELECT * FROM produtos_aleatorios";
 $result = $conn->query($sql);
 
 
@@ -25,10 +23,10 @@ $result = $conn->query($sql);
 // Exibir informações do banco de dados
 if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
-        echo "Nome do Produto: " . $row["nome_produto"] . "<br>";
-        echo "Preço: " . $row["preco_produto"] . "<br>";
-        echo "Loja: " . $row["nome_loja"] . "<br>";
-        echo '<img src="'. $row["img"] . '">' ;
+        echo "Nome do Produto: " . $row["nome"] . "<br>";
+        echo "Preço: " . $row["preco"] . "<br>";
+        echo "Loja: " . $row["url_logo"] . "<br>";
+        echo '<img src="'. $row["url_img"] . '">' ;
 
         }
 

@@ -1,4 +1,11 @@
-<!DOCTYPE html>
+
+
+
+
+    
+<?php 
+
+echo('<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -8,8 +15,7 @@
 
     <link rel="stylesheet" href="/all_blue/codigos/css/pagina_principal/cabecalho.css">
     <link rel="stylesheet" href="/all_blue/codigos/css/pagina_principal/style_principal.css">
-    <link rel="stylesheet" href="/all_blue/codigos/css/pagina_principal/favoritos.css">
-    <link rel="stylesheet" href="/all_blue/codigos/css/pagina_principal/ofertas_do_dia.css">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
 
@@ -85,63 +91,82 @@
             <input type="range">
         </div>
     </div>
-
-    <!-- Produtos mostruario -->
     <div class="table_produtos">
-        <table>
-            <tr>
-                <td>
-                    <div class="imagem">
-                        <img src="/all_blue/codigos/files/teclado.jpg" class="img_produto" alt="Teclado">
-                    </div>
-                    <hr>
+    <table>');
 
-                    <div class="nome_produto">Teclado Gamer Knup KP-2060</div>
-                    <h3>R$78,99</h3>
-                    <button>Confira</button>
-                </td>
-                <td>
-                    <div class="imagem">
-                        <img src="/all_blue/codigos/files/cadiera_gamer.webp" class="img_produto" alt="">
-                    </div>
-                    <hr>
-                    <div class="nome_produto">Cadeira Gamer Husky Gaming Blizzard RGB, Preto, Luz RGB, Com Almofadas,
-                        Reclinável - HBL-RGB</div>
-                    <h3>R$788,99</h3>
-                    <button>Confira</button>
-                </td>
-                <td>
-                    <div class="imagem">
-                        <img src="/all_blue/codigos/files/monitor.jpg" class="img_produto" alt="Monitor">
-                    </div>
-                    <hr>
-                    <div class="nome_produto">Monitor Gamer LG 21.5 LED Full HD, 75Hz, 5ms, HDMI, FreeSync - 22MP410-B
-                    </div>
-                    <h3>R$680,90</h3>
-                    <button>Confira</button>
-                </td>
-                <td>
-                    <div class="imagem">
-                        <img src="/all_blue/codigos/files/teclado.jpg" class="img_produto" alt="Teclado">
-                    </div>
-                    <hr>
-                    <div class="nome_produto">Teclado Gamer Knup KP-2060</div>
-                    <h3>R$78,99</h3>
-                    <button>Confira</button>
-                </td>
+$servername = "localhost:3306";
+$username = "root";
+$password = "";
+$dbname = "all_blue";
 
-            </tr>
-        </table>
+// Conectar ao banco de dados
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Verificar a conexão
+if ($conn->connect_error) {
+    die("Falha na conexão: " . $conn->connect_error);
+}
+
+// Consulta para obter informações do banco de dados
+$sql = "SELECT * FROM produtos_aleatorios";
+$result = $conn->query($sql);
 
 
+// Fechar a conexão<?php
+
+
+
+
+                
+// Exibir informações do banco de dados
+
+$cont=1;
+
+if ($result->num_rows > 0) {
+
+    
+    while($row= $result->fetch_assoc()){
+        echo "<tr>";
+        while($cont<=5){
+            echo "<td>";
+            echo '<div class="imagem">';
+            echo '<a href="'.$row["url_produto"].'">';            
+            echo "<img src=".$row["url_img"]." class=img_produto alt=Monitor>";
+            echo '</div>';
+            echo '<hr>';
+            echo '</div>';        
+            echo '</a>';
+            echo '</div>';
+            echo '<div class="nome_produto">'.$row["nome"].'';
+            echo '<h3>R$'.$row["preco"].'</h3>';
+            echo '</td>';
+
+            $cont=$cont+1;
+            $row= $result->fetch_assoc();
+
+
+        }
+        echo"</tr>";
+        
+        $cont=1;
+    }
+    
+
+    
+    
+
+} else {
+    echo "Nenhuma informação encontrada no banco de dados.";
+}
+$conn->close();
+
+echo('
     </div>
+    </table>
 
+    </body>
+    
+    </html>');
 
-    <footer>
+?>
 
-    </footer>
-
-
-</body>
-
-</html>

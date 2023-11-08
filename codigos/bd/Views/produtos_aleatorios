@@ -1,0 +1,17 @@
+CREATE 
+    ALGORITHM = UNDEFINED 
+    DEFINER = `root`@`localhost` 
+    SQL SECURITY DEFINER
+VIEW `produtos_aleatorios` AS
+    SELECT 
+        `produtos`.`id` AS `id`,
+        `produtos`.`nome` AS `nome`,
+        `produtos`.`preco` AS `preco`,
+        `produtos`.`id_Vendedora` AS `id_Vendedora`,
+        `produtos`.`url_img` AS `url_img`,
+        `produtos`.`url_produto` AS `url_produto`,
+        `lojas`.`url_Logo` AS `url_logo`
+    FROM
+        (`produtos`
+        JOIN `lojas` ON (`produtos`.`id_Vendedora` = `lojas`.`id`))
+    ORDER BY RAND()
