@@ -15,8 +15,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     // Captura os dados do formulário
-    $email = $_POST['user_email'];
-    $senha = $_POST['user_senha'];
+    $email = trim($_POST['user_email']);
+    $senha = trim($_POST['user_senha']);
 
     // Consulta SQL para verificar o usuário e senha
     $sql = "SELECT * FROM usuarios WHERE email = '$email' AND senha = '$senha'";
@@ -30,6 +30,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     } else {
         echo "Login falhou. Verifique suas credenciais.";
+        flush();
+        ob_flush();
+        sleep(2);
+
+
     }
 
     // Feche a conexão com o banco de dados

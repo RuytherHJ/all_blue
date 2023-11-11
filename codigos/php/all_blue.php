@@ -96,7 +96,7 @@ echo('<!DOCTYPE html>
 
 $servername = "localhost:3306";
 $username = "root";
-$password = "";
+$password = "thiago";
 $dbname = "all_blue";
 
 // Conectar ao banco de dados
@@ -125,7 +125,7 @@ $cont=1;
 if ($result->num_rows > 0) {
 
     
-    while($row= $result->fetch_assoc()){
+    while($row= $result->fetch_assoc() && $cont<20 ){
         echo "<tr>";
         while($cont<=5){
             echo "<td>";

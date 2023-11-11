@@ -15,9 +15,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     // Captura os dados do formulário
-    $nome = $_POST['user_name'];
-    $email = $_POST['user_email'];
-    $senha = $_POST['user_senha'];
+    $nome = trim($_POST['user_name']);
+    $email = trim($_POST['user_email']);
+    $senha = trim($_POST['user_senha']);
 
     // Inserção dos dados no banco de dados
     $sql = "INSERT INTO usuarios (nome, email, senha) VALUES ('$nome', '$email', '$senha')";
@@ -28,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit();
 
     } else {
-        echo "<h1>Esse email já está sendo usado!!!</h1>";
+        echo "<h1>ERRO AO CADASTRAR!!!</h1>";
         sleep(2);
         header('Location: /all_blue/codigos/php/cadastro_usuario.php');
         exit();
