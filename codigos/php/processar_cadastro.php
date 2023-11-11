@@ -3,7 +3,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Configuração de conexão com o banco de dados
     $servername = "localhost:3306";
     $username = "root";
-    $password = "";
+    $password = "thiago";
     $dbname = "all_blue";
 
     // Conecte-se ao banco de dados
@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $senha = trim($_POST['user_senha']);
 
     // Inserção dos dados no banco de dados
-    $sql = "INSERT INTO usuarios (nome, email, senha) VALUES ('$nome', '$email', '$senha')";
+    $sql = "INSERT INTO usuarios (nome, email, senha) VALUES ('$nome', '$email', '".sha1($senha)."')";
 
     if ($conn->query($sql) === TRUE) {
         echo "Cadastro realizado com sucesso!";
