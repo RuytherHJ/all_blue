@@ -119,15 +119,17 @@ $result = $conn->query($sql);
 
                 
 // Exibir informações do banco de dados
-
+$aux=1;
 $cont=1;
 
 if ($result->num_rows > 0) {
 
     
-    while($row= $result->fetch_assoc() && $cont<20 ){
+    while($row= $result->fetch_assoc() && $aux<20 ){
+        
         echo "<tr>";
         while($cont<=5){
+            $row= $result->fetch_assoc();
             echo "<td>";
             echo '<div class="imagem">';
             echo '<a href="'.$row["url_produto"].'">';            
@@ -142,7 +144,7 @@ if ($result->num_rows > 0) {
             echo '</td>';
 
             $cont=$cont+1;
-            $row= $result->fetch_assoc();
+            $aux=$aux+1;
 
 
         }

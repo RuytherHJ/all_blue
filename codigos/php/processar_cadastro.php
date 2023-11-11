@@ -20,7 +20,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $senha = trim($_POST['user_senha']);
 
     // Inserção dos dados no banco de dados
-    $sql = "INSERT INTO usuarios (nome, email, senha) VALUES ('$nome', '$email', '".sha1($senha)."')";
+
+    $sql = "call all_blue.insere_usuario('$email','".sha1($senha)."', '$nome');";
+
 
     if ($conn->query($sql) === TRUE) {
         echo "Cadastro realizado com sucesso!";
