@@ -15,21 +15,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     // Captura os dados do formulário
-    $nome = $_POST['user_name'];
-    $email = $_POST['user_email'];
-    $senha = $_POST['user_senha'];
+    $nome = trim($_POST['user_name']);
+    $email = trim($_POST['user_email']);
+    $senha = trim($_POST['user_senha']);
 
     // Inserção dos dados no banco de dados
-    $sql = "call insere_usuario('$email','$senha','$nome')";
+    $sql = "call insere_usuario('$email','".sha1($senha)."','$nome')";
 
     if ($conn->query($sql) === TRUE) {
         echo "Cadastro realizado com sucesso!";
-        time(5);
-        header('Location: /all_blue/codigos/html/all_blue.html');
+        header('Location: /all_blue/codigos/php/all_blue.php');
         exit();
 
     } else {
-        echo "<h1>Esse email já está sendo usado!!!</h1>";
+        echo "<h1>ERRO AO CADASTRAR!!!</h1>";
         sleep(2);
         header('Location: /all_blue/codigos/html/cadastro_usuario.html');
         exit();

@@ -15,21 +15,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     // Captura os dados do formulário
-    $email = $_POST['user_email'];
-    $senha = $_POST['user_senha'];
+    $email = trim($_POST['user_email']);
+    $senha = trim($_POST['user_senha']);
 
     // Consulta SQL para verificar o usuário e senha
-    $sql = "call loga_usuario('$senha', '$email')";
+    $sql = "call loga_usuario('".sha1($senha)."', '$email')";
     $result = $conn->query($sql);
    
 
     if ($result->num_rows == 1) {
         echo "Login bem-sucedido!"; // Usuário autenticado       
-        header('Location: /all_blue/codigos/html/all_blue.html');
+        header('Location: /all_blue/codigos/php/all_blue.php');
         exit();
 
     } else {
         echo "Login falhou. Verifique suas credenciais.";
+        flush();
+        ob_flush();
+        sleep(2);
+
+
     }
 
     // Feche a conexão com o banco de dados
