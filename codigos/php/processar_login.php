@@ -3,7 +3,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Configuração de conexão com o banco de dados (substitua com suas próprias credenciais)
     $servername = "localhost:3306";
     $username = "root";
-    $password = "thiago";
+    $password = "";
     $dbname = "all_blue";
 
     // Conecte-se ao banco de dados
@@ -19,13 +19,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $senha = $_POST['user_senha'];
 
     // Consulta SQL para verificar o usuário e senha
-    $sql = "call loga_usuario('$senha', '$email')";
+    $sql = "SELECT * FROM usuarios WHERE email = '$email' AND senha = '$senha'";
     $result = $conn->query($sql);
    
 
     if ($result->num_rows == 1) {
         echo "Login bem-sucedido!"; // Usuário autenticado       
-        header('Location: /all_blue/codigos/html/all_blue.html');
+        header('Location: /all_blue/codigos/php/all_blue.php');
         exit();
 
     } else {
