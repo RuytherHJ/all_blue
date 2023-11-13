@@ -15,7 +15,7 @@
         <body>
 
             <div class="logo-pg">
-                <a href="/all_blue/codigos/html/all_blue.html"><img src="/all_blue/codigos/files/logo_png.png" alt="All Blue"></a>
+                <a href="/all_blue/codigos/php/all_blue.php"><img src="/all_blue/codigos/files/logo_png.png" alt="All Blue"></a>
                 
             </div>
             <main>
@@ -33,7 +33,7 @@
                             </div>
                             <hr>
                             <!-- Direciona para o cadastro -->
-                            <p>Não possui um cadastro? </p> <p><a href="/all_blue/codigos/html/cadastro_usuario.html">Criar conta</a></p>
+                            <p>Não possui um cadastro? </p> <p><a href="/all_blue/codigos/php/cadastro_usuario.php">Criar conta</a></p>
                         </fieldset>
 
                     </form>

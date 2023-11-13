@@ -20,7 +20,7 @@ echo('
 
 
         <div class="logo-pg">
-            <a href="/all_blue/codigos/html/all_blue.html"><img src="/all_blue/codigos/files/logo_png.png" alt="All Blue"></a>
+            <a href="/all_blue/codigos/php/all_blue.php"><img src="/all_blue/codigos/files/logo_png.png" alt="All Blue"></a>
         </div>
             <main>
                 <!-- Formulário Cadastro -->
@@ -29,11 +29,11 @@ echo('
                         <fieldset class="tamanho-cadastro">
                             <h1>Criar conta</h1><span class="material-symbols-outlined"></span><br>
                             <label for="nome">Nome:</label>
-                            Nome: <input type="text" id="nome" name="user_name">
+                            <input type="text" id="nome" name="user_name">
                             <label for="email">E-mail:</label>
-                            Email: <input type="email" id="email" name="user_email">
+                            <input type="email" id="email" name="user_email">
                             <label for="senha">Crie uma senha:</label>
-                            Senha: <input type="password" id="senha" name="user_senha" minlength="8" onkeyup="senha_errada()">
+                            <input type="password" id="senha" name="user_senha" minlength="8" onkeyup="senha_errada()">
                             <label for="confirmasenha">Confirme sua senha:</label>
                             <input type="password" id="confirmasenha" name="user_senhaconfirma" minlength="8" onkeyup="senha_errada()">
 
@@ -44,7 +44,7 @@ echo('
                             
                             <!-- Direciona login -->
                             <p>Já possui um cadastro? </p>
-                            <p><a href="/all_blue/codigos/html/login.html">Fazer Login</a></p>
+                            <p><a href="/all_blue/codigos/php/login.php">Fazer Login</a></p>
                         </fieldset>
 
 

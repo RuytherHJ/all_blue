@@ -40,6 +40,7 @@ img{
   border-radius: 5px 0 0 5px;
   outline: none;
   color: #cac9c9;
+  font-size: 15px;
 }
 
 .searchTerm:focus{
@@ -120,6 +121,8 @@ a{
   text-decoration: none;
   margin-right: 55px;
   padding: 2px 15px;
+  font-size: 25px;
+
 }
 
 .position{
