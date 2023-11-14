@@ -77,7 +77,7 @@ def TUDO_HARDWARE():
                 salvando_no_bd(m,p,n,prodLink)
             
     
-    pagina_final=int(driver.find_element(By.XPATH,"//*[@aria-label='Page 434']").text)
+    pagina_final=int(driver.find_element(By.XPATH,"//*[@aria-label='Page 451']").text)
     trava=False
     
     for pags in range(2,pagina_final):

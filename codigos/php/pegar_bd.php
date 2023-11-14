@@ -1,7 +1,7 @@
 <?php
 $servername = "localhost:3306";
 $username = "root";
-$password = "";
+$password = "thiago";
 $dbname = "all_blue";
 
 // Conectar ao banco de dados
