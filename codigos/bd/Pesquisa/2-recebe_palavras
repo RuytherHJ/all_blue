@@ -1,6 +1,0 @@
-CREATE DEFINER=`root`@`localhost` PROCEDURE `inserindo_palavra`(in palavra text)
-BEGIN
-
-	insert into palavras_buscadas(palavras) values (palavra);
-
-END

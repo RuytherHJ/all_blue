@@ -1,5 +1,0 @@
-CREATE DEFINER=`root`@`localhost` PROCEDURE `apaga_pesquisa`()
-BEGIN
-	drop table palavras_buscadas;
-
-END
