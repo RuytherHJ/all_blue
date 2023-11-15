@@ -14,9 +14,6 @@
 
 </head>
 <body>
-    <?php
-
-    echo('
 
      <!-- Cabeçalho -->
      <header>
@@ -67,9 +64,7 @@
             <!--Dropdown filtro de marca/preço  -->
 
         </nav>
-    </header>');
-
-    ?>
+    </header>
 
     
 </body>
