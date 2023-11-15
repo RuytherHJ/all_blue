@@ -1,0 +1,14 @@
+CREATE DEFINER=`root`@`localhost` PROCEDURE `armazenando_palavras`()
+BEGIN
+if exists (table palavras_buscadas) then
+
+	drop table palavras_buscadas;
+
+else
+	CREATE TABLE `palavras_buscadas` (
+	  `palavras` tinytext NOT NULL
+	) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+    
+end if;
+
+END

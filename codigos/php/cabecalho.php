@@ -25,12 +25,16 @@
             </div>
             <!-- Barra de pesquisa -->
             <div class="wrap">
-                <div class="search">
-                    <input type="text" class="searchTerm" placeholder="O que você procura hoje?">
+            
+                <form class="search" action="/all_blue/codigos/php/pesquisa.php" method="POST"> 
+
+                    <input type="text" class="searchTerm" name="search_bar" placeholder="O que você procura hoje?">
                     <button type="submit" class="searchButton">
                         <i class="fa fa-search"></i>
                     </button>
-                </div>
+
+                </form>
+    
             </div>
 
             <!-- Dropdown menu  -->

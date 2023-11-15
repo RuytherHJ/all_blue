@@ -15,9 +15,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     // Captura os dados do formulário
-    $nome = trim($_POST['user_name']);
-    $email = trim($_POST['user_email']);
-    $senha = trim($_POST['user_senha']);
+    $dados_pesquisados=$_POST['search_bar'];
+
+    $dados_divididos=explode(" ",$dados_pesquisados);
+
+    $num_palavras=sizeof($dados_divididos);
+
+
+
+
 
     // Inserção dos dados no banco de dados
 
