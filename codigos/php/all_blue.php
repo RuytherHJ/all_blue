@@ -93,8 +93,9 @@ require_once("cabecalho.php");
 
 
 
-    </div>
+    
     </table>
+    </div>
 
 </body>
 
