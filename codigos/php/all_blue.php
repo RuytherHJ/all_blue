@@ -1,7 +1,14 @@
 
 <?php 
+
+
 require_once("cabecalho.php");
-echo('<!DOCTYPE html>
+
+
+?>
+
+
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -19,84 +26,79 @@ echo('<!DOCTYPE html>
 
 <body>
     <div class="table_produtos">
-    <table>');
+    <table>
 
-$servername = "localhost:3306";
-$username = "root";
-$password = "thiago";
-$dbname = "all_blue";
+        <?php
+        $servername = "localhost:3306";
+        $username = "root";
+        $password = "thiago";
+        $dbname = "all_blue";
 
-// Conectar ao banco de dados
-$conn = new mysqli($servername, $username, $password, $dbname);
+        // Conectar ao banco de dados
+        $conn = new mysqli($servername, $username, $password, $dbname);
 
-// Verificar a conexão
-if ($conn->connect_error) {
-    die("Falha na conexão: " . $conn->connect_error);
-}
-
-// Consulta para obter informações do banco de dados
-$sql = "SELECT * FROM produtos_aleatorios";
-$result = $conn->query($sql);
-
-
-// Fechar a conexão<?php
-
-
-
-
-                
-// Exibir informações do banco de dados
-$aux=1;
-$cont=1;
-
-if ($result->num_rows > 0) {
-
-    
-    while($row= $result->fetch_assoc() && $aux<20 ){
-        
-        echo "<tr>";
-        while($cont<=5){
-            $row= $result->fetch_assoc();
-            echo "<td>";
-            echo '<div class="imagem">';
-            echo '<a href="'.$row["url_produto"].'">';            
-            echo "<img src=".$row["url_img"]." class=img_produto alt=Monitor>";
-            echo '</div>';
-            echo '<hr>';
-     
-            echo '</a>';
-            
-            echo '<div class="nome_produto">'.$row["nome"].'';
-            echo '<h3>R$'.$row["preco"].'</h3>';
-            echo '</div>';
-            echo '</td>';
-
-            $cont=$cont+1;
-            $aux=$aux+1;
-
-
+        // Verificar a conexão
+        if ($conn->connect_error) {
+            die("Falha na conexão: " . $conn->connect_error);
         }
-        echo"</tr>";
-        
+
+        // Consulta para obter informações do banco de dados
+        $sql = "SELECT * FROM produtos_aleatorios";
+        $result = $conn->query($sql);
+
+                        
+        // Exibir informações do banco de dados
+        $aux=1;
         $cont=1;
-    }
-    
 
-    
-    
+        if ($result->num_rows > 0) {
 
-} else {
-    echo "Nenhuma informação encontrada no banco de dados.";
-}
-$conn->close();
+            
+            while($row= $result->fetch_assoc() && $aux<20 ){
+                
+                echo "<tr>";
+                while($cont<=5){
+                    $row= $result->fetch_assoc();
+                    echo "<td>";
+                    echo '<div class="imagem">';
+                    echo '<a href="'.$row["url_produto"].'">';            
+                    echo "<img src=".$row["url_img"]." class=img_produto alt=Monitor>";
+                    echo '</div>';
+                    echo '<hr>';
+            
+                    echo '</a>';
+                    
+                    echo '<div class="nome_produto">'.$row["nome"].'';
+                    echo '<h3>R$'.$row["preco"].'</h3>';
+                    echo '</div>';
+                    echo '</td>';
 
-echo('
+                    $cont=$cont+1;
+                    $aux=$aux+1;
+
+
+                }
+                echo"</tr>";
+                
+                $cont=1;
+            }
+
+        } else {
+            echo "Nenhuma informação encontrada no banco de dados.";
+        }
+        $conn->close();
+
+
+        ?>
+
+
+
     </div>
     </table>
 
-    </body>
-    
-    </html>');
+</body>
 
-?>
+</html>
+
+
 

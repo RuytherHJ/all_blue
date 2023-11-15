@@ -1,5 +1,3 @@
-<?php
-echo('
 
 
 <!DOCTYPE html>
@@ -39,15 +37,3 @@ echo('
    
 </body>
 </html>    
-
-
-
-
-
-
-
-
-');
-
-
-?>

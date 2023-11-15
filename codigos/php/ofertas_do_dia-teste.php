@@ -18,66 +18,11 @@
 </head>
 
 <body>
-    <!-- Cabeçalho -->
-    <header>
-        <div class="img-container">
-            <img src="/codigos/files/logo_png.png" alt="All Blue" class="logo">
-        </div>
-        <nav>
-            <div class="wrap">
-                <div class="search">
-                    <input type="text" class="searchTerm" placeholder="O que você procura hoje?">
-                    <button type="submit" class="searchButton">
-                        <i class="fa fa-search"></i>
-                    </button>
-                </div>
-            </div>
+    <?php
 
-            <div class="dropdown">
-                <button class="dropbutton_Menu">Menu</button>
-                <div class="drop_options">
-                    <a href="/codigos/html/login.html">Login</a>
-                    <a href="/codigos/html/cadastro_usuario.html">Cadastro</a>
-                    <a href="/codigos/html/fale-conosco.html">Fale conosco</a>
-                    <a href="/codigos/html/favoritos.html">Favoritos</a>
-                    <a href="/codigos/html/ofertas_do_dia.html">Ofertas do Dia</a>
-                </div>
-            </div>
-            <div class="dropdown">
+    require_once("cabecalho.php");
 
-                <button class="dropbutton_Filtros">Filtrar</button>
-                <div class="drop_options">
-
-
-                    <h1>Marcas</h1>
-
-                    <input type="checkbox" id="amd">
-                    <label for="amd">AMD</label><br>
-
-                    <input type="checkbox" id="intel">
-                    <label for="intel">INTEL</label><br>
-
-
-                    <input type="checkbox" id="gforce">
-                    <label for="gforce">GFORCE</label><br>
-
-                    <input type="checkbox" id="logitech">
-                    <label for="logitech">LOGITECH</label><br>
-
-                    <input type="checkbox" id="nvidia">
-                    <label for="nvidia">NVIDIA</label><br>
-
-
-                    <h1>Preços</h1>
-
-                    <input type="range">
-
-
-                </div>
-            </div>
-        </nav>
-
-    </header>
+    ?>
 
     <!-- Ofertas do dia -->
     <main>
@@ -112,14 +57,9 @@
 
     </div>
 
-
-
-
         <footer>
 
         </footer>
-
-
 
 </body>
 

@@ -1,6 +1,8 @@
 <?php
+
 require_once("cabecalho.php");
-echo('
+
+?>
 
 <!DOCTYPE html>
 <html lang="pt">
@@ -59,31 +61,10 @@ echo('
 
     </div>
 
-
-
-
         <footer>
 
         </footer>
 
-
-
 </body>
 
 </html>
-
-
-
-
-
-
-
-
-
-
-
-');
-
-
-
-?>

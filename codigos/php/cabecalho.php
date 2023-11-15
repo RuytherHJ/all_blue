@@ -1,8 +1,5 @@
 
-<?php
 
-
-echo('
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,6 +14,10 @@ echo('
 
 </head>
 <body>
+    <?php
+
+    echo('
+
      <!-- Cabeçalho -->
      <header>
         <nav>
@@ -66,12 +67,17 @@ echo('
             <!--Dropdown filtro de marca/preço  -->
 
         </nav>
-    </header>
+    </header>');
+
+    ?>
+
+    
 </body>
-</html>');
+
+</html>
 
 
-?>
+
 
 
 
