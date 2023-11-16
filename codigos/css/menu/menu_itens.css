@@ -1,7 +1,33 @@
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap');
+/* Estilos gerais */
 body{
     background-color: #38b6ff70;
 }
+
+h1{
+    display: inline-block;
+    margin: 15px;
+}
+
+p{
+    display: inline-block;
+}
+
+fieldset{
+    border-color: rgba(212, 212, 212, 0.377);
+    background-color: rgb(255, 249, 240);
+    border-radius: 10px;
+}
+
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+/* Estilo do formulário */
 form{
     width: 300px;
     margin: 0px auto;
@@ -9,10 +35,12 @@ form{
     border-radius: 8px;
     font-family: 'Ubuntu', sans-serif;
 }
+
 label{
     margin-left: 25px;
 }
-input{
+
+input,textarea{
     display: block;
     border: none;
     font-size: 16px;
@@ -26,6 +54,8 @@ input{
     border-radius: 10px;
 }
 
+
+/* Estilo do botão */
 button{
     
     text-align: center;
@@ -46,32 +76,29 @@ button:hover{
     background-color: #247db1;
 }
 
-fieldset{
+/* Estilo tamanho fieldset */
+.tamanho-cadastro{
     width: 350px;
-    height: 450px;
-    border-radius: 5%;
-    border-color: rgba(212, 212, 212, 0.377);
-    background-color: rgb(255, 249, 240);
-    
+    height: 500px;
 }
-p{
-    display: inline-block;
+
+.tamanho-login{
+    width: 350px;
+    height: 300px;
 }
+.tamanho-contato{
+    width: 350px;
+    height: 400px;
+}
+
+/* Estilo imagens */
 img{
-    width: 150px;
-    text-align: center;
+    width: 200px;
+    height: 200px;
     
 }
-.galeria{
-    text-align: center;
-}
-.container{
-    display: flex;
-    justify-content: center;
-    align-items: center;
 
+.logo-pg{
+   padding-left: 46%;
 }
 
-h1{
-    display: inline-block;
-}

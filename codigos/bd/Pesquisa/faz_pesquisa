@@ -1,0 +1,6 @@
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pesquisando`(in pesquisa varchar(10000))
+BEGIN
+
+	select * from produtos where match(nome) against(pesquisa) order by preco;
+
+END
