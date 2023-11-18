@@ -1,4 +1,0 @@
-CREATE DEFINER=`root`@`localhost` PROCEDURE `desaparece_por_marca`(in idMarca int)
-BEGIN
-	select * from produtos where id_Fabricant!=idMarca;
-END
