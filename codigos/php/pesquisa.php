@@ -35,7 +35,7 @@ include_once("cabecalho.php");
         // Configuração de conexão com o banco de dados
         $servername = "localhost:3306";
         $username = "root";
-        $password = "thiago";
+        $password = "";
         $dbname = "all_blue";
 
         // Conecte-se ao banco de dados
@@ -56,7 +56,7 @@ include_once("cabecalho.php");
         if ($result->num_rows > 0) {
 
             
-            while($row= $result->fetch_assoc() && $aux<20 ){
+            while( $aux<20 ){
                 
                 echo "<tr>";
                 while($cont<=5) {
@@ -92,7 +92,10 @@ include_once("cabecalho.php");
             }
 
         } else {
-            echo "Nenhuma informação encontrada no banco de dados.";
+            echo "Nenhum produto encontrado ";
+            echo("<br>");
+            echo("(┬┬﹏┬┬)");
+
         }
         $conn->close();
 
