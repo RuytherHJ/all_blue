@@ -1,6 +1,20 @@
-<?php
+<?php 
+// Inclua o código de processamento de login
+include 'processar_login.php';
 
-require_once("cabecalho.php");
+// Debug: Verificar o conteúdo da $_SESSION
+ //echo "Conteúdo da variável de sessão:";
+ //var_dump($_SESSION);
+
+// Verificar se o usuário está logado
+$usuarioLogado = (isset($_SESSION['usuarioLogado']) && $_SESSION['usuarioLogado'] === true);
+
+if ($usuarioLogado) {
+    require_once("cabecalho_logado.php");
+} else {
+    require_once("cabecalho.php");
+}
+
 
 ?>
 
