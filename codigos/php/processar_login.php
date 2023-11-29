@@ -28,6 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $result = $conn->query($sql);
     $row=$result->fetch_assoc();
     $_SESSION['nome_logado']=$row["nome"];
+    $_SESSION['cadastrou']=false;
     
 
     if ($result->num_rows > 0) {
@@ -44,10 +45,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
        
     }
     
-    $_SESSION['nome_logado']=$row["nome"];
-
+    
     // Debug: Verificar o conteúdo da $_SESSION após o login
-   // echo "Conteúdo da variável de sessão após o login:";
+    // echo "Conteúdo da variável de sessão após o login:";
     //var_dump($_SESSION);
 
     // Feche a conexão com o banco de dados

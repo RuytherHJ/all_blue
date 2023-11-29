@@ -2,6 +2,7 @@
 // Inclua o código de processamento de login
 include 'processar_login.php';
 
+
 // Debug: Verificar o conteúdo da $_SESSION
  //echo "Conteúdo da variável de sessão:";
  //var_dump($_SESSION);
@@ -11,10 +12,21 @@ $usuarioLogado = (isset($_SESSION['usuarioLogado']) && $_SESSION['usuarioLogado'
 
 if ($usuarioLogado) {
     require_once("cabecalho_logado.php");
+    if($_SESSION['cadastrou']==true){
+
+        echo('<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>'); 
+                echo('<script>Swal.fire({
+                    icon: "success",
+                    title: "Usuário cadastrado com sucesso!",
+                    showConfirmButton: false,
+                    timer: 1500
+                    });</script>')   ;
+    
+    
+    }
 } else {
     require_once("cabecalho.php");
 }
-
 
 ?>
 
@@ -28,7 +40,6 @@ if ($usuarioLogado) {
     <title>All Blue</title>
 
     <link rel="stylesheet" href="/all_blue/codigos/css/pagina_principal/style_principal.css">
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
 

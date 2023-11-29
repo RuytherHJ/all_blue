@@ -1,4 +1,5 @@
 <?php
+session_start();
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Configuração de conexão com o banco de dados
     $servername = "localhost:3306";
@@ -25,7 +26,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
     if ($conn->query($sql) === TRUE) {
+
+
+        $_SESSION['nome_logado']=$nome;
+        $_SESSION['usuarioLogado'] = true;
         
+        $_SESSION['cadastrou']=true;
         
         header('Location: /all_blue/codigos/php/all_blue.php');
         
