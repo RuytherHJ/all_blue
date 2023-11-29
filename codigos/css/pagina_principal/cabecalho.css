@@ -33,8 +33,8 @@ img{
   border: 3px solid #97d8e0;
   border-right: none;
   padding: 5px;
-  height: 20px;
-  border-radius: 5px 0 0 5px;
+  height: 30px;
+  border-radius: 20px 0 0 20px;
   outline: none;
   color: #cac9c9;
   font-size: 15px;
@@ -46,14 +46,15 @@ img{
 
 /* Estilo botão de pesquisa */
 .searchButton {
-  width: 40px;
-  height: 35px;
+  width: 30%;
+  height: 46px;
   border: 1px solid #97d8e0;
   background: #97d8e0;
   text-align: center;
   color: #fff;
-  border-radius: 0 5px 5px 0;
+  border-radius: 0 20px 20px 0;
   cursor: pointer;
+  
   font-size: 20px;
 }
 
@@ -63,8 +64,11 @@ img{
   position: absolute;
   top: 9.3%;
   left: 50%;
+  padding-top: 60px;
   transform: translate(-50%, -50%);
   font-family: 'Ubuntu', sans-serif;
+  
+
 }
 
 /* Estilo botões de menu e filtro dropdown */
@@ -125,7 +129,7 @@ a{
   color: white;
   text-decoration: none;
   margin-right: 55px;
-  padding: 2px 15px;
+  
   font-size: 25px;
 
 }
@@ -136,6 +140,7 @@ a{
 
 #icon{
   color: #FFAA38;
+  padding-bottom: 20px;
 }
 
 h1{
