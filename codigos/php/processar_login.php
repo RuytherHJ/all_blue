@@ -1,3 +1,7 @@
+
+
+
+
 <?php
 session_start();
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -22,6 +26,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Consulta SQL para verificar o usuário e senha
     $sql = "call all_blue.loga_usuario('".sha1($senha)."', '$email');";
     $result = $conn->query($sql);
+    $row=$result->fetch_assoc();
+    $_SESSION['nome_logado']=$row['nome'];
 
     if ($result->num_rows > 0) {
         // Login bem-sucedido
@@ -31,9 +37,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit();
     } else {
        // echo "Login falhou. Verifique suas credenciais.";
-        flush();
-        ob_flush();
-        sleep(2);
+       $_SESSION['senha_correta'] = true;
+       header('Location: /all_blue/codigos/php/login.php');
+       exit();
+       
     }
 
     // Debug: Verificar o conteúdo da $_SESSION após o login
@@ -44,5 +51,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $conn->close();
 } else {
   //  echo "Método de requisição inválido.";
+
 }
 ?>

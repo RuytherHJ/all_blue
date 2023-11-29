@@ -1,14 +1,12 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login de Usuário</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-    <link rel="stylesheet" href="/all_blue/codigos/css/menu/menu_itens.css">
+    <link rel="stylesheet" href="/ALL_BLUE/codigos/css/menu/menu_itens.css">
 </head>
 <body>
 
@@ -18,6 +16,25 @@
     </div>
     <main>
         <!-- Formulário Login -->
+
+        <?php
+        include 'processar_login.php';
+
+        $senha_correta = (isset($_SESSION['senha_correta']) && $_SESSION['senha_correta'] === true);
+
+        if ($senha_correta!=False) {
+            echo('<fieldset>');
+            echo('<form action="">');
+            echo('<h1>SENHA INCORRETA!!!</h1>');
+            echo('</form>');
+            echo('</fieldset>');
+            
+        } else {
+            
+        }
+
+
+        ?>
         <div class="container">    
             <form action="/all_blue/codigos/php/processar_login.php" method="POST"> 
                 <fieldset class="tamanho-login">

@@ -77,17 +77,16 @@ if ($usuarioLogado) {
 
                     if ($row != null){
                         echo "<td>";
+                        echo '<a href="'.$row["url_produto"].'">'; 
                         echo '<div class="imagem">';
-                        echo '<a href="'.$row["url_produto"].'">';            
                         echo "<img src=".$row["url_img"]." class=img_produto alt=Monitor>";
                         echo '</div>';
                         echo '<hr>';
-                
-                        echo '</a>';
                         
                         echo '<div class="nome_produto">'.$row["nome"].'';
                         echo '<h3>R$'.$row["preco"].'</h3>';
                         echo '</div>';
+                        echo '</a>';
                         echo '</td>';
 
 

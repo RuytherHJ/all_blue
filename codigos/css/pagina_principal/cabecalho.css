@@ -1,13 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap');
 /* Estilos gerais do cabeçalho */
 
-nav{
-  padding-top: 30px;
-}
 
 header{
-  background-color: #38B6FF;
-
+  padding-top: 30px;
+  background-image: linear-gradient( to left, #431bb1, rgb(21, 125, 221) ); 
 }
 
 label{
@@ -82,19 +79,21 @@ img{
   color: black;
   font-family: 'Ubuntu', sans-serif;
   font-size: 16px;
-  display: flex;
+  
   text-align: center;
 
 }
 
 .dropdown:hover .dropbutton {
   background-color: #206cfa;
+  cursor:pointer
 }
 
 /* Estilo do container dropdown */
 .dropdown{
-display: inline;
-float: right;
+  display:inline;
+  float: right;
+  
 }
 
 /* Estilo das opções */

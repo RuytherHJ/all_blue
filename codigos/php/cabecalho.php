@@ -6,8 +6,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cabecalho</title>
-    <link rel="stylesheet" href="/all_blue/codigos/css/pagina_principal/cabecalho.css">
-    <link rel="stylesheet" href="/all_blue/codigos/css/pagina_principal/style_principal.css">
+    <link rel="stylesheet" href="/ALL_BLUE/codigos/css/pagina_principal/cabecalho.css">
+    <link rel="stylesheet" href="/ALL_BLUE/codigos/css/pagina_principal/style_principal.css">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
@@ -54,14 +54,6 @@
                         contact_support
                         </span>
                     <a href="/all_blue/codigos/php/fale-conosco.php">Fale conosco</a>
-                    <span class="material-symbols-outlined" id="icon">
-                        favorite
-                        </span>
-                    <a href="/all_blue/codigos/php/favoritos.php">Favoritos</a>
-                    <span class="material-symbols-outlined" id="icon">
-                        shopping_bag
-                        </span>
-                    <a href="/all_blue/codigos/php/ofertas_do_dia.php">Ofertas do Dia</a>
                 </div>
             </div>
 
