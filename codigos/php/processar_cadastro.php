@@ -3,7 +3,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Configuração de conexão com o banco de dados
     $servername = "localhost:3306";
     $username = "root";
-    $password = "";
+    $password = "thiago";
     $dbname = "all_blue";
 
     // Conecte-se ao banco de dados
@@ -25,8 +25,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
     if ($conn->query($sql) === TRUE) {
-        echo "Cadastro realizado com sucesso!";
+        
+        
         header('Location: /all_blue/codigos/php/all_blue.php');
+        
         exit();
 
     } else {

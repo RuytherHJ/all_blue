@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login de Usuário</title>
-    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.0/dist/sweetalert2.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <link rel="stylesheet" href="/ALL_BLUE/codigos/css/menu/menu_itens.css">
 </head>
@@ -14,6 +14,7 @@
         <a href="/all_blue/codigos/php/all_blue.php"><img src="/all_blue/codigos/files/logo_png.png" alt="All Blue"></a>
         
     </div>
+    
     <main>
         <!-- Formulário Login -->
 
@@ -23,16 +24,17 @@
         $senha_correta = (isset($_SESSION['senha_correta']) && $_SESSION['senha_correta'] === true);
 
         if ($senha_correta!=False) {
-            echo('<fieldset>');
-            echo('<form action="">');
-            echo('<h1>SENHA INCORRETA!!!</h1>');
-            echo('</form>');
-            echo('</fieldset>');
             
-        } else {
+            echo('<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>'); 
+            echo('<script>Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Email e/ou Senha incorretos, por favor tente novamente!",
+                
+              });</script>')   ;
             
-        }
-
+                       
+        } 
 
         ?>
         <div class="container">    

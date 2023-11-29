@@ -8,7 +8,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Configuração de conexão com o banco de dados (substitua com suas próprias credenciais)
     $servername = "localhost:3306";
     $username = "root";
-    $password = "";
+    $password = "thiago";
     $dbname = "all_blue";
 
     // Conecte-se ao banco de dados
@@ -27,7 +27,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $sql = "call all_blue.loga_usuario('".sha1($senha)."', '$email');";
     $result = $conn->query($sql);
     $row=$result->fetch_assoc();
-    $_SESSION['nome_logado']=$row['nome'];
+    $_SESSION['nome_logado']=$row["nome"];
+    
 
     if ($result->num_rows > 0) {
         // Login bem-sucedido
@@ -42,6 +43,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
        exit();
        
     }
+    
+    $_SESSION['nome_logado']=$row["nome"];
 
     // Debug: Verificar o conteúdo da $_SESSION após o login
    // echo "Conteúdo da variável de sessão após o login:";

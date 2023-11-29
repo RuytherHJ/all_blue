@@ -55,16 +55,10 @@
                 account_circle</span> Olá, 
 
                 <?php
-
-                
-                $nome = (isset($_SESSION["nome_logado"]));
+                $nome = ($_SESSION['nome_logado']);
                 echo($nome);
-
                 ?>
-            
-            
-            
-            
+    
             </button>
                 
                 <div class="drop_options">
@@ -72,11 +66,7 @@
                     <a href="/all_blue/codigos/php/troca_usuario.php">Trocar usuário</a>
                 </div>
             </div>
-
             
-
-        
-
             <!--Dropdown filtro de marca/preço  -->
 
         
