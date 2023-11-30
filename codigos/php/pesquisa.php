@@ -1,8 +1,8 @@
 
 <?php
-//session_start();  
+session_start();  
 // Inclua o código de processamento de login
-include 'processar_login.php';
+//include 'processar_login.php';
 
 // Debug: Verificar o conteúdo da $_SESSION
  //echo "Conteúdo da variável de sessão:";
@@ -13,9 +13,22 @@ $usuarioLogado = (isset($_SESSION['usuarioLogado']) && $_SESSION['usuarioLogado'
 
 if ($usuarioLogado) {
     require_once("cabecalho_logado.php");
+    if($_SESSION['cadastrou']==true){
+
+        echo('<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>'); 
+                echo('<script>Swal.fire({
+                    icon: "success",
+                    title: "Usuário cadastrado com sucesso!",
+                    showConfirmButton: false,
+                    timer: 1500
+                    });</script>')   ;
+    
+    
+    }
 } else {
     require_once("cabecalho.php");
 }
+
 
 
 ?>
@@ -48,7 +61,7 @@ if ($usuarioLogado) {
         // Configuração de conexão com o banco de dados
         $servername = "localhost:3306";
         $username = "root";
-        $password = "thiago";
+        $password = "";
         $dbname = "all_blue";
 
         // Conecte-se ao banco de dados
