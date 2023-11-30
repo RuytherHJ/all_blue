@@ -1,11 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap');
 /* Estilos gerais do cabeçalho */
 
-
+.cabeçalho{
+  width: 100%;
+}
 header{
   width: 100%;
-  padding-top: 30px;
+  height: 150px;
+  padding-top: 5vw;
   background-image: linear-gradient( to left, #431bb1, rgb(21, 125, 221) ); 
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 label{
@@ -13,12 +19,14 @@ label{
 }
 
 /* Estilo logo */
-img{
-  width: 10%;
+.logo-container img{
+  width: 100%;
+  max-width: 150px;
 }
 
 .logo-container{
-  margin-left: 30px;
+  margin-left: 12px;
+  
 }
 
 /* Estilo barra de pesquisa */
@@ -47,25 +55,25 @@ img{
 
 /* Estilo botão de pesquisa */
 .searchButton {
-  width: 30%;
+  width: 15%;
   height: 46px;
   border: 1px solid #97d8e0;
   background: #97d8e0;
   text-align: center;
   color: #fff;
-  border-radius: 0 20px 20px 0;
+  border-radius: 0 2vw 2vw 0;
   cursor: pointer;
-  
-  font-size: 20px;
+  font-size: 2vw;
 }
 
 /* Estilo container da barra de pesquisa */
 .wrap{
-  width: 30%;
+  width: 50%;
   position: absolute;
-  top: 9.3%;
+  align-items: center;
+  top: 8vw;
   left: 50%;
-  padding-top: 60px;
+  /*padding-top: 60px;*/
   transform: translate(-50%, -50%);
   font-family: 'Ubuntu', sans-serif;
   
@@ -133,17 +141,28 @@ img{
   display: block;
 }
 
-a{
+.position a{
   color: white;
   text-decoration: none;
   margin-right: 55px;
-  
   font-size: 25px;
 
 }
 
 .position{
   text-align: center;
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+}
+@media only screen and (max-width: 600px) {
+  .position a{
+    font-size: medium;
+    margin-right: 20px;
+
+  }
+
+
 }
 
 #icon{
