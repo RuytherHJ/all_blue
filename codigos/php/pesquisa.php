@@ -61,7 +61,7 @@ if ($usuarioLogado) {
         // Configuração de conexão com o banco de dados
         $servername = "localhost:3306";
         $username = "root";
-        $password = "thiago";
+        $password = "";
         $dbname = "all_blue";
 
         // Conecte-se ao banco de dados

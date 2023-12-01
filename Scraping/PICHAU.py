@@ -4,7 +4,7 @@ from bs4 import BeautifulSoup           #     pip install bs4
 import mysql.connector                 #   pip install mysql-connector-python               
 from mysql.connector import errorcode
 
-banco=mysql.connector.connect(host='localhost', database='all_blue', user='root', password='thiago')
+banco=mysql.connector.connect(host='localhost', database='all_blue', user='root', password='')
 
 cursor=banco.cursor(buffered=True)
 
@@ -30,7 +30,7 @@ def TUDO_HARDWARE():
 
     headers =  {'User-Agent': "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36"}
     
-    pagina_final=278
+    pagina_final=300
 
     trava=False
 
@@ -93,7 +93,7 @@ def TUDO_PERIFERICOS():
     url ='https://www.pichau.com.br/perifericos'
     headers =  {'User-Agent': "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.5993.89 Safari/537.3"}
 
-    pagina_final=210
+    pagina_final=300
 
     trava=False
 
@@ -154,7 +154,7 @@ def TUDO_NOTEBOOKS_PORTATEIS():
     url ='https://www.pichau.com.br/notebooks'
     headers =  {'User-Agent': "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.5993.89 Safari/537.3"}
 
-    pagina_final=11
+    pagina_final=20
 
     trava=False
 
@@ -214,7 +214,7 @@ def TUDO_ELETRONICOS():
     url ='https://www.pichau.com.br/eletronicos'
     headers =  {'User-Agent': "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.5993.89 Safari/537.3"}
 
-    pagina_final=4
+    pagina_final=10
 
     trava=False
 
@@ -274,7 +274,7 @@ def TUDO_CADEIRAS_MESAS():
     url ='https://www.pichau.com.br/cadeiras'
     headers =  {'User-Agent': "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.5993.89 Safari/537.3"}
 
-    pagina_final=29
+    pagina_final=40
 
     trava=False
 
@@ -333,7 +333,7 @@ def TUDO_MONITORES():
     url ='https://www.pichau.com.br/monitores'
     headers =  {'User-Agent': "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.5993.89 Safari/537.3"}
 
-    pagina_final=16
+    pagina_final=30
 
     trava=False
 

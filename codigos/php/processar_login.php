@@ -8,7 +8,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Configuração de conexão com o banco de dados (substitua com suas próprias credenciais)
     $servername = "localhost:3306";
     $username = "root";
-    $password = "thiago";
+    $password = "";
     $dbname = "all_blue";
 
     // Conecte-se ao banco de dados
