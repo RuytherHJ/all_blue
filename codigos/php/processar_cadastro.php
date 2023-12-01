@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Captura os dados do formulário
     $nome = trim($_POST['user_name']);
-    $email = trim($_POST['user_email']);
+    $email = filter_var($_POST['user_email'], FILTER_SANITIZE_EMAIL);
     $senha = trim($_POST['user_senha']);
     $confirmadora=trim($_POST['user_senhaconfirma']);
 
