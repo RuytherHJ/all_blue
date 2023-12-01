@@ -94,9 +94,9 @@
                         <label for="email">E-mail:</label>
                         <input type="email" id="email" name="user_email">
                         <label for="senha">Crie uma senha:</label>
-                        <input type="password" id="senha" name="user_senha" minlength="8" onkeyup="senha_errada()">
+                        <input type="password" id="senha" name="user_senha" minlength="8">
                         <label for="confirmasenha">Confirme sua senha:</label>
-                        <input type="password" id="confirmasenha" name="user_senhaconfirma" minlength="8" onkeyup="senha_errada()">
+                        <input type="password" id="confirmasenha" name="user_senhaconfirma" minlength="8">
 
                         <div>
                             <button type="submit">Continuar com e-mail</button>
