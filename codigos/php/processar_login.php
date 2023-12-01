@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     // Captura os dados do formulário
-    $email = $_POST['user_email'] ?? '';
+    $email = filter_var($_POST['user_email'], FILTER_SANITIZE_EMAIL);
     $senha = $_POST['user_senha'] ?? '';
 
     // Consulta SQL para verificar o usuário e senha

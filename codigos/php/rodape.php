@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/ALL_BLUE/codigos/css/pagina_principal/style_principal.css">
+<<<<<<< HEAD
     <title>Document</title>
 </head>
 <body>
@@ -12,5 +13,12 @@
 ; width: 100%; color: white">
     <p>&copy; <?php echo date("Y"); ?> All Blue</p>
 </footer>
+=======
+    <title>Rodapé</title>
+</head>
+<body>
+    <footer> Copyright © 2023 </footer>
+    
+>>>>>>> a08a0276a593a074d3ee5044239e4eb2d26851ee
 </body>
 </html>
