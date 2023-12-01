@@ -9,7 +9,7 @@ from selenium.webdriver.common.by import By
 import mysql.connector                 #   pip install mysql-connector-python               
 from mysql.connector import errorcode
 
-banco=mysql.connector.connect(host='localhost', database='all_blue', user='root',password='thiago')
+banco=mysql.connector.connect(host='localhost', database='all_blue', user='root',password='')
 
 cursor=banco.cursor(buffered=True)
 
