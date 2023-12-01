@@ -90,17 +90,19 @@ if ($usuarioLogado) {
 
                     if ($row != null){
                         echo "<td>";
-                        echo '<a href="'.$row["url_produto"].'">'; 
-                        echo '<div class="imagem">';
-                        echo "<img src=".$row["url_img"]." class=img_produto alt=Monitor>";
-                        echo '</div>';
-                        echo '<hr>';
-                        
-                        echo '<div class="nome_produto">'.$row["nome"].'';
-                        echo '<h3>R$'.$row["preco"].'</h3>';
-                        echo '</div>';
-                        echo '</a>';
-                        echo '</td>';
+                    echo '<div class="produto">';
+                    echo '<div class="imagem">';
+                    echo '<a href="' . $row["url_produto"] . '">';
+                    echo "<img src=" . $row["url_img"] . " class=img_produto alt=Monitor>";
+                    echo '</a>';
+                    echo '</div>';
+                    echo '<hr>';
+                    echo '<div class="nome_produto"><p>' . substr($row["nome"], 0, 100). '...</p></div>';
+                    echo '<div class="preço">';
+                    echo '<h3>R$' . $row["preco"] . '</h3>';
+                    echo '</div>';
+                    echo '</div>';
+                    echo '<div class="detalhes-produto">';
 
 
                     }

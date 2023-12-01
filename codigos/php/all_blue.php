@@ -81,25 +81,26 @@ if ($usuarioLogado) {
                 while($cont<=5){
                     $row= $result->fetch_assoc();
                     echo "<td>";
-                    echo '<a href="'.$row["url_produto"].'">';
+                    echo '<div class="produto">';
                     echo '<div class="imagem">';
-                                
-                    echo "<img src=".$row["url_img"]." class=img_produto alt=Monitor>";
+                    echo '<a href="' . $row["url_produto"] . '">';
+                    echo "<img src=" . $row["url_img"] . " class=img_produto alt=Monitor>";
+                    echo '</a>';
                     echo '</div>';
                     echo '<hr>';
-            
-                    
-                    
-                    echo '<div class="nome_produto">'.$row["nome"].'';
-                    echo '<h3>R$'.$row["preco"].'</h3>';
+                    echo '<div class="nome_produto"><p>' . substr($row["nome"], 0, 100). '...</p></div>';
+                    echo '<div class="preço">';
+                    echo '<h3>R$' . $row["preco"] . '</h3>';
                     echo '</div>';
-                    echo '</a>';
+                    echo '</div>';
+                    echo '<div class="detalhes-produto">';
+                    
+                    // Limitar a descrição a 150 caracteres
+                    
+                    echo '</div>';
                     echo '</td>';
-
-                    $cont=$cont+1;
-                    $aux=$aux+1;
-
-
+                    $cont = $cont + 1;
+                    $aux = $aux + 1;
                 }
                 echo"</tr>";
                 

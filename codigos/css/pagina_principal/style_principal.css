@@ -20,10 +20,15 @@ html, body{
     justify-content: center;
     margin-top: 10%;
     margin-left:5%;
-    margin-right: 5%; 
+    margin-right: 5%;
+     
 
 }
-
+.produto:hover {
+    transform: scale(1.1); /* Aumenta o tamanho do produto em 10% */
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3); /* Adiciona uma sombra */
+    border-radius: 20px;
+}
 
 td{
     background-color: white;
@@ -31,7 +36,9 @@ td{
     width: 600px;
     font-size: 20px;
     padding: 10px;
+    cursor: pointer;
 }
+
 
 
 
@@ -39,15 +46,23 @@ td{
    
     width: 100%;
 
+
 }
 .nome_produto{
     color: rgb(0, 0, 0);
     font-family: 'Geologica', sans-serif;
     text-align: left;
+    max-height: 100px;
 
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
+
+
+
 .imagem{
     width: 200px;
+    height: 250px;
 
     display: block;
     margin: auto;
@@ -56,4 +71,9 @@ h3{
 
     text-align: center;
     font-family: 'Geologica', sans-serif;
+}
+.preço{
+    color: rgb(0, 0, 0);
+    font-family: 'Geologica', sans-serif;
+    text-align: left;
 }
