@@ -43,7 +43,7 @@ def TUDO_HARDWARE():
     driver.get(url)
             
     
-    pagina_final=int(driver.find_element(By.XPATH,"//*[@aria-label='Page 451']").text)
+    pagina_final=500
     trava=False
     
     for pags in range(1,pagina_final):
@@ -105,7 +105,7 @@ def TUDO_PERIFERICOS():
     driver.get(url)
             
     
-    pagina_final=int(driver.find_element(By.XPATH,"//*[@aria-label='Page 500']").text)
+    pagina_final=510
     trava=False
     
     for pags in range(1,pagina_final):
@@ -167,7 +167,7 @@ def TUDO_COMPUTADORES():
     driver.get(url)
             
     
-    pagina_final=int(driver.find_element(By.XPATH,"//*[@aria-label='Page 500']").text)
+    pagina_final=500
     trava=False
     
     for pags in range(1,pagina_final):
@@ -229,7 +229,7 @@ def TUDO_ESPACO_GAMER():
     url ="https://www.kabum.com.br/espaco-gamer"
     driver.get(url)
     
-    pagina_final=int(driver.find_element(By.XPATH,"//*[@aria-label='Page 57']").text)
+    pagina_final=500
     trava=False
     
     for pags in range(1,pagina_final):
@@ -290,7 +290,7 @@ def TUDO_GAMER():
     url ="https://www.kabum.com.br/gamer"
     driver.get(url)
     
-    pagina_final=int(driver.find_element(By.XPATH,"//*[@aria-label='Page 103']").text)
+    pagina_final=500
     trava=False
     
     for pags in range(1,pagina_final):
@@ -351,7 +351,7 @@ def TUDO_CELULARES():
     url ="https://www.kabum.com.br/celular-smartphone"
     driver.get(url)
     
-    pagina_final=int(driver.find_element(By.XPATH,"//*[@aria-label='Page 500']").text)
+    pagina_final=500
     trava=False
     
     for pags in range(1,pagina_final):
@@ -412,7 +412,7 @@ def TUDO_TV():
     url ="https://www.kabum.com.br/tv"
     driver.get(url)
     
-    pagina_final=int(driver.find_element(By.XPATH,"//*[@aria-label='Page 59']").text)
+    pagina_final=500
     trava=False
     
     for pags in range(1,pagina_final):

@@ -77,3 +77,13 @@ h3{
     font-family: 'Geologica', sans-serif;
     text-align: left;
 }
+
+footer{
+    
+    height: 50px;
+    width: 100%;
+    text-align: center;
+    color: blanchedalmond;
+    background-image: linear-gradient( to left, #431bb1, rgb(21, 125, 221) ); 
+
+}
