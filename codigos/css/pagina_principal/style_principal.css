@@ -87,3 +87,8 @@ footer{
     background-image: linear-gradient( to left, #431bb1, rgb(21, 125, 221) ); 
 
 }
+
+p{
+    height: 380px;
+
+}

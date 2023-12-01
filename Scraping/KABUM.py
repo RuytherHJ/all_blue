@@ -63,7 +63,7 @@ def TUDO_HARDWARE():
                 imagem=hardwares_imagens[k].get_property('src')
                 prodLink=hardwares_paginas[k].get_property('href')
 
-                if nome!=None and preco!=None and imagem!=None:
+                if nome!=None and preco!=None and imagem!=None and prodLink!=None and imagem!=None:
 
                     n=imagem
                     m=nome
@@ -125,7 +125,7 @@ def TUDO_PERIFERICOS():
                 imagem=perifeircos_imagens[k].get_property('src')
                 prodLink=perifericos_paginas[k].get_property('href')
 
-                if nome!=None and preco!=None and imagem!=None:
+                if nome!=None and preco!=None and imagem!=None and prodLink!=None and imagem!=None:
 
                     n=imagem
                     m=nome
@@ -187,7 +187,7 @@ def TUDO_COMPUTADORES():
                 imagem=computadores_imagens[k].get_property('src')
                 prodLink=computadores_paginas[k].get_property('href')
 
-                if nome!=None and preco!=None and imagem!=None:
+                if nome!=None and preco!=None and imagem!=None and prodLink!=None and imagem!=None:
 
                     n=imagem
                     m=nome
@@ -249,7 +249,7 @@ def TUDO_ESPACO_GAMER():
                 imagem=espacos_imagens[k].get_property('src')
                 prodLink=espacos_paginas[k].get_property('href')
 
-                if nome!=None and preco!=None and imagem!=None:
+                if nome!=None and preco!=None and imagem!=None and prodLink!=None and imagem!=None:
 
                     n=imagem
                     m=nome
@@ -310,7 +310,7 @@ def TUDO_GAMER():
                 imagem=gamers_imagens[k].get_property('src')
                 prodLink=gamers_paginas[k].get_property('href')
 
-                if nome!=None and preco!=None and imagem!=None:
+                if nome!=None and preco!=None and imagem!=None and prodLink!=None and imagem!=None:
 
                     n=imagem
                     m=nome
@@ -371,7 +371,7 @@ def TUDO_CELULARES():
                 imagem=celulares_imagens[k].get_property('src')
                 prodLink=celulares_paginas[k].get_property('href')
 
-                if nome!=None and preco!=None and imagem!=None:
+                if nome!=None and preco!=None and imagem!=None and prodLink!=None and imagem!=None:
 
                     n=imagem
                     m=nome
@@ -432,7 +432,7 @@ def TUDO_TV():
                 imagem=tvs_imagens[k].get_property('src')
                 prodLink=tvs_paginas[k].get_property('href')
 
-                if nome!=None and preco!=None and imagem!=None:
+                if nome!=None and preco!=None and imagem!=None and prodLink!=None and imagem!=None:
 
                     n=imagem
                     m=nome

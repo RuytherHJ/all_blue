@@ -58,7 +58,7 @@ def TUDO_HARDWARE():
 
                 
 
-                if hardware_nome!=None and hardware_preco!=None:
+                if hardware_nome!=None and hardware_preco!=None and propria_imagem!=None and url_imagem!=None:
 
                     n=propria_imagem.get('src')
                     l=url_imagem
@@ -119,7 +119,7 @@ def TUDO_PERIFERICOS():
                 propria_imagem=soup_imagem.find('img',{"style" : "transition:opacity 0ms linear 0ms, visibility 0ms linear 0ms"})
 
 
-                if periferico_nome!=None and periferico_preco!=None:
+                if periferico_nome!=None and periferico_preco!=None and propria_imagem!=None and url_imagem!=None:
                     
                     n=propria_imagem.get('src')
                     l=url_imagem
@@ -180,7 +180,7 @@ def TUDO_NOTEBOOKS_PORTATEIS():
                 propria_imagem=soup_imagem.find('img',{"style" : "transition:opacity 0ms linear 0ms, visibility 0ms linear 0ms"})
 
 
-                if notebook_nome!=None and notebook_preco!=None:
+                if notebook_nome!=None and notebook_preco!=None and propria_imagem!=None and url_imagem!=None:
                     
                     n=propria_imagem.get('src')
                     l=url_imagem
@@ -240,7 +240,7 @@ def TUDO_ELETRONICOS():
                 propria_imagem=soup_imagem.find('img',{"style" : "transition:opacity 0ms linear 0ms, visibility 0ms linear 0ms"})
 
 
-                if eletronico_nome!=None and eletronico_preco!=None:
+                if eletronico_nome!=None and eletronico_preco!=None and propria_imagem!=None and url_imagem!=None:
                     
                     n=propria_imagem.get('src')
                     l=url_imagem
@@ -299,7 +299,7 @@ def TUDO_CADEIRAS_MESAS():
                 soup_imagem=BeautifulSoup(pega_imagem.content, 'html.parser')
                 propria_imagem=soup_imagem.find('img',{"style" : "transition:opacity 0ms linear 0ms, visibility 0ms linear 0ms"})
 
-                if cadeira_nome!=None and cadeira_preco!=None:
+                if cadeira_nome!=None and cadeira_preco!=None and propria_imagem!=None and url_imagem!=None:
                     
                     n=propria_imagem.get('src')
                     l=url_imagem
@@ -358,7 +358,7 @@ def TUDO_MONITORES():
                 soup_imagem=BeautifulSoup(pega_imagem.content, 'html.parser')
                 propria_imagem=soup_imagem.find('img',{"style" : "transition:opacity 0ms linear 0ms, visibility 0ms linear 0ms"})
 
-                if monitor_nome!=None and monitor_preco!=None:
+                if monitor_nome!=None and monitor_preco!=None and propria_imagem!=None and url_imagem!=None:
                     
                     n=propria_imagem.get('src')
                     l=url_imagem

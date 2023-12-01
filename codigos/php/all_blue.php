@@ -83,7 +83,7 @@ if ($usuarioLogado) {
                     echo "<td>";
                     echo '<div class="produto">';
                     echo '<div class="imagem">';
-                    echo '<a href="' . $row["url_produto"] . '">';
+                    echo '<a href="' . $row["url_produto"] . '" target="_blank"">';
                     echo "<img src=" . $row["url_img"] . " class=img_produto alt=Monitor>";
                     echo '</a>';
                     echo '</div>';
@@ -122,7 +122,7 @@ if ($usuarioLogado) {
 
     <?php
          require_once 'rodape.php';
-        ?>
+    ?>
 
 
 </body>

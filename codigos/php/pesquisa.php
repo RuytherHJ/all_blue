@@ -37,6 +37,7 @@ if ($usuarioLogado) {
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>All Blue</title>
@@ -73,8 +74,19 @@ if ($usuarioLogado) {
         }
 
         // Captura os dados do formulário
-        $dados_pesquisados=$_POST['search_bar'];
-        $sql = "call all_blue.pesquisando('".$dados_pesquisados."');";
+
+
+        
+
+        
+      
+            $dados_pesquisados=$_POST['search_bar'];
+            $sql = "call all_blue.pesquisando('".$dados_pesquisados."');";
+            
+            
+
+        
+        
         $result=$conn->query($sql);
 
         $aux=1;
@@ -92,7 +104,7 @@ if ($usuarioLogado) {
                         echo "<td>";
                     echo '<div class="produto">';
                     echo '<div class="imagem">';
-                    echo '<a href="' . $row["url_produto"] . '">';
+                    echo '<a href="' . $row["url_produto"] . '" target="_blank"">';
                     echo "<img src=" . $row["url_img"] . " class=img_produto alt=Monitor>";
                     echo '</a>';
                     echo '</div>';
@@ -119,9 +131,12 @@ if ($usuarioLogado) {
             }
 
         } else {
+            echo "<p>";
             echo "Nenhum produto encontrado ";
             echo("<br>");
             echo("(┬┬﹏┬┬)");
+            echo "</p>";
+
 
         }
         $conn->close();
@@ -137,6 +152,10 @@ if ($usuarioLogado) {
 
     </table>
 </div>
+
+<?php
+    require_once 'rodape.php';
+?>
 
 </body>
 
