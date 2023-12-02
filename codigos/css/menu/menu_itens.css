@@ -52,8 +52,22 @@ input,textarea{
     outline: 0;
     height: auto;
     width: 80%;
-    background-color: rgba(220, 220, 220, 0.5);
+    background-color: #dcdcdc80;
     border-radius: 10px;
+
+}
+
+textarea{
+
+    resize: none;
+}
+
+
+input:hover , textarea:hover{
+
+    background-color: #c2c2c280;
+
+
 }
 
 input:focus , textarea:focus{

@@ -21,6 +21,7 @@ if ($usuarioLogado) {
                     showConfirmButton: false,
                     timer: 1500
                     });</script>')   ;
+                    $_SESSION['cadastrou']=false;
     
     
     }
@@ -28,7 +29,24 @@ if ($usuarioLogado) {
     require_once("cabecalho.php");
 }
 
+if(array_key_exists('enviou_mensagem',$_SESSION)){
+    if($_SESSION['enviou_mensagem']==true){
+        
+                            
+        echo('<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>'); 
+                echo('<script>Swal.fire({
+                    icon: "success",
+                    title: "Sua mensagem foi registrada!",
+                    showConfirmButton: false,
+                    timer: 1500
+                    });</script>');
+
+        $_SESSION['enviou_mensagem']=false;
+    }
+}
 ?>
+
+
 
 
 <!DOCTYPE html>
@@ -52,7 +70,7 @@ if ($usuarioLogado) {
         <?php
         $servername = "localhost:3306";
         $username = "root";
-        $password = "";
+        $password = "thiago";
         $dbname = "all_blue";
 
         // Conectar ao banco de dados

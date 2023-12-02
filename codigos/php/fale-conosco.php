@@ -17,16 +17,46 @@
     </div>
     <main>
         <!-- Formulário Fale conosco -->
+        
+
+        <?php
+
+                include 'processar_faleconosco.php';
+
+                if (array_key_exists('campo_fale_vazio',$_SESSION)){
+                    
+                    if($_SESSION['campo_fale_vazio']==true){
+                        
+                        echo('<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>'); 
+                                echo('<script>Swal.fire({
+                                    icon: "error",
+                                    title: "Algum dos campos estam vazios!",
+                                    showConfirmButton: false,
+                                    timer: 1500
+                                    });</script>');
+                            
+                        }
+
+                        $_SESSION['campo_fale_vazio']=false;
+                
+                }
+
+
+            ?>
+
+
+
+
         <div class="container">    
-            <form action="">
+            <form action="/all_blue/codigos/php/processar_faleconosco.php" method="POST">
                 <fieldset class="tamanho-contato">
                     <h1>Fale Conosco</h1><span class="material-symbols-outlined"></span><br>
                     <label for="Seu nome">Nome:</label>
-                    <input type="text" id="nome" name="user_nome">
+                    <input type="text" id="nome" name="user_name">
                     <label for="Seu e-mail">E-mail:</label>
                     <input type="email" id="email" name="user_email">
                     <label for="mensagem">Mensagem:</label>
-                    <textarea id="mensagem" name="user_mensagem"></textarea>
+                    <textarea name="user_mensagem" id="mensagem" ></textarea>
                     <div>
                         <button type="submit">Enviar</button>
                     </div> 
