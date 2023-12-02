@@ -4,7 +4,7 @@ from bs4 import BeautifulSoup           #     pip install bs4
 import mysql.connector                 #   pip install mysql-connector-python               
 from mysql.connector import errorcode
 
-banco=mysql.connector.connect(host='localhost', database='all_blue', user='root', password='')
+banco=mysql.connector.connect(host='localhost', database='all_blue', user='root', password='thiago')
 
 cursor=banco.cursor(buffered=True)
 
@@ -54,10 +54,12 @@ def TUDO_HARDWARE():
                 pega_imagem=requests.get(url_imagem,headers=headers)
                 soup_imagem=BeautifulSoup(pega_imagem.content, 'html.parser')
                 propria_imagem=soup_imagem.find('img',{"style" : "transition:opacity 0ms linear 0ms, visibility 0ms linear 0ms"})
-                
 
-                
+                if type(propria_imagem)=="<class 'NoneType'>":
+                    propria_imagem=soup_imagem.find('img',{"style" : "transition: opacity 0ms linear 0ms"})
+                 
 
+                print(type(propria_imagem))
                 if hardware_nome!=None and hardware_preco!=None and propria_imagem!=None and url_imagem!=None:
 
                     n=propria_imagem.get('src')
@@ -117,6 +119,10 @@ def TUDO_PERIFERICOS():
                 pega_imagem=requests.get(url_imagem,headers=headers)
                 soup_imagem=BeautifulSoup(pega_imagem.content, 'html.parser')
                 propria_imagem=soup_imagem.find('img',{"style" : "transition:opacity 0ms linear 0ms, visibility 0ms linear 0ms"})
+
+
+                if propria_imagem==None:
+                    propria_imagem=soup_imagem.find('img',{"style" : "transition: opacity 0ms linear 0ms"})
 
 
                 if periferico_nome!=None and periferico_preco!=None and propria_imagem!=None and url_imagem!=None:
@@ -180,6 +186,10 @@ def TUDO_NOTEBOOKS_PORTATEIS():
                 propria_imagem=soup_imagem.find('img',{"style" : "transition:opacity 0ms linear 0ms, visibility 0ms linear 0ms"})
 
 
+                if propria_imagem==None:
+                    propria_imagem=soup_imagem.find('img',{"style" : "transition: opacity 0ms linear 0ms"})
+
+
                 if notebook_nome!=None and notebook_preco!=None and propria_imagem!=None and url_imagem!=None:
                     
                     n=propria_imagem.get('src')
@@ -238,6 +248,11 @@ def TUDO_ELETRONICOS():
                 pega_imagem=requests.get(url_imagem,headers=headers)
                 soup_imagem=BeautifulSoup(pega_imagem.content, 'html.parser')
                 propria_imagem=soup_imagem.find('img',{"style" : "transition:opacity 0ms linear 0ms, visibility 0ms linear 0ms"})
+
+
+
+                if propria_imagem==None:
+                    propria_imagem=soup_imagem.find('img',{"style" : "transition: opacity 0ms linear 0ms"})
 
 
                 if eletronico_nome!=None and eletronico_preco!=None and propria_imagem!=None and url_imagem!=None:
@@ -299,6 +314,10 @@ def TUDO_CADEIRAS_MESAS():
                 soup_imagem=BeautifulSoup(pega_imagem.content, 'html.parser')
                 propria_imagem=soup_imagem.find('img',{"style" : "transition:opacity 0ms linear 0ms, visibility 0ms linear 0ms"})
 
+
+                if propria_imagem==None:
+                    propria_imagem=soup_imagem.find('img',{"style" : "transition: opacity 0ms linear 0ms"})
+
                 if cadeira_nome!=None and cadeira_preco!=None and propria_imagem!=None and url_imagem!=None:
                     
                     n=propria_imagem.get('src')
@@ -357,6 +376,10 @@ def TUDO_MONITORES():
                 pega_imagem=requests.get(url_imagem,headers=headers)
                 soup_imagem=BeautifulSoup(pega_imagem.content, 'html.parser')
                 propria_imagem=soup_imagem.find('img',{"style" : "transition:opacity 0ms linear 0ms, visibility 0ms linear 0ms"})
+
+
+                if propria_imagem==None:
+                    propria_imagem=soup_imagem.find('img',{"style" : "transition: opacity 0ms linear 0ms"})
 
                 if monitor_nome!=None and monitor_preco!=None and propria_imagem!=None and url_imagem!=None:
                     
