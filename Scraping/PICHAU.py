@@ -59,7 +59,7 @@ def TUDO_HARDWARE():
                     propria_imagem=soup_imagem.find('img',{"style" : "transition: opacity 0ms linear 0ms"})
                  
 
-                print(type(propria_imagem))
+                
                 if hardware_nome!=None and hardware_preco!=None and propria_imagem!=None and url_imagem!=None:
 
                     n=propria_imagem.get('src')
