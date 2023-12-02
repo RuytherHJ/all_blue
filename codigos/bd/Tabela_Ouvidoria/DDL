@@ -1,0 +1,6 @@
+CREATE TABLE `ouvidoria` (
+  `email_cliente` varchar(256) NOT NULL,
+  `nome` varchar(256) NOT NULL,
+  `mensagem` varchar(8192) NOT NULL,
+  `data_mensagem` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
