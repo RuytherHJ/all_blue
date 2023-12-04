@@ -38,7 +38,7 @@
         
                 </div>
 
-
+                <!-- Itens de menu -->
                 <div>
 
                     <div class="position">
@@ -57,7 +57,7 @@
                     </div>
                 </div>
 
-                <!--Dropdown filtro de marca/preço  -->
+             
 
             </nav>
         </header>

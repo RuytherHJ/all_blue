@@ -1,7 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap');
-/* Estilos gerais do cabeçalho */
 
-
+/* Estilos gerais */
 header{
   width: 100%;
   padding-top: 30px;
@@ -132,7 +131,7 @@ img{
 .dropdown:hover .drop_options {
   display: block;
 }
-
+/* Esttilo itens de menu */
 a{
   color: white;
   text-decoration: none;

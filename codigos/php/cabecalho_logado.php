@@ -39,9 +39,6 @@
             
 
             <!-- Dropdown menu  -->
-            
-            
-
             <div class="position">
                 <!-- Opções do menu -->
                 <span class="material-symbols-outlined" id="icon">
@@ -67,7 +64,7 @@
                 </div>
             </div>
             
-            <!--Dropdown filtro de marca/preço  -->
+           
 
         
     </header>
