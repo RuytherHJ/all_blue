@@ -25,8 +25,8 @@ html, body{
 
 }
 .produto:hover {
-    transform: scale(1.1); /* Aumenta o tamanho do produto em 10% */
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3); /* Adiciona uma sombra */
+    transform: scale(1.1); 
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3); 
     border-radius: 20px;
 }
 
@@ -78,6 +78,11 @@ h3{
     text-align: left;
 }
 
+p{
+    height: 380px;
+
+}
+/*Estilo rodapé*/
 footer{
     
     height: 50px;
@@ -85,10 +90,5 @@ footer{
     text-align: center;
     color: blanchedalmond;
     background-image: linear-gradient( to left, #431bb1, rgb(21, 125, 221) ); 
-
-}
-
-p{
-    height: 380px;
 
 }
