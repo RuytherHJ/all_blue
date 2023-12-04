@@ -58,7 +58,7 @@ if ($usuarioLogado) {
 <?php
 
 
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         // Configuração de conexão com o banco de dados
         $servername = "localhost:3306";
         $username = "root";
@@ -80,7 +80,7 @@ if ($usuarioLogado) {
 
         
       
-            $dados_pesquisados=$_POST['search_bar'];
+            $dados_pesquisados=$_GET['search_bar'];
             $sql = "call all_blue.pesquisando('".$dados_pesquisados."');";
             
             

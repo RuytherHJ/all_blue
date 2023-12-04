@@ -27,7 +27,7 @@
                 <!-- Barra de pesquisa -->
                 <div class="wrap">
                 
-                    <form class="search" action="/all_blue/codigos/php/pesquisa.php" method="POST"> 
+                    <form class="search" action="/all_blue/codigos/php/pesquisa.php" method="GET"> 
 
                         <input type="text" class="searchTerm" name="search_bar" placeholder="O que você procura hoje?">
                         <button type="submit" class="searchButton">
