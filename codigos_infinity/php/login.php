@@ -13,7 +13,7 @@
 <body>
 
     <div class="logo-pg">
-        <a href="all_blue.php"><img src="logo_png.png" alt="All Blue"></a>
+        <a href="index.php"><img src="logo_png.png" alt="All Blue"></a>
         
     </div>
     

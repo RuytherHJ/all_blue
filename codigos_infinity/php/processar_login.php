@@ -35,7 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Login bem-sucedido
         $_SESSION['usuarioLogado'] = true;
         echo "Login bem-sucedido!"; // Usuário autenticado 
-        header('Location: all_blue.php');
+        header('Location: index.php');
         exit();
     } else {
        // echo "Login falhou. Verifique suas credenciais.";

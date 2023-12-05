@@ -20,7 +20,7 @@
         <header>
             <nav>
                 <div class="logo-container">
-                    <a href="all_blue.php">
+                    <a href="index.php">
                     <img src="logo_png.png" alt="All Blue" class="logo">
                     </a>
                 </div>

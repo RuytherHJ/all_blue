@@ -19,7 +19,7 @@
 
 
     <div class="logo-pg">
-        <a href="all_blue.php"><img src="logo_png.png" alt="All Blue"></a>
+        <a href="index.php"><img src="logo_png.png" alt="All Blue"></a>
     </div>
         <main>
 
@@ -86,7 +86,7 @@
 
             <!-- Formulário Cadastro -->
             <div class="container">
-                <form action="/all_blue/codigos/php/processar_cadastro.php" method="POST"> 
+                <form action="processar_cadastro.php" method="POST"> 
                     <fieldset class="tamanho-cadastro">
                         <h1>Criar conta</h1><span class="material-symbols-outlined"></span><br>
                         <label for="nome">Nome:</label>
@@ -105,7 +105,7 @@
                         
                         <!-- Direciona login -->
                         <p>Já possui um cadastro? </p>
-                        <p><a href="/all_blue/codigos/php/login.php">Fazer Login</a></p>
+                        <p><a href="login.php">Fazer Login</a></p>
                     </fieldset>
 
 

@@ -34,7 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $_SESSION['enviou_mensagem'] = true;
                 $_SESSION['campo_fale_vazio']=false;
                 
-                header('Location: all_blue.php');
+                header('Location: index.php');
                 
                 exit();
         

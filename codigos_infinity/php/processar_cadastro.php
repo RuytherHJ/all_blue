@@ -51,7 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 
                 $_SESSION['cadastrou']=true;
                 
-                header('Location: all_blue.php');
+                header('Location: index.php');
                 
                 exit();
         

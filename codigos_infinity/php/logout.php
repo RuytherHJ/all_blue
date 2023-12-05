@@ -8,6 +8,6 @@ $_SESSION = array();
 session_destroy();
 
 // Redirecione para a página de login ou qualquer outra página desejada
-header('Location: all_blue.php');
+header('Location: index.php');
 exit();
 ?>
