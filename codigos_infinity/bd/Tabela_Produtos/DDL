@@ -1,0 +1,11 @@
+CREATE TABLE `produtos` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `nome` varchar(1024) NOT NULL,
+  `preco` float NOT NULL,
+  `id_Vendedora` int NOT NULL,
+  `url_img` varchar(2083) NOT NULL,
+  `url_produto` varchar(2083) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id_UNIQUE` (`id`),
+  FULLTEXT KEY `nome` (`nome`)
+) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci

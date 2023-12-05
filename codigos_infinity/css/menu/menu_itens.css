@@ -1,0 +1,133 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap');
+/* Estilos gerais */
+body{
+ background-image: linear-gradient( to left, #431bb1, rgb(21, 125, 221), #431bb1 ); 
+}
+
+h1{
+    display: inline-block;
+    margin: 15px;
+}
+
+p{
+    display: inline-block;
+}
+
+fieldset{
+    border-color: rgba(212, 212, 212, 0.377);
+    background-color: rgb(255, 249, 240);
+    border-radius: 10px;
+
+    
+}
+
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+/* Estilo do formulário */
+form{
+    
+    margin: 0px auto;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-family: 'Ubuntu', sans-serif;
+}
+
+label{
+    margin-left: 25px;
+}
+
+input,textarea{
+    display: block;
+    border: none;
+    font-size: 16px;
+    margin: 5px;
+    margin-left: 25px;
+    padding: 6px;
+    outline: 0;
+    height: auto;
+    width: 80%;
+    background-color: #dcdcdc80;
+    border-radius: 10px;
+
+}
+
+textarea{
+
+    resize: none;
+}
+
+
+input:hover , textarea:hover{
+
+    background-color: #c2c2c280;
+
+
+}
+
+input:focus , textarea:focus{
+    transition: 20ms;
+    border-width: 1px;
+    transition: 300ms;
+    background-image:linear-gradient( to left, #d0d0d3, #e6e8e9, #d0d0d3) ;
+    box-shadow: 2px 2px 2px #38B6FF;
+    
+
+    
+   
+}
+
+
+/* Estilo do botão */
+button{
+    
+    text-align: center;
+    width: 80%;
+    margin-top: 15px;
+    margin-left: 30px;
+    margin-bottom: 5px;
+    padding: 13px 13px;
+    background-color: #38B6FF;
+    border-radius: 10px;
+    border: none;
+    color: white;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+button:hover{
+    background-color: #247db1;
+}
+
+/* Estilo tamanho fieldset */
+.tamanho-cadastro{
+    width: 350px;
+    height: 500px;
+}
+
+.tamanho-login{
+    width: 350px;
+    height: 300px;
+}
+.tamanho-contato{
+    width: 350px;
+    height: 400px;
+}
+
+/* Estilo imagens */
+img{
+    width: 200px;
+    height: 200px;
+    
+}
+
+.logo-pg{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

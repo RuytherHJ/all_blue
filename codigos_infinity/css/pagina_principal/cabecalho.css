@@ -1,0 +1,164 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap');
+
+/* Estilos gerais */
+header{
+  width: 100%;
+  padding-top: 30px;
+  background-image: linear-gradient( to left, #431bb1, rgb(21, 125, 221) ); 
+}
+
+label{
+  margin-right: 20px;
+}
+
+/* Estilo logo */
+img{
+  width: 10%;
+}
+
+.logo-container{
+  margin-left: 30px;
+}
+
+/* Estilo barra de pesquisa */
+.search {
+  width: 100%;
+  position: relative;
+  display: flex;
+}
+
+/* Estilo campo de pesquisa */
+.searchTerm {
+  width: 100%;
+  border: 3px solid #97d8e0;
+  border-right: none;
+  padding: 5px;
+  height: 30px;
+  border-radius: 20px 0 0 20px;
+  outline: none;
+  color: #cac9c9;
+  font-size: 15px;
+}
+
+.searchTerm:focus{
+  color: #5f6768;
+}
+
+/* Estilo botão de pesquisa */
+.searchButton {
+  width: 10%;
+  height: 46px;
+  border: 1px solid #97d8e0;
+  background: #97d8e0;
+  text-align: center;
+  color: #fff;
+  border-radius: 0 20px 20px 0;
+  cursor: pointer;
+  
+  font-size: 20px;
+}
+
+/* Estilo container da barra de pesquisa */
+.wrap{
+  width: 40%;
+  position: absolute;
+  top: 9.3%;
+  left: 50%;
+  padding-top: 60px;
+  transform: translate(-50%, -50%);
+  font-family: 'Ubuntu', sans-serif;
+  
+
+}
+
+/* Estilo botões de menu e filtro dropdown */
+.dropbutton{
+  padding: 16px;
+  border-radius: 15px;
+  border: none;
+  cursor: pointer;
+  width: 170px;
+  height: 50px;
+  background-color: #FFAA38;
+  color: black;
+  font-family: 'Ubuntu', sans-serif;
+  font-size: 16px;
+  position: absolute;
+  top: 10%;
+  right: 0;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+
+.dropdown:hover .dropbutton {
+  background-color: #206cfa;
+  cursor:pointer
+}
+
+/* Estilo do container dropdown */
+.dropdown{
+  display:inline;
+  float: right;
+  
+}
+
+/* Estilo das opções */
+.drop_options{
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(50, 30, 161, 0.2);
+  z-index: 1;
+  top: 15%;
+  right: 0;
+
+}
+
+.drop_options a {
+  color: black;
+  font-size: 20px;
+  padding: 8px 10px;
+  text-decoration: none;
+  display: block;
+}
+
+.drop_options a:hover {background-color: #f1f1f1}
+
+.dropdown:hover .drop_options {
+  display: block;
+}
+/* Esttilo itens de menu */
+a{
+  color: white;
+  text-decoration: none;
+  margin-right: 55px;
+  
+  font-size: 25px;
+
+}
+
+.position{
+  text-align: center;
+}
+
+#icon{
+  color: #FFAA38;
+  padding-bottom: 20px;
+}
+
+h1{
+  text-align: center;
+}
+
+.logado{
+  text-align: right;
+}
+#icon_options{
+  color: white;
+  padding-right: 7px;
+
+}

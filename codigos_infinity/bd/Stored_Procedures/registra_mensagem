@@ -1,0 +1,5 @@
+CREATE DEFINER=`root`@`localhost` PROCEDURE `registra_mensagem`(in nome_usuario varchar(256),in email_usuario varchar(256),in mensagem_usuario varchar(8192))
+BEGIN
+insert into ouvidoria(email_cliente,nome,data_mensagem,mensagem) values(email_usuario,nome_usuario,curdate(),mensagem_usuario);
+
+END
