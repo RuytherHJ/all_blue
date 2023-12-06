@@ -1,5 +1,8 @@
 # All Blue 
 
+## LINK:
+http://allblue.kesug.com/
+
 ## Grupo: 
 
 Isabelly Faier Vieira; Patrick Ribeiro; Ruyther Helmer Júnior; Thiago Nunes
