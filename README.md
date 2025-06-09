@@ -3,7 +3,7 @@
 ## LINK:
 http://allblue.kesug.com/
 
-https://www.canva.com/search?q=all%20blue&ui=eyJBIjoiRyJ9
+https://www.canva.com/design/DAF1Zk_0tz0/0a_kHc41KPHeVIqogGAB3Q/edit?utm_content=DAF1Zk_0tz0&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton
 
 ## Grupo: 
 
